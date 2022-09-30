@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Game Ideas.md",
+            "file": "Platformer Movement Mechanics.md",
             "mode": "source",
             "source": true
           }
@@ -22,7 +22,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Game Ideas.md",
+            "file": "Platformer Movement Mechanics.md",
             "mode": "preview",
             "source": true
           }
@@ -91,7 +91,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Game Ideas.md",
+                "file": "Platformer Movement Mechanics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -108,7 +108,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Game Ideas.md",
+                "file": "Platformer Movement Mechanics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -131,7 +131,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Game Ideas.md"
+                "file": "Platformer Movement Mechanics.md"
               }
             }
           }
@@ -143,5 +143,7 @@
     "collapsed": true
   },
   "active": "bb93e1c120801a8c",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "Game Ideas.md"
+  ]
 }
