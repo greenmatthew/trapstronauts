@@ -527,6 +527,7 @@ texture = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -22, -38 )
+charCol = Color( 0, 0.976471, 1, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 15 )
