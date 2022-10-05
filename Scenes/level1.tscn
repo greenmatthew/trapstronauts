@@ -526,7 +526,7 @@ shape = SubResource( 2 )
 texture = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, -16 )
+position = Vector2( -22, -38 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 15 )

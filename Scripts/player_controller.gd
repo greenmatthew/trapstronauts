@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+onready var animator = $Position2D/AnimatedSprite
+onready var position2D=$Position2D
+
 # Movement
 const gravity : float = 512.0 # pixels/s^2
 const sprint_coefficient : float = 2.0
@@ -11,40 +14,82 @@ const jump_height : float = 128.0 # pixels
 
 var velocity = Vector2.ZERO # pixels/s
 
+# animation state machine
+enum STATE {IDLE, RUN, JUMP, FALL, LAND}
+var state = STATE.IDLE
+
 # Particles
 const base_initial_velocity : float = 25.0
 
 func clampv(v : Vector2, minv : Vector2, maxv : Vector2) -> Vector2:
-    return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))
+	return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))
 
 func get_input(delta : float) -> void:
-    var direction = int(Input.is_action_pressed("move_right")) * Vector2.RIGHT + int(Input.is_action_pressed("move_left")) * Vector2.LEFT;
-    velocity += direction * pow(sprint_coefficient, int(Input.is_action_pressed("sprint"))) * base_acceleration * delta;
+	var direction = int(Input.is_action_pressed("move_right")) * Vector2.RIGHT + int(Input.is_action_pressed("move_left")) * Vector2.LEFT;
+	
+	if direction.x > 0:
+		position2D.scale.x=1
+	if direction.x < 0:
+		position2D.scale.x=-1
+	
+	velocity += direction * pow(sprint_coefficient, int(Input.is_action_pressed("sprint"))) * base_acceleration * delta;
 
-    $Trail.process_material.direction = -Vector3(direction.x, 0, 0);
-    $Trail.process_material.initial_velocity = pow(sprint_coefficient * 0, int(Input.is_action_pressed("sprint"))) * base_initial_velocity;
-    $Trail.emitting = direction != Vector2.ZERO and is_on_floor();
+	$Trail.process_material.direction = -Vector3(direction.x, 0, 0);
+	$Trail.process_material.initial_velocity = pow(sprint_coefficient * 0, int(Input.is_action_pressed("sprint"))) * base_initial_velocity;
+	$Trail.emitting = direction != Vector2.ZERO and is_on_floor();
 
 
-    if is_on_floor():
-        if Input.is_action_just_pressed("jump"):
-            velocity.y = -sqrt(2 * gravity * jump_height)
-            $Cloud.emitting = true
-        velocity.x = lerp(velocity.x, 0, ground_friction)
-    else:
-        velocity.y += gravity * delta
-        velocity.x = lerp(velocity.x, 0, air_friction)
+	if is_on_floor():
+		# jump start
+		if Input.is_action_just_pressed("jump"):
+			state = STATE.JUMP
+			velocity.y = -sqrt(2 * gravity * jump_height)
+			$Cloud.emitting = true
+		velocity.x = lerp(velocity.x, 0, ground_friction)
+	else:
+		velocity.y += gravity * delta
+		velocity.x = lerp(velocity.x, 0, air_friction)
+		if velocity.y > 3:
+			state = STATE.FALL
 
-    
-
-    # Clamp velocity to make sure the player doesn't go too fast
-    velocity = clampv(velocity, -terminal_velocity, terminal_velocity)
-    # Move the player
-    velocity = move_and_slide(velocity, Vector2.UP)
+	# Clamp velocity to make sure the player doesn't go too fast
+	velocity = clampv(velocity, -terminal_velocity, terminal_velocity)
+	# Move the player
+	velocity = move_and_slide(velocity, Vector2.UP)
+	
+	print(state)
+	
+	if is_on_floor() and not state == STATE.LAND:
+		if state == STATE.FALL:
+			state = STATE.LAND
+		elif velocity.length() > 10:
+			state = STATE.RUN
+		else:
+			state = STATE.IDLE
+			
+	print(state)
+	print()
 
 func _ready():
-    $Trail.emitting = false
-    $Cloud.emitting = false
+	$Trail.emitting = false
+	$Cloud.emitting = false
+
+func process_anim():
+	if state == STATE.IDLE:
+		animator.play("idle")
+	if state == STATE.RUN:
+		animator.play("run")
+	if state == STATE.JUMP:
+		animator.play("jump")
+	if state == STATE.FALL:
+		animator.play("fall")
+	if state == STATE.LAND:
+		animator.play("land")
 
 func _physics_process(delta : float) -> void:
-    get_input(delta)
+	get_input(delta)
+	process_anim()
+
+func _on_AnimatedSprite_animation_finished():
+	if animator.animation == "land":
+		state = STATE.IDLE
