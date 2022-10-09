@@ -294,11 +294,10 @@ use_parent_material = true
 position = Vector2( -8, -4 )
 frames = SubResource( 26 )
 animation = "run"
-frame = 5
+frame = 2
 playing = true
 
 [node name="Trail" type="Particles2D" parent="Position2D"]
-visible = false
 position = Vector2( -25, 50 )
 z_index = 1
 lifetime = 0.35
@@ -307,7 +306,7 @@ process_material = SubResource( 2 )
 texture = ExtResource( 3 )
 
 [node name="Cloud" type="Particles2D" parent="Position2D"]
-position = Vector2( -8, 28 )
+position = Vector2( 0, 60 )
 z_index = 1
 emitting = false
 amount = 16
