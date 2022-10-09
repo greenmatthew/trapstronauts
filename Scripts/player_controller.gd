@@ -72,7 +72,7 @@ func get_input(delta : float) -> void:
 		else:
 			state = STATE.IDLE
 
-func _init():
+func _ready():
 	material.set_shader_param("charCol", Vector3(charCol.r, charCol.g, charCol.b))
 
 func process_anim():
