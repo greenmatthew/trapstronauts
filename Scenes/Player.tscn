@@ -278,10 +278,6 @@ __meta__ = {
 position = Vector2( 8, 4 )
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2( 0.5, 0.5 )
-
 [node name="Position2D" type="Position2D" parent="."]
 use_parent_material = true
 position = Vector2( 8, 4 )
@@ -294,7 +290,7 @@ use_parent_material = true
 position = Vector2( -8, -4 )
 frames = SubResource( 26 )
 animation = "run"
-frame = 3
+frame = 2
 playing = true
 
 [node name="Trail" type="Particles2D" parent="Position2D"]

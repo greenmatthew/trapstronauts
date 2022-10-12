@@ -1,115 +1,16 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/icon.png" type="Texture" id=2]
 [ext_resource path="res://Assets/nature-paltformer-tileset-16x16.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Materials/lightingShader.tres" type="Shader" id=4]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 32 )
-
-[sub_resource type="ShaderMaterial" id=27]
-shader = ExtResource( 4 )
-shader_param/charCol = Vector3( 1, 1, 1 )
-
-[sub_resource type="GDScript" id=28]
-script/source = "extends KinematicBody2D
-
-onready var animator = $Position2D/AnimatedSprite
-onready var position2D = $Position2D
-onready var trail = $Position2D/Trail
-onready var cloud = $Position2D/Cloud
-
-# Set the character color via shader
-export var charCol = Color(1.0, 1.0, 1.0, 1.0);
-
-# Movement
-const gravity : float = 512.0 # pixels/s^2
-const sprint_coefficient : float = 2.0
-const base_acceleration : float = 512.0 # pixels/s^2
-const terminal_velocity : Vector2 = Vector2(256.0, 512.0) # pixels/s
-const ground_friction : float = 0.1
-const air_friction : float = 0.01
-const jump_height : float = 128.0 # pixels
-
-var velocity = Vector2.ZERO # pixels/s
-
-# animation state machine
-enum STATE {IDLE, RUN, JUMP, FALL, LAND}
-var state = STATE.IDLE
-
-# Particles
-const base_initial_velocity : float = 25.0
-
-func clampv(v : Vector2, minv : Vector2, maxv : Vector2) -> Vector2:
-	return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))
-
-func get_input(delta : float) -> void:
-	var direction = int(Input.is_action_pressed(\"move_right\")) * Vector2.RIGHT + int(Input.is_action_pressed(\"move_left\")) * Vector2.LEFT;
-	
-	if direction.x > 0:
-		position2D.scale.x=1
-	if direction.x < 0:
-		position2D.scale.x=-1
-	
-	velocity += direction * pow(sprint_coefficient, int(Input.is_action_pressed(\"sprint\"))) * base_acceleration * delta;
-
-	trail.process_material.direction = -Vector3(direction.x, 0, 0);
-	trail.process_material.initial_velocity = pow(sprint_coefficient * 0, int(Input.is_action_pressed(\"sprint\"))) * base_initial_velocity;
-	
-	var emit = (direction != Vector2.ZERO) and is_on_floor()
-	trail.emitting = emit
-
-	if is_on_floor():
-		# jump start
-		if Input.is_action_just_pressed(\"jump\"):
-			state = STATE.JUMP
-			velocity.y = -sqrt(2 * gravity * jump_height)
-			cloud.restart()
-		velocity.x = lerp(velocity.x, 0, ground_friction)
-	else:
-		velocity.y += gravity * delta
-		velocity.x = lerp(velocity.x, 0, air_friction)
-		if velocity.y > 3:
-			state = STATE.FALL
-
-	# Clamp velocity to make sure the player doesn't go too fast
-	velocity = clampv(velocity, -terminal_velocity, terminal_velocity)
-	# Move the player
-	velocity = move_and_slide(velocity, Vector2.UP)
-	
-	if is_on_floor() and not state == STATE.LAND:
-		if state == STATE.FALL:
-			cloud.emitting = false
-			state = STATE.LAND
-		elif velocity.length() > 10:
-			state = STATE.RUN
-		else:
-			state = STATE.IDLE
-
-func _ready():
-	material.set_shader_param(\"charCol\", Vector3(charCol.r, charCol.g, charCol.b))
-
-func process_anim():
-	if state == STATE.IDLE:
-		animator.play(\"idle\")
-	if state == STATE.RUN:
-		animator.play(\"run\")
-	if state == STATE.JUMP:
-		animator.play(\"jump\")
-	if state == STATE.FALL:
-		animator.play(\"fall\")
-	if state == STATE.LAND:
-		animator.play(\"land\")
-
-func _physics_process(delta : float) -> void:
-	get_input(delta)
-	process_anim()
-
-func _on_AnimatedSprite_animation_finished():
-	if animator.animation == \"land\":
-		state = STATE.IDLE
-"
+[ext_resource path="res://Assets/Levels/01Forest/Background.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Levels/01Forest/Layer4.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Levels/01Forest/Layer1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Levels/01Forest/Layer3.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Levels/01Forest/Layer2.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/MultiCam.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/level1.gd" type="Script" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=16]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -616,7 +517,21 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 29/shapes = [  ]
 29/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="ShaderMaterial" id=27]
+shader = ExtResource( 4 )
+shader_param/charCol = Vector3( 1, 1, 1 )
+
 [node name="test_scene" type="Node2D"]
+script = ExtResource( 11 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 15 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -262173, 10, 0, -262172, 11, 0, -262171, 11, 0, -262170, 11, 0, -262169, 11, 0, -262168, 12, 0, 131040, 2, 0, 131041, 3, 0, 131042, 3, 0, 131043, 3, 0, 131044, 3, 0, 131045, 3, 0, 131046, 3, 0, 131047, 3, 0, 131048, 3, 0, 131049, 3, 0, 131050, 3, 0, 131051, 3, 0, 131052, 3, 0, 131053, 3, 0, 131054, 3, 0, 131055, 3, 0, 131056, 3, 0, 131057, 3, 0, 131058, 3, 0, 131059, 3, 0, 131060, 3, 0, 131061, 3, 0, 131062, 3, 0, 131063, 3, 0, 131064, 3, 0, 131065, 3, 0, 131066, 3, 0, 131067, 3, 0, 131068, 3, 0, 131069, 3, 0, 131070, 3, 0, 131071, 3, 0, 65536, 3, 0, 65537, 3, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 65544, 3, 0, 65545, 3, 0, 65546, 3, 0, 65547, 3, 0, 65548, 3, 0, 65549, 3, 0, 65550, 3, 0, 65551, 3, 0, 65552, 3, 0, 65553, 3, 0, 65554, 3, 0, 65555, 3, 0, 65556, 3, 0, 65557, 3, 0, 65558, 3, 0, 65559, 3, 0, 65560, 3, 0, 65561, 3, 0, 65562, 3, 0, 65563, 3, 0, 65564, 3, 0, 65565, 3, 0, 65566, 3, 0, 65567, 4, 0, 196576, 5, 0, 196577, 6, 0, 196578, 6, 0, 196579, 6, 0, 196580, 6, 0, 196581, 6, 0, 196582, 6, 0, 196583, 6, 0, 196584, 6, 0, 196585, 6, 0, 196586, 6, 0, 196587, 6, 0, 196588, 6, 0, 196589, 6, 0, 196590, 6, 0, 196591, 6, 0, 196592, 6, 0, 196593, 6, 0, 196594, 6, 0, 196595, 6, 0, 196596, 6, 0, 196597, 6, 0, 196598, 6, 0, 196599, 6, 0, 196600, 6, 0, 196601, 6, 0, 196602, 6, 0, 196603, 6, 0, 196604, 6, 0, 196605, 6, 0, 196606, 6, 0, 196607, 6, 0, 131072, 6, 0, 131073, 6, 0, 131074, 6, 0, 131075, 6, 0, 131076, 6, 0, 131077, 6, 0, 131078, 6, 0, 131079, 6, 0, 131080, 6, 0, 131081, 6, 0, 131082, 6, 0, 131083, 6, 0, 131084, 6, 0, 131085, 6, 0, 131086, 6, 0, 131087, 6, 0, 131088, 6, 0, 131089, 6, 0, 131090, 6, 0, 131091, 6, 0, 131092, 6, 0, 131093, 6, 0, 131094, 6, 0, 131095, 6, 0, 131096, 6, 0, 131097, 6, 0, 131098, 6, 0, 131099, 6, 0, 131100, 6, 0, 131101, 6, 0, 131102, 6, 0, 131103, 0, 0, 262112, 7, 0, 262113, 8, 0, 262114, 8, 0, 262115, 8, 0, 262116, 8, 0, 262117, 8, 0, 262118, 8, 0, 262119, 8, 0, 262120, 8, 0, 262121, 8, 0, 262122, 8, 0, 262123, 8, 0, 262124, 8, 0, 262125, 8, 0, 262126, 8, 0, 262127, 8, 0, 262128, 8, 0, 262129, 8, 0, 262130, 8, 0, 262131, 8, 0, 262132, 8, 0, 262133, 8, 0, 262134, 8, 0, 262135, 8, 0, 262136, 8, 0, 262137, 8, 0, 262138, 8, 0, 262139, 8, 0, 262140, 8, 0, 262141, 8, 0, 262142, 8, 0, 262143, 8, 0, 196608, 8, 0, 196609, 8, 0, 196610, 8, 0, 196611, 8, 0, 196612, 8, 0, 196613, 8, 0, 196614, 8, 0, 196615, 8, 0, 196616, 8, 0, 196617, 8, 0, 196618, 8, 0, 196619, 8, 0, 196620, 8, 0, 196621, 8, 0, 196622, 8, 0, 196623, 8, 0, 196624, 8, 0, 196625, 8, 0, 196626, 8, 0, 196627, 8, 0, 196628, 8, 0, 196629, 8, 0, 196630, 8, 0, 196631, 8, 0, 196632, 8, 0, 196633, 8, 0, 196634, 8, 0, 196635, 8, 0, 196636, 8, 0, 196637, 8, 0, 196638, 8, 0, 196639, 9, 0 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
 visible = false
@@ -629,13 +544,49 @@ shape = SubResource( 2 )
 [node name="Sprite" type="Sprite" parent="Ground"]
 texture = ExtResource( 2 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
+[node name="Player1" parent="." instance=ExtResource( 1 )]
 material = SubResource( 27 )
-position = Vector2( -22, -38 )
-script = SubResource( 28 )
+position = Vector2( -500, -14 )
+script = null
 
-[node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 15 )
-cell_size = Vector2( 16, 16 )
-format = 1
-tile_data = PoolIntArray( -262173, 10, 0, -262172, 11, 0, -262171, 11, 0, -262170, 11, 0, -262169, 11, 0, -262168, 12, 0, 131040, 2, 0, 131041, 3, 0, 131042, 3, 0, 131043, 3, 0, 131044, 3, 0, 131045, 3, 0, 131046, 3, 0, 131047, 3, 0, 131048, 3, 0, 131049, 3, 0, 131050, 3, 0, 131051, 3, 0, 131052, 3, 0, 131053, 3, 0, 131054, 3, 0, 131055, 3, 0, 131056, 3, 0, 131057, 3, 0, 131058, 3, 0, 131059, 3, 0, 131060, 3, 0, 131061, 3, 0, 131062, 3, 0, 131063, 3, 0, 131064, 3, 0, 131065, 3, 0, 131066, 3, 0, 131067, 3, 0, 131068, 3, 0, 131069, 3, 0, 131070, 3, 0, 131071, 3, 0, 65536, 3, 0, 65537, 3, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 65544, 3, 0, 65545, 3, 0, 65546, 3, 0, 65547, 3, 0, 65548, 3, 0, 65549, 3, 0, 65550, 3, 0, 65551, 3, 0, 65552, 3, 0, 65553, 3, 0, 65554, 3, 0, 65555, 3, 0, 65556, 3, 0, 65557, 3, 0, 65558, 3, 0, 65559, 3, 0, 65560, 3, 0, 65561, 3, 0, 65562, 3, 0, 65563, 3, 0, 65564, 3, 0, 65565, 3, 0, 65566, 3, 0, 65567, 4, 0, 196576, 5, 0, 196577, 6, 0, 196578, 6, 0, 196579, 6, 0, 196580, 6, 0, 196581, 6, 0, 196582, 6, 0, 196583, 6, 0, 196584, 6, 0, 196585, 6, 0, 196586, 6, 0, 196587, 6, 0, 196588, 6, 0, 196589, 6, 0, 196590, 6, 0, 196591, 6, 0, 196592, 6, 0, 196593, 6, 0, 196594, 6, 0, 196595, 6, 0, 196596, 6, 0, 196597, 6, 0, 196598, 6, 0, 196599, 6, 0, 196600, 6, 0, 196601, 6, 0, 196602, 6, 0, 196603, 6, 0, 196604, 6, 0, 196605, 6, 0, 196606, 6, 0, 196607, 6, 0, 131072, 6, 0, 131073, 6, 0, 131074, 6, 0, 131075, 6, 0, 131076, 6, 0, 131077, 6, 0, 131078, 6, 0, 131079, 6, 0, 131080, 6, 0, 131081, 6, 0, 131082, 6, 0, 131083, 6, 0, 131084, 6, 0, 131085, 6, 0, 131086, 6, 0, 131087, 6, 0, 131088, 6, 0, 131089, 6, 0, 131090, 6, 0, 131091, 6, 0, 131092, 6, 0, 131093, 6, 0, 131094, 6, 0, 131095, 6, 0, 131096, 6, 0, 131097, 6, 0, 131098, 6, 0, 131099, 6, 0, 131100, 6, 0, 131101, 6, 0, 131102, 6, 0, 131103, 0, 0, 262112, 7, 0, 262113, 8, 0, 262114, 8, 0, 262115, 8, 0, 262116, 8, 0, 262117, 8, 0, 262118, 8, 0, 262119, 8, 0, 262120, 8, 0, 262121, 8, 0, 262122, 8, 0, 262123, 8, 0, 262124, 8, 0, 262125, 8, 0, 262126, 8, 0, 262127, 8, 0, 262128, 8, 0, 262129, 8, 0, 262130, 8, 0, 262131, 8, 0, 262132, 8, 0, 262133, 8, 0, 262134, 8, 0, 262135, 8, 0, 262136, 8, 0, 262137, 8, 0, 262138, 8, 0, 262139, 8, 0, 262140, 8, 0, 262141, 8, 0, 262142, 8, 0, 262143, 8, 0, 196608, 8, 0, 196609, 8, 0, 196610, 8, 0, 196611, 8, 0, 196612, 8, 0, 196613, 8, 0, 196614, 8, 0, 196615, 8, 0, 196616, 8, 0, 196617, 8, 0, 196618, 8, 0, 196619, 8, 0, 196620, 8, 0, 196621, 8, 0, 196622, 8, 0, 196623, 8, 0, 196624, 8, 0, 196625, 8, 0, 196626, 8, 0, 196627, 8, 0, 196628, 8, 0, 196629, 8, 0, 196630, 8, 0, 196631, 8, 0, 196632, 8, 0, 196633, 8, 0, 196634, 8, 0, 196635, 8, 0, 196636, 8, 0, 196637, 8, 0, 196638, 8, 0, 196639, 9, 0 )
+[node name="Player2" parent="." instance=ExtResource( 1 )]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Background"]
+texture = ExtResource( 5 )
+
+[node name="Layer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 0.2 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer4"]
+texture = ExtResource( 6 )
+
+[node name="Layer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.4, 0.4 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer3"]
+texture = ExtResource( 8 )
+
+[node name="Layer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.6, 0.6 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer2"]
+texture = ExtResource( 9 )
+
+[node name="Layer1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.8, 0.8 )
+motion_mirroring = Vector2( 1920, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer1"]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 1920, 1080 )
+
+[node name="MultiCam" parent="." instance=ExtResource( 10 )]
+min_zoom = 0.5
+max_zoom = 1
+margin = Vector2( 200, 100 )
