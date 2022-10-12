@@ -290,7 +290,7 @@ use_parent_material = true
 position = Vector2( -8, -4 )
 frames = SubResource( 26 )
 animation = "run"
-frame = 2
+frame = 3
 playing = true
 
 [node name="Trail" type="Particles2D" parent="Position2D"]
