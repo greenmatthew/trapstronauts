@@ -7,9 +7,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$MultiCam.add_target($Player1)
-	$MultiCam.add_target($TargetDummy)
-	print("Added")
+    $MultiCam.add_target($Player1)
+    $MultiCam.add_target($TargetDummy)
+    print("Added")
 	
 
 

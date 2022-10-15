@@ -27,70 +27,70 @@ var state = STATE.IDLE
 const base_initial_velocity : float = 25.0
 
 func clampv(v : Vector2, minv : Vector2, maxv : Vector2) -> Vector2:
-	return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))
+    return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))
 
 func get_input(delta : float) -> void:
-	var direction = int(Input.is_action_pressed("move_right")) * Vector2.RIGHT + int(Input.is_action_pressed("move_left")) * Vector2.LEFT;
-	
-	if direction.x > 0:
-		position2D.scale.x=1
-	if direction.x < 0:
-		position2D.scale.x=-1
-	
-	velocity += direction * pow(sprint_coefficient, int(Input.is_action_pressed("sprint"))) * base_acceleration * delta;
+    var direction = int(Input.is_action_pressed("move_right")) * Vector2.RIGHT + int(Input.is_action_pressed("move_left")) * Vector2.LEFT;
 
-	trail.process_material.direction = -Vector3(direction.x, 0, 0);
-	trail.process_material.initial_velocity = pow(sprint_coefficient * 0, int(Input.is_action_pressed("sprint"))) * base_initial_velocity;
-	
-	var emit = (direction != Vector2.ZERO) and is_on_floor()
-	trail.emitting = emit
+    if direction.x > 0:
+        position2D.scale.x=1
+    if direction.x < 0:
+        position2D.scale.x=-1
 
-	if is_on_floor():
-		# jump start
-		if Input.is_action_just_pressed("jump"):
-			state = STATE.JUMP
-			velocity.y = -sqrt(2 * gravity * jump_height)
-			cloud.restart()
-		velocity.x = lerp(velocity.x, 0, ground_friction)
-	else:
-		velocity.y += gravity * delta
-		velocity.x = lerp(velocity.x, 0, air_friction)
-		if velocity.y > 3:
-			state = STATE.FALL
+    velocity += direction * pow(sprint_coefficient, int(Input.is_action_pressed("sprint"))) * base_acceleration * delta;
 
-	# Clamp velocity to make sure the player doesn't go too fast
-	velocity = clampv(velocity, -terminal_velocity, terminal_velocity)
-	# Move the player
-	velocity = move_and_slide(velocity, Vector2.UP)
-	
-	if is_on_floor() and not state == STATE.LAND:
-		if state == STATE.FALL:
-			cloud.emitting = false
-			state = STATE.LAND
-		elif velocity.length() > 10:
-			state = STATE.RUN
-		else:
-			state = STATE.IDLE
+    trail.process_material.direction = -Vector3(direction.x, 0, 0);
+    trail.process_material.initial_velocity = pow(sprint_coefficient * 0, int(Input.is_action_pressed("sprint"))) * base_initial_velocity;
+
+    var emit = (direction != Vector2.ZERO) and is_on_floor()
+    trail.emitting = emit
+
+    if is_on_floor():
+        # jump start
+        if Input.is_action_just_pressed("jump"):
+            state = STATE.JUMP
+            velocity.y = -sqrt(2 * gravity * jump_height)
+            cloud.restart()
+        velocity.x = lerp(velocity.x, 0, ground_friction)
+    else:
+        velocity.y += gravity * delta
+        velocity.x = lerp(velocity.x, 0, air_friction)
+        if velocity.y > 3:
+            state = STATE.FALL
+
+    # Clamp velocity to make sure the player doesn't go too fast
+    velocity = clampv(velocity, -terminal_velocity, terminal_velocity)
+    # Move the player
+    velocity = move_and_slide(velocity, Vector2.UP)
+
+    if is_on_floor() and not state == STATE.LAND:
+        if state == STATE.FALL:
+            cloud.emitting = false
+            state = STATE.LAND
+        elif velocity.length() > 10:
+            state = STATE.RUN
+        else:
+            state = STATE.IDLE
 
 func _ready():
-	material.set_shader_param("charCol", Vector3(charCol.r, charCol.g, charCol.b))
+    material.set_shader_param("charCol", Vector3(charCol.r, charCol.g, charCol.b))
 
 func process_anim():
-	if state == STATE.IDLE:
-		animator.play("idle")
-	if state == STATE.RUN:
-		animator.play("run")
-	if state == STATE.JUMP:
-		animator.play("jump")
-	if state == STATE.FALL:
-		animator.play("fall")
-	if state == STATE.LAND:
-		animator.play("land")
+    if state == STATE.IDLE:
+        animator.play("idle")
+    if state == STATE.RUN:
+        animator.play("run")
+    if state == STATE.JUMP:
+        animator.play("jump")
+    if state == STATE.FALL:
+        animator.play("fall")
+    if state == STATE.LAND:
+        animator.play("land")
 
 func _physics_process(delta : float) -> void:
-	get_input(delta)
-	process_anim()
+    get_input(delta)
+    process_anim()
 
 func _on_AnimatedSprite_animation_finished():
-	if animator.animation == "land":
-		state = STATE.IDLE
+    if animator.animation == "land":
+        state = STATE.IDLE
