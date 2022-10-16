@@ -10,7 +10,7 @@ var targets = []  # Array of targets to be tracked.
 
 onready var screen_size = get_viewport_rect().size
 
-func _process(delta):
+func _process(_delta):
     if !targets:
         return
     # Keep the camera centered between the targets
@@ -24,7 +24,7 @@ func _process(delta):
     for target in targets:
         r = r.expand(target.position)
     r = r.grow_individual(margin.x, margin.y, margin.x, margin.y)
-    var d = max(r.size.x, r.size.y)
+    # var d = max(r.size.x, r.size.y)
     var z
     if r.size.x > r.size.y * screen_size.aspect():
         z = clamp(r.size.x / screen_size.x, min_zoom, max_zoom)
