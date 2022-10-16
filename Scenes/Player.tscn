@@ -293,7 +293,7 @@ animation = "run"
 frame = 2
 playing = true
 
-[node name="Trail" type="Particles2D" parent="Position2D"]
+[node name="WalkingTrail" type="Particles2D" parent="Position2D"]
 position = Vector2( -25, 50 )
 z_index = 1
 lifetime = 0.35
@@ -301,7 +301,28 @@ local_coords = false
 process_material = SubResource( 2 )
 texture = ExtResource( 3 )
 
-[node name="Cloud" type="Particles2D" parent="Position2D"]
+[node name="SprintingTrail" type="Particles2D" parent="Position2D"]
+position = Vector2( -25, 50 )
+z_index = 1
+lifetime = 0.35
+local_coords = false
+process_material = SubResource( 2 )
+texture = ExtResource( 3 )
+
+[node name="JumpingCloud" type="Particles2D" parent="Position2D"]
+position = Vector2( 0, 60 )
+z_index = 1
+emitting = false
+amount = 16
+lifetime = 2.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.53
+local_coords = false
+process_material = SubResource( 2 )
+texture = ExtResource( 3 )
+
+[node name="LandingCloud" type="Particles2D" parent="Position2D"]
 position = Vector2( 0, 60 )
 z_index = 1
 emitting = false
