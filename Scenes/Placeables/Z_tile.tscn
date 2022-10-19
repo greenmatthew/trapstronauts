@@ -3,14 +3,15 @@
 [ext_resource path="res://Assets/icon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/placeable.gd" type="Script" id=2]
 
-[node name="Node2D3" type="Node2D"]
+[node name="Area2D" type="Area2D"]
 script = ExtResource( 2 )
 shape_def = "xx0
 0xx
 000"
 place_offset = -1
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 96, 32, -31, 32, -32, -32, -96, -32, -96, -96, -33, -96, 32, -96, 32, -32, 96, -32 )
 
 [node name="Node2D" type="Node2D" parent="."]
 

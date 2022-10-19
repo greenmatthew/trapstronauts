@@ -7,10 +7,10 @@
 
 [node name="Placeables" type="Node2D"]
 
-[node name="1x1" parent="." instance=ExtResource( 3 )]
-
-[node name="1x3" parent="." instance=ExtResource( 1 )]
-
 [node name="L" parent="." instance=ExtResource( 4 )]
 
 [node name="Z" parent="." instance=ExtResource( 2 )]
+
+[node name="1x1" parent="." instance=ExtResource( 3 )]
+
+[node name="1x3" parent="." instance=ExtResource( 1 )]

@@ -23,3 +23,15 @@ static func find_closest_divisible_by(n: int, m: int) -> int:
       return n1
 
     return n2
+
+static func get_all_children(node: Node) -> Array:
+    var nodes: Array = []
+
+    for n in node.get_children():
+        if n.get_child_count() > 0:
+            nodes.append(n)
+            nodes.append_array(get_all_children(n))
+        else:
+            nodes.append(n)
+
+    return nodes
