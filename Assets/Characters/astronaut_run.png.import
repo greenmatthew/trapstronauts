@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/astronaut.png-eb17fa393f2fddfc66bfe0cc3689cac0.stex"
+path="res://.import/astronaut_run.png-9ad5c464d33585ebe3bc996c8568cd15.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/astronaut.png"
-dest_files=[ "res://.import/astronaut.png-eb17fa393f2fddfc66bfe0cc3689cac0.stex" ]
+source_file="res://Assets/Characters/astronaut_run.png"
+dest_files=[ "res://.import/astronaut_run.png-9ad5c464d33585ebe3bc996c8568cd15.stex" ]
 
 [params]
 
