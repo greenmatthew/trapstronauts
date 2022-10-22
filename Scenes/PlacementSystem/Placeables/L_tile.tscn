@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/PlacementSystem/placeable.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/Temp/icon.png" type="Texture" id=2]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource( 1 )
+shape_def = "0x0
+0xx
+000"
+place_offset = -1
+
+[node name="Collider" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 96, 32, -32, 32, -32, -96, 31, -96, 32, -32, 95, -32 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="Node2D"]
+position = Vector2( 64, 0 )
+texture = ExtResource( 2 )
+
+[node name="Sprite3" type="Sprite" parent="Node2D"]
+position = Vector2( 0, -64 )
+texture = ExtResource( 2 )

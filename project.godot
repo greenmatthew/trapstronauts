@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Placeable",
 "language": "GDScript",
-"path": "res://Scripts/placeable.gd"
+"path": "res://Scripts/PlacementSystem/placeable.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "PlayerController",
 "language": "GDScript",
-"path": "res://Scripts/player_controller.gd"
+"path": "res://Scripts/Entities/player_controller.gd"
 }, {
 "base": "State",
 "class": "PlayerState",
@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Rotation",
 "language": "GDScript",
-"path": "res://Scripts/rotation.gd"
+"path": "res://Scripts/PlacementSystem/rotation.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -51,14 +51,14 @@ _global_script_class_icons={
 [application]
 
 config/name="GameDesignProject"
-run/main_scene="res://Scenes/level1.tscn"
-config/icon="res://Assets/icon.png"
+run/main_scene="res://Scenes/Maps/map_forest.tscn"
+config/icon="res://Assets/Sprites/Temp/icon.png"
 
 [autoload]
 
-Constants="*res://Scripts/constants.gd"
-<<<<<<<Updatedupstreamglobals="*res://Scripts/global.gd"
-globals="*res://Scripts/global.gd"
+Constants="*res://Scripts/Miscellaneous/constants.gd"
+<<<<<<<Updatedupstreamglobals="*res://Scripts/Miscellaneous/global.gd"
+globals="*res://Scripts/Miscellaneous/global.gd"
 
 [display]
 
