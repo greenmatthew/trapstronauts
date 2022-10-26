@@ -6,7 +6,7 @@ const Util = preload("res://Scripts/Miscellaneous/util.gd")
 
 export (String, MULTILINE) var shape_def
 # TODO: should not have to manually figure this out
-export var place_offset: int
+var place_offset: int = -1
 
 const local_coord_matrices = [[-1,1], [-1,0,1],[-2,-1,1,2]]
 

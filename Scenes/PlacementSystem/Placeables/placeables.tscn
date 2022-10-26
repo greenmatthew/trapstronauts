@@ -8,9 +8,13 @@
 [node name="Placeables" type="Node2D"]
 
 [node name="L" parent="." instance=ExtResource( 1 )]
+position = Vector2( 32, 254 )
 
 [node name="Z" parent="." instance=ExtResource( 4 )]
+position = Vector2( 96, 96 )
 
 [node name="1x1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 32, 433 )
 
 [node name="1x3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 96, 346 )

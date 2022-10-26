@@ -20,6 +20,7 @@ func get_placeable():
     var idx = rng.randi() % placeables.size()
     var placeable = placeables[idx]
     var dup = placeable.duplicate()
+    dup.set_position(Vector2.ZERO)
 
     dup.show()
 

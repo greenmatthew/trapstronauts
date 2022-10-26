@@ -4,7 +4,9 @@ const Util = preload("res://Scripts/Miscellaneous/util.gd")
 var follow_mouse = preload("res://Scenes/PlacementSystem/follow_mouse.tscn")
 var follow_controller = preload("res://Scenes/PlacementSystem/follow_controller.tscn")
 onready var grid = $Grid
-onready var placeable_selector = $Selector
+onready var random_selector = $SelectorLayer/RandomSelector
+onready var free_selector = $SelectorLayer/FreeSelector
+var selector: Selector
 
 var placing: Placeable
 var is_placing: bool
@@ -15,22 +17,21 @@ var placed_tiles: Dictionary
 enum ObjectController { MOUSE, CONTROLLER }
 
 func _ready():
-    placeable_selector.connect("placeable_selected", self, "_on_placeable_selected")
+    selector = free_selector if OS.is_debug_build() else random_selector
+    
+    var _err = selector.connect("placeable_selected", self, "_on_placeable_selected")
     start_placeable_selection()
-    # var obj_controller_instance = get_obj_controller_instance(ObjectController.MOUSE)
-    # tile_instance.add_child(obj_controller_instance)
-    # add_child(tile_instance)
  
 func start_placeable_selection():
     is_placing = false
-    placeable_selector.create_options()
+    selector.show_options()
     
 func _on_placeable_selected(selection):
     placing = selection
     placing.get_parent().remove_child(placing)
     add_child(placing)
     is_placing = true
-    placeable_selector.clear_options()
+    selector.clear_options()
 
 func _unhandled_input(event):
     if !is_placing:
@@ -52,6 +53,8 @@ func _unhandled_input(event):
 func _process(_delta):
     if !is_placing:
         return
+
+    print(placing.is_selecting)
 
     var mouse_pos = get_global_mouse_position()
     var adjusted_mouse_pos = Vector2(mouse_pos.x - Constants.GRID_HALF_SIZE, mouse_pos.y - Constants.GRID_HALF_SIZE)
