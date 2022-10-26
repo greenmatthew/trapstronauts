@@ -8,7 +8,6 @@ script = ExtResource( 1 )
 shape_def = "xx0
 0xx
 000"
-place_offset = -1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 96, 32, -31, 32, -32, -32, -96, -32, -96, -96, -33, -96, 32, -96, 32, -32, 96, -32 )

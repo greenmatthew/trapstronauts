@@ -1,11 +1,9 @@
-extends Node2D
+extends Selector
 
 onready var generator = $Generator
 var placeable_options = []
 
-signal placeable_selected
-
-func create_options():
+func show_options():
     placeable_options.clear()
 
     for i in range(4):

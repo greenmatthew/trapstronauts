@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/PlacementSystem/Placeables/placeables.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/PlacementSystem/free_selector.gd" type="Script" id=3]
+
+[node name="FreeSelector" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -651.0
+mouse_filter = 2
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.14902, 0.14902, 0.14902, 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 119.0
+margin_bottom = 35.0
+mouse_filter = 2
+text = "Free Place"
+
+[node name="Placeables" parent="." instance=ExtResource( 1 )]
+position = Vector2( 10, 65 )
