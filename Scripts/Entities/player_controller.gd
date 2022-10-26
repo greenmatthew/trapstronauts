@@ -37,45 +37,46 @@ var is_wall_sliding : bool = false
 var has_input : bool = false
 
 func clampv(v : Vector2, minv : Vector2, maxv : Vector2) -> Vector2:
-    return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))
+	return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))
 
 func _ready():
-    material.set_shader_param("charCol", Vector3(charCol.r, charCol.g, charCol.b))
-    walking_trail.set_emitting(false)
-    sprinting_trail.set_emitting(false)
+	material.set_shader_param("charCol", Vector3(charCol.r, charCol.g, charCol.b))
+	walking_trail.set_emitting(false)
+	sprinting_trail.set_emitting(false)
 
 func _physics_process(_delta : float) -> void:
-    var dir = get_direction()
-    if dir.x > 0:
-        position2D.scale.x = 1
-        forward = Vector2.RIGHT
-    if dir.x < 0:
-        position2D.scale.x = -1
-        forward = Vector2.LEFT
+	var dir = get_direction()
+	if dir.x > 0:
+		position2D.scale.x = 1
+		forward = Vector2.RIGHT
+	if dir.x < 0:
+		position2D.scale.x = -1
+		forward = Vector2.LEFT
 
 func _on_AnimatedSprite_animation_finished() -> void:
-    pass
+	pass
 
 func myjump(normal : Vector2) -> void:
-    velocity += sqrt(2 * gravity * jump_height) * normal
-    jumping_cloud.restart()
-    
+	velocity += sqrt(2 * gravity * jump_height) * normal
+	jumping_cloud.restart()
+	
 func get_direction() -> Vector2:
-    return int(Input.is_action_pressed("move_right")) * Vector2.RIGHT + int(Input.is_action_pressed("move_left")) * Vector2.LEFT
+	return int(Input.is_action_pressed("move_right")) * Vector2.RIGHT + int(Input.is_action_pressed("move_left")) * Vector2.LEFT
 
 func apply_velocity() -> void:
-    velocity = clampv(velocity, -terminal_velocity, terminal_velocity)
-    velocity = move_and_slide(velocity, Vector2.UP)
+	velocity = clampv(velocity, -terminal_velocity, terminal_velocity)
+	velocity = move_and_slide(velocity, Vector2.UP)
 
 func apply_velocity_grounded(delta : float) -> void:
-    var acceleration_coefficient = pow(sprint_coefficient, int(Input.is_action_pressed("sprint")))
-    velocity += get_direction() * acceleration_coefficient * base_acceleration * delta
-    velocity.x = lerp(velocity.x, 0.0, ground_friction)
-    apply_velocity()
+	var acceleration_coefficient = pow(sprint_coefficient, int(Input.is_action_pressed("sprint")))
+	velocity += get_direction() * acceleration_coefficient * base_acceleration * delta
+	velocity.x = lerp(velocity.x, 0.0, ground_friction)
+	velocity.y += gravity * delta
+	apply_velocity()
 
 func apply_velocity_not_grounded(delta : float) -> void:
-    var acceleration_coefficient = pow(sprint_coefficient, int(Input.is_action_pressed("sprint")))
-    velocity += get_direction() * acceleration_coefficient * base_acceleration * delta
-    velocity.x = lerp(velocity.x, 0.0, air_friction)
-    velocity.y += gravity * delta
-    apply_velocity()
+	var acceleration_coefficient = pow(sprint_coefficient, int(Input.is_action_pressed("sprint")))
+	velocity += get_direction() * acceleration_coefficient * base_acceleration * delta
+	velocity.x = lerp(velocity.x, 0.0, air_friction)
+	velocity.y += gravity * delta
+	apply_velocity()
