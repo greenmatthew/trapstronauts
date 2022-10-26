@@ -1,4 +1,4 @@
-extends Area2D
+extends Placeable
 
 func _ready():
 	$AnimationPlayer.play("swingTrap")
