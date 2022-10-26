@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GameDesignProject"
-run/main_scene="res://Scenes/Maps/map_forest.tscn"
+run/main_scene="res://Scenes/Maps/DEBUG.tscn"
 config/icon="res://Assets/Sprites/Temp/icon.png"
 
 [autoload]

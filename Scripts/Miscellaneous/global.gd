@@ -14,6 +14,6 @@ func resize():
    
 #Input handler, listen for ESC to exit app
 func _input(event):
-    if event.is_pressed() and event is InputEventKey:
-        if(event.scancode == KEY_ESCAPE):
-            get_tree().quit() 
+	if event.is_pressed() and event is InputEventKey:
+		if(event.scancode == KEY_ESCAPE):
+			get_tree().quit() 
