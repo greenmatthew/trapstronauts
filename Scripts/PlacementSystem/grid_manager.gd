@@ -54,8 +54,6 @@ func _process(_delta):
     if !is_placing:
         return
 
-    print(placing.is_selecting)
-
     var mouse_pos = get_global_mouse_position()
     var adjusted_mouse_pos = Vector2(mouse_pos.x - Constants.GRID_HALF_SIZE, mouse_pos.y - Constants.GRID_HALF_SIZE)
     
