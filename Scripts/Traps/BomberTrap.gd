@@ -12,8 +12,9 @@ func _physics_process(_delta):
     motion = move_and_slide(motion)
     for i in get_slide_count():
         var collision = get_slide_collision(i)
-        # if collision.collider.name == 'Player1':
-        #     print('Player got bombed')
+        if collision.collider.name == 'Player1':
+            pass
+            # print('Player got bombed')
 
 func _on_Area2D_body_entered(body):
     player = body
