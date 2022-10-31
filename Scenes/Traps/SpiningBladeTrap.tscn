@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://On (38x38).png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Traps/On (38x38).png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Traps/SpiningBladeTrap.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]

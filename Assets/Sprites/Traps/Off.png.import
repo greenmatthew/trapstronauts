@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/On (38x38).png-b8c1a51c8c0850eb269e86746a097b7c.stex"
+path="res://.import/Off.png-0f33a895a8947b7ed361d0c1619cd495.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://On (38x38).png"
-dest_files=[ "res://.import/On (38x38).png-b8c1a51c8c0850eb269e86746a097b7c.stex" ]
+source_file="res://Assets/Sprites/Traps/Off.png"
+dest_files=[ "res://.import/Off.png-0f33a895a8947b7ed361d0c1619cd495.stex" ]
 
 [params]
 

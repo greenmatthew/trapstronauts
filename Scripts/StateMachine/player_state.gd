@@ -4,7 +4,7 @@ extends State
 var player : PlayerController = null
 
 func _ready() -> void:
-	yield(owner, "ready")
+    yield(owner, "ready")
 
-	player = owner as PlayerController
-	assert(player != null)
+    player = owner as PlayerController
+    assert(player != null)

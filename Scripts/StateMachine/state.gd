@@ -4,16 +4,16 @@ extends Node
 var state_machine = null
 
 func handle_input(_event: InputEvent) -> void:
-	pass
+    pass
 
 func update(_delta: float) -> void:
-	pass
+    pass
 
 func physics_update(_delta: float) -> void:
-	pass
+    pass
 
 func enter(_msg := {}) -> void:
-	pass
+    pass
 
 func exit() -> void:
-	pass
+    pass

@@ -9,40 +9,40 @@ var departing = false
 var time_since_tickdown = 0
 
 func _ready():
-	if manager.NUM_PLAYERS == 0:
-		manager.add_player()
-	instance_players(manager.PLAYERS)
+    if manager.NUM_PLAYERS == 0:
+        manager.add_player()
+    instance_players(manager.PLAYERS)
 
 func instance_players(players):
-	var random = RandomNumberGenerator.new()
-	var player
-	for p in players:
-		player = p.instance()
-		add_child(player)
-		var y = 50
-		random.randomize()
-		var x = random.randi_range(-100, 100)
-		player.set_position(Vector2(x, y))
+    var random = RandomNumberGenerator.new()
+    var player
+    for p in players:
+        player = p.instance()
+        add_child(player)
+        var y = 50
+        random.randomize()
+        var x = random.randi_range(-100, 100)
+        player.set_position(Vector2(x, y))
 
 func _process(delta):
-	if departing:
-		departing = departure_test()
-		if not departing:
-			timer = 5
-		else:
-			time_since_tickdown += delta
-			if time_since_tickdown >= 1.0:
-				timer -= 1
-				time_since_tickdown = 0
-				if timer == 0:
-					#Change this dynamically later, for now go to forest
-					emit_signal("scene_changed", "forest")
-					print("Scene change")
-	else:
-		departing = departure_test()
-		
-	$TimerTemp.set_text(str(timer))
-	
+    if departing:
+        departing = departure_test()
+        if not departing:
+            timer = 5
+        else:
+            time_since_tickdown += delta
+            if time_since_tickdown >= 1.0:
+                timer -= 1
+                time_since_tickdown = 0
+                if timer == 0:
+                    #Change this dynamically later, for now go to forest
+                    emit_signal("scene_changed", "forest")
+                    print("Scene change")
+    else:
+        departing = departure_test()
+        
+    $TimerTemp.set_text(str(timer))
+    
 func departure_test():
-	print(len($depart_trigger.get_overlapping_areas()))
-	return len($depart_trigger.get_overlapping_bodies()) - 1 >  manager.NUM_PLAYERS/ 2
+    print(len($depart_trigger.get_overlapping_areas()))
+    return len($depart_trigger.get_overlapping_bodies()) - 1 >  manager.NUM_PLAYERS/ 2

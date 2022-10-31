@@ -6,6 +6,6 @@ code = "shader_type canvas_item;
 uniform vec3 charCol = vec3(1.0);
 
 void fragment() {
-	vec4 texSample = texture(TEXTURE, UV);
-	COLOR = texSample * vec4(charCol, 1.0);
+    vec4 texSample = texture(TEXTURE, UV);
+    COLOR = texSample * vec4(charCol, 1.0);
 }"
