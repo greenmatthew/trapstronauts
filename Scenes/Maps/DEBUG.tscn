@@ -1,17 +1,17 @@
 [gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scripts/Maps/DEBUG.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sprites/Traps/BomberTrap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Traps/BomberTrap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Sprites/Temp/nature-paltformer-tileset-16x16.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/Levels/01Forest/Background.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Sprites/Levels/01Forest/Layer4.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Entities/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Entities/MultiCam.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Assets/Sprites/Traps/SwingingTrap.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Traps/SwingingTrap.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Sprites/Levels/01Forest/Layer1.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/Levels/01Forest/Layer2.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Sprites/Levels/01Forest/Layer3.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/Traps/SpiningBladeTrap.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Traps/SpiningBladeTrap.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=16]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )

@@ -8,10 +8,7 @@ func _ready():
 func _process(delta):
 	$Path2D/PathFollow2D.offset += follow_speed * delta
 	
-	
-
-
 func _on_Area2D_body_entered(body):
 	if body is PlayerController:
-		var touched_player = get_tree().reload_current_scene()
+		var _touched_player = get_tree().reload_current_scene()
 		print('Player got sliced')
