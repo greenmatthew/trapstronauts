@@ -1,7 +1,6 @@
 extends PlayerState
 
 func enter(_msg = {}) -> void:
-    print("Start Running")
     player.animator.play("run")
     player.walking_trail.emitting = false
     player.sprinting_trail.emitting = true
