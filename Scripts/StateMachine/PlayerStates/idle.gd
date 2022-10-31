@@ -13,7 +13,6 @@ func update(delta : float) -> void:
         return
 
     if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
-        print("INSIDE")
         state_machine.transition_to("Running")
         return
 
