@@ -2,27 +2,20 @@ extends Node2D
 
 signal scene_changed(scene_name)
 
-onready var manager = get_parent()
+var num_players = 0
+
+func add_player(player_index):
+    pass
+    
+func remove_player(player_index):
+    pass
 
 var timer = 5
 var departing = false
 var time_since_tickdown = 0
 
 func _ready():
-    if manager.NUM_PLAYERS == 0:
-        manager.add_player()
-    instance_players(manager.PLAYERS)
-
-func instance_players(players):
-    var random = RandomNumberGenerator.new()
-    var player
-    for p in players:
-        player = p.instance()
-        add_child(player)
-        var y = 50
-        random.randomize()
-        var x = random.randi_range(-100, 100)
-        player.set_position(Vector2(x, y))
+    pass
 
 func _process(delta):
     if departing:
@@ -40,7 +33,6 @@ func _process(delta):
                     print("Scene change")
     else:
         departing = departure_test()
-        
     $TimerTemp.set_text(str(timer))
     
 func departure_test():

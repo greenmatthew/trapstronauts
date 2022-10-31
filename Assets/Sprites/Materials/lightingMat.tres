@@ -3,5 +3,6 @@
 [ext_resource path="res://Assets/Sprites/Materials/lightingShader.tres" type="Shader" id=1]
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/charCol = Vector3( 1, 1, 1 )
