@@ -8,8 +8,10 @@ onready var sprinting_trail = $Position2D/SprintingTrail
 onready var jumping_cloud = $Position2D/JumpingCloud
 onready var landing_cloud = $Position2D/LandingCloud
 
+var playerID = -1
+
 # Set the character color via shader
-export var charCol = Color.white
+var charCol = Color.white
 
 # Movement
 const gravity : float = 512.0 # pixels/s^2
@@ -35,6 +37,11 @@ var is_jumping : bool = false
 var is_falling : bool = false
 var is_wall_sliding : bool = false
 var has_input : bool = false
+
+#TODO make this change the player color in MAIN
+func set_color(color):
+    #charCol = charCol.duplicate()
+    charCol = color
 
 func clampv(v : Vector2, minv : Vector2, maxv : Vector2) -> Vector2:
     return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))

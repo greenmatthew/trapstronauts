@@ -5,22 +5,15 @@ var next_scene = null
 onready var current_scene = $MainMenu
 onready var anim = $AnimationPlayer
 
-onready var NUM_PLAYERS = 0
-
-onready var PLAYERS = []
-
-func add_player():
-    var p
-    if NUM_PLAYERS == 0:
-        p = load("res://Scenes/Entities/Player.tscn")
-    NUM_PLAYERS += 1
-    PLAYERS.append(p)
-
-func remove_player(index):
-    PLAYERS.pop_at(index).queue_free()
+func _on_joy_connection_changed(device, connected):
+    if connected:
+        current_scene.add_player(device)
+    else:
+        current_scene.remove_player(device)
 
 func _ready():
     current_scene.connect("scene_changed", self, "handle_scene_changed")
+    Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 
 func handle_scene_changed(next_scene_name: String):
     
