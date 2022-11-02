@@ -1,13 +1,10 @@
 extends Node
 
-var next_scene = null
-
+var next_scene
 onready var current_scene = $MainMenu
 onready var anim = $AnimationPlayer
 
-onready var num_players = 0
-
-onready var on_menu = true
+onready var ON_MENU = true
 
 onready var player_cols = [
     Color.white,
@@ -18,27 +15,35 @@ onready var player_cols = [
     Color.forestgreen,
     Color.coral,
     Color.deeppink]
+onready var players = []
+onready var input_maps = []
 
-func unpack_player(player_index):
+func add_player(player_index):
+    var player = load("Scenes/Entities/Player.tscn").instance()
     
-    var player = current_scene.players[player_index]
+    players.insert(player_index, player)
     
     player.set_color(player_cols[player_index])
-    player.player_ID = player_index
-    current_scene.add_child(player)
     
     map_controls(player_index)
     
+    if not ON_MENU:
+        current_scene.add_player_to_world(players[player_index])
+
+func player_disconnect(player_index):
+    current_scene.remove_child(players[player_index])
+    players[player_index].queue_free()
+
 func map_controls(player_index):
     
-    current_scene.input_maps.insert(player_index, {
+    input_maps.insert(player_index, {
         "right" : "ui_right{n}".format({"n":player_index}),
         "left" : "ui_left{n}".format({"n":player_index}),
         "jump" : "ui_jump{n}".format({"n":player_index}),
         "sprint" : "ui_sprint{n}".format({"n":player_index})
     })
     
-    current_scene.players[player_index].ui_inputs = current_scene.input_maps[player_index]
+    players[player_index].ui_inputs = input_maps[player_index]
     
     var right_action: String
     var right_action_event: InputEventJoypadMotion
@@ -89,45 +94,48 @@ func map_controls(player_index):
     InputMap.action_add_event(sprint_action, sprint_action_event)
 
 func _on_joy_connection_changed(device, connected):
-    if on_menu:
-        return
-    #print(device)
     if connected:
-        num_players += 1
-        current_scene.add_player(device)
+        add_player(device)
     else:
-        num_players -= 1
-        current_scene.remove_player(device)
+        player_disconnect(device)
 
 func _ready():
     current_scene.connect("scene_changed", self, "handle_scene_changed")
+# warning-ignore:return_value_discarded
     Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 
-func handle_scene_changed(next_scene_name: String):
+    var num_players = len(Input.get_connected_joypads())
+
+    for i in range(num_players):
+        add_player(i)
+
+func handle_scene_changed(previous_scene_name: String, next_scene_name: String):
     
-    var next
+    if not previous_scene_name == "MainMenu":
+        for p in players:
+            current_scene.remove_child(p)
     
-    num_players = len(Input.get_connected_joypads())
+    if next_scene_name == "MainMenu":
+        next_scene = load("res://Scenes/UI/MainMenu/MainMenu.tscn").instance()
     
-    on_menu = false
-    
-    match next_scene_name:
-        "hub":
-            next = load("res://Scenes/Maps/hub.tscn")
-        "MainMenu":
-            next = load("res://Scenes/UI/MainMenu/MainMenu.tscn")
-            on_menu = true
-        "forest":
-            next = load("res://Scenes/Maps/map_forest.tscn")
-        _:
-            return
+    else:
         
-    next_scene = next.instance()
-    hide_all(next_scene)
+        ON_MENU = false
+        
+        match next_scene_name:
+            "hub":
+                next_scene = load("res://Scenes/Maps/hub.tscn").instance()
+            "forest":
+                next_scene = load("res://Scenes/Maps/map_forest.tscn").instance()
+            _:
+                return
+        
+        for p in players:
+            next_scene.add_player_to_world(p)
     
+    hide_all(next_scene)
     add_child(next_scene)
     anim.play("fade_in")
-    
     next_scene.connect("scene_changed", self, "handle_scene_changed")
 
 func hide_all(node):

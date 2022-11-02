@@ -1,13 +1,13 @@
 extends Node2D
 
-signal scene_changed(scene_name)
+signal scene_changed(scene_from, scene_to)
 
 func _ready():
     $VBoxContainer/VBoxContainer/Start.grab_focus()
 
 func _on_Start_pressed():
-    emit_signal("scene_changed", "hub")
     print("Start Pressed")
+    emit_signal("scene_changed", "MainMenu", "hub")
 
 func _on_Settings_pressed():
     print("Settings Pressed")

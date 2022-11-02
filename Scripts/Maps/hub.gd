@@ -1,31 +1,22 @@
 extends Node2D
 
-onready var parent = get_parent()
+onready var main = get_parent()
 
-signal scene_changed(scene_name)
-
-var input_maps = []
-var players = []
-
-func add_player(player_index):
-    #print("Adding player {n}".format({"n":player_index}))
-    var p = load("Scenes/Entities/Player.tscn")
-    var player = p.instance()
-    
-    players.insert(player_index, player)
-    
-    parent.unpack_player(player_index)
-    
-    player.position = Vector2(0, 0)
-
+signal scene_changed(scene_from, scene_to)
 
 var timer = 5
 var departing = false
 var time_since_tickdown = 0
 
+func add_player_to_world(player):
+    add_child(player)
+    
+    # TODO: Here, we will spawn the player in an empty bedroom. If none are available...
+    # We'll figure something out
+    player.position = Vector2(50, 50)
+
 func _ready():
-    for i in range(parent.num_players):
-        add_player(i)
+    pass
 
 func _process(delta):
     if departing:
@@ -39,11 +30,11 @@ func _process(delta):
                 time_since_tickdown = 0
                 if timer == 0:
                     #Change this dynamically later, for now go to forest
-                    emit_signal("scene_changed", "forest")
+                    emit_signal("scene_changed", "hub", "forest")
                     print("Scene change")
     else:
         departing = departure_test()
     $TimerTemp.set_text(str(timer))
     
 func departure_test():
-    return len($depart_trigger.get_overlapping_bodies()) - 1 >  parent.num_players / 2
+    return len($depart_trigger.get_overlapping_bodies()) - 1 >  len(main.players) / 2
