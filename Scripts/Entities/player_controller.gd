@@ -8,8 +8,6 @@ onready var sprinting_trail = $Position2D/SprintingTrail
 onready var jumping_cloud = $Position2D/JumpingCloud
 onready var landing_cloud = $Position2D/LandingCloud
 
-var player_ID = 0
-
 var ui_inputs = {
     "right": "move_right",
     "left":  "move_left",
