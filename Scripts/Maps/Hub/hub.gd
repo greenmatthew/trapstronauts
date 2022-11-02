@@ -2,18 +2,26 @@ extends Node2D
 
 onready var main = get_parent()
 
+onready var trigger = $warproom/depart_trigger
+onready var timer_label = $warproom/depart_trigger/TimerTemp
+
+
 signal scene_changed(scene_from, scene_to)
 
 var timer = 5
 var departing = false
 var time_since_tickdown = 0
 
+var players_added = 0
+
 func add_player_to_world(player):
     add_child(player)
     
     # TODO: Here, we will spawn the player in an empty bedroom. If none are available...
     # We'll figure something out
-    player.position = Vector2(50, 50)
+    player.position = get_node("Bedroom{n}".format({"n":players_added})).position
+    
+    players_added += 1
 
 func _ready():
     pass
@@ -34,7 +42,7 @@ func _process(delta):
                     print("Scene change")
     else:
         departing = departure_test()
-    $TimerTemp.set_text(str(timer))
+    timer_label.set_text(str(timer))
     
 func departure_test():
-    return len($depart_trigger.get_overlapping_bodies()) - 1 >  len(main.players) / 2
+    return len(trigger.get_overlapping_bodies()) - 1 >  len(main.players) / 2
