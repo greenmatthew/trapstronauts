@@ -8,7 +8,7 @@ func physics_update(delta : float) -> void:
         state_machine.transition_to("Falling")
         return
     
-    if Input.is_action_just_pressed("jump"):
+    if Input.is_action_just_pressed(player.ui_inputs.get("jump")):
         state_machine.transition_to("Jumping", {normal = -player.forward + Vector2.UP})
         return
 

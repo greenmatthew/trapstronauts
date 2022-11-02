@@ -1,7 +1,7 @@
 extends PlayerState
 
 func enter(_msg = {}) -> void:
-    print("Start Running")
+    #print("Start Running")
     player.animator.play("run")
     player.walking_trail.emitting = false
     player.sprinting_trail.emitting = true
@@ -15,7 +15,7 @@ func physics_update(delta : float) -> void:
         state_machine.transition_to("Falling")
         return
     
-    if Input.is_action_just_pressed("jump"):
+    if Input.is_action_just_pressed(player.ui_inputs.get("jump")):
         state_machine.transition_to("Jumping", {normal = Vector2.UP})
         return
     

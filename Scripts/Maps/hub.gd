@@ -1,21 +1,31 @@
 extends Node2D
 
+onready var parent = get_parent()
+
 signal scene_changed(scene_name)
 
-var num_players = 0
+var input_maps = []
+var players = []
 
 func add_player(player_index):
-    pass
+    #print("Adding player {n}".format({"n":player_index}))
+    var p = load("Scenes/Entities/Player.tscn")
+    var player = p.instance()
     
-func remove_player(player_index):
-    pass
+    players.insert(player_index, player)
+    
+    parent.unpack_player(player_index)
+    
+    player.position = Vector2(0, 0)
+
 
 var timer = 5
 var departing = false
 var time_since_tickdown = 0
 
 func _ready():
-    pass
+    for i in range(parent.num_players):
+        add_player(i)
 
 func _process(delta):
     if departing:
@@ -36,5 +46,4 @@ func _process(delta):
     $TimerTemp.set_text(str(timer))
     
 func departure_test():
-    print(len($depart_trigger.get_overlapping_areas()))
-    return len($depart_trigger.get_overlapping_bodies()) - 1 >  manager.NUM_PLAYERS/ 2
+    return len($depart_trigger.get_overlapping_bodies()) - 1 >  parent.num_players / 2

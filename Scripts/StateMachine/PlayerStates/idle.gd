@@ -8,12 +8,12 @@ func update(delta : float) -> void:
         state_machine.transition_to("Falling")
         return
     
-    if Input.is_action_just_pressed("jump"):
+    if Input.is_action_pressed(player.ui_inputs.get("jump")):
         state_machine.transition_to("Jumping", {normal = Vector2.UP})
         return
 
-    if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left"):
-        print("INSIDE")
+    if Input.is_action_pressed(player.ui_inputs.get("right")) or Input.is_action_pressed(player.ui_inputs.get("left")):
+        #print("INSIDE")
         state_machine.transition_to("Running")
         return
 

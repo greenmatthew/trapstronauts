@@ -8,7 +8,14 @@ onready var sprinting_trail = $Position2D/SprintingTrail
 onready var jumping_cloud = $Position2D/JumpingCloud
 onready var landing_cloud = $Position2D/LandingCloud
 
-var playerID = -1
+var player_ID = 0
+
+var ui_inputs = {
+    "right": "move_right",
+    "left":  "move_left",
+    "jump": "jump",
+    "sprint" : "sprint"
+    }
 
 # Set the character color via shader
 var charCol = Color.white
@@ -68,22 +75,22 @@ func myjump(normal : Vector2) -> void:
     jumping_cloud.restart()
     
 func get_direction() -> Vector2:
-    return int(Input.is_action_pressed("move_right")) * Vector2.RIGHT + int(Input.is_action_pressed("move_left")) * Vector2.LEFT
+    if Input.is_action_pressed(ui_inputs.get("right")):
+        return Vector2.RIGHT
+    if Input.is_action_pressed(ui_inputs.get("left")):
+        return Vector2.LEFT
+    return Vector2.ZERO
 
 func apply_velocity() -> void:
     velocity = clampv(velocity, -terminal_velocity, terminal_velocity)
     velocity = move_and_slide(velocity, Vector2.UP)
 
 func apply_velocity_grounded(delta : float) -> void:
-    var acceleration_coefficient = pow(sprint_coefficient, int(Input.is_action_pressed("sprint")))
+    var acceleration_coefficient = pow(sprint_coefficient, int(Input.is_action_pressed(ui_inputs.get("sprint"))))
     velocity += get_direction() * acceleration_coefficient * base_acceleration * delta
     velocity.x = lerp(velocity.x, 0.0, ground_friction)
     velocity.y += gravity * delta
     apply_velocity()
 
 func apply_velocity_not_grounded(delta : float) -> void:
-    var acceleration_coefficient = pow(sprint_coefficient, int(Input.is_action_pressed("sprint")))
-    velocity += get_direction() * acceleration_coefficient * base_acceleration * delta
-    velocity.x = lerp(velocity.x, 0.0, air_friction)
-    velocity.y += gravity * delta
-    apply_velocity()
+    apply_velocity_grounded(delta)
