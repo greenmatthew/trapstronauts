@@ -1,28 +1,34 @@
-extends Area2D
+class_name Laser
+extends StaticBody2D
 
 onready var raycast = $RayCast2D
 
 const direction : Vector2 = Vector2.RIGHT
 const max_range : float = 1600.0
 
-const duration : float = 3.0
+const duration : float = 1.5
 var time : float = 0.0
 
 var is_on : bool = false
+var time_on : float = 0.0
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     set_process(true)
-    raycast.cast_to = direction * max_range
+    var _status = EventHandler.connect("timer", self, "on_timer_signal")
     raycast.enabled = true
     raycast.collide_with_bodies = true
     raycast.collide_with_areas = true
+    if duration >= EventHandler.timer_interval:
+        printerr("Duration of trap is longer than timer interval. This will cause the trap to permenantly be on.")
 
-func _process(_delta : float) -> void:
+func _process(delta : float) -> void:
     update()
-    time += _delta
-    is_on = int(floor(time / duration)) % 2 != 0
+    if int(floor(time_on / duration)) >= 1:
+        is_on = false
+    time_on += delta
 
 func _draw():
     if is_on:
@@ -33,6 +39,10 @@ func _draw():
                 collider.death()
         else:
             draw_laser(max_range)
+
+func on_timer_signal():
+    is_on = true
+    time_on = 0.0
 
 func get_raycast_center() -> Vector2:
     return raycast.global_position

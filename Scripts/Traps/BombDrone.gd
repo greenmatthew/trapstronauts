@@ -20,6 +20,6 @@ func _on_Area2D_body_entered(body):
     player = body
 
 func _on_Area2D_body_exited(_body):
-    print('Player has exited')
+    # print('Player has exited')
     player = null
     
