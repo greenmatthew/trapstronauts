@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="DebugStateDisplay" type="RichTextLabel"]
+margin_right = 200.0
+margin_bottom = 75.0
+text = "Hello"

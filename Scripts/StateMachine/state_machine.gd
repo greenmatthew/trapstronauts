@@ -1,16 +1,20 @@
 class_name StateMachine
 extends Node
 
+export var debug_state_display = NodePath();
+
 signal transitioned(state_name)
 
 export var initial_state := NodePath()
 
 onready var state: State = get_node(initial_state)
+onready var state_display: RichTextLabel = get_node(debug_state_display)
 
 func _ready() -> void:
     yield(owner, "ready")
     for child in get_children():
         child.state_machine = self
+    state_display.set_text(state.get_name())
     state.enter()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -31,6 +35,10 @@ func transition_to(target_state_name : String, msg : Dictionary = {}) -> void:
 
     state.exit()
     state = get_node(target_state_name)
+<<<<<<< HEAD
     #print("Transitioned to %s" % target_state_name)
+=======
+    state_display.set_text(state.get_name())
+>>>>>>> 4a18237151e087a4c39962e8e1387e5c7adda324
     state.enter(msg)
     emit_signal("transitioned", state.name)
