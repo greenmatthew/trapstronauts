@@ -17,6 +17,8 @@ var players_added = 0
 func add_player_to_world(player):
     add_child(player)
     
+    $MultiCam.add_target(player)
+    
     # TODO: Here, we will spawn the player in an empty bedroom. If none are available...
     # We'll figure something out
     player.position = get_node("Bedroom{n}".format({"n":players_added})).position

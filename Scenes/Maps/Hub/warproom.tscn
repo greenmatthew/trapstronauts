@@ -12,7 +12,7 @@ extents = Vector2( 8, 192 )
 extents = Vector2( 320, 8 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 273.5, 147.5 )
+extents = Vector2( 283.5, 153 )
 
 [node name="warproom" type="Node2D"]
 
@@ -61,5 +61,5 @@ align = 1
 valign = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="depart_trigger"]
-position = Vector2( 650.5, 107.5 )
+position = Vector2( 660.5, 113 )
 shape = SubResource( 4 )
