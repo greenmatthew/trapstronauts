@@ -124,7 +124,7 @@ func handle_scene_changed(previous_scene_name: String, next_scene_name: String):
         
         match next_scene_name:
             "hub":
-                next_scene = load("res://Scenes/Maps/hub.tscn").instance()
+                next_scene = load("res://Scenes/Maps/Hub/hub.tscn").instance()
             "forest":
                 next_scene = load("res://Scenes/Maps/map_forest.tscn").instance()
             _:
