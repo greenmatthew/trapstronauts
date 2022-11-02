@@ -398,7 +398,6 @@ color_ramp = SubResource( 4 )
 [node name="Player" type="KinematicBody2D"]
 material = ExtResource( 4 )
 position = Vector2( 5, -14 )
-scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -421,7 +420,7 @@ position = Vector2( -8, -4 )
 z_index = 10
 frames = SubResource( 26 )
 animation = "walk"
-frame = 7
+frame = 9
 playing = true
 
 [node name="WalkingTrail" type="Particles2D" parent="Position2D"]
