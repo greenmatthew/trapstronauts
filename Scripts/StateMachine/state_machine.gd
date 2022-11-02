@@ -35,10 +35,7 @@ func transition_to(target_state_name : String, msg : Dictionary = {}) -> void:
 
     state.exit()
     state = get_node(target_state_name)
-<<<<<<< HEAD
     #print("Transitioned to %s" % target_state_name)
-=======
     state_display.set_text(state.get_name())
->>>>>>> 4a18237151e087a4c39962e8e1387e5c7adda324
     state.enter(msg)
     emit_signal("transitioned", state.name)
