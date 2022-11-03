@@ -4,6 +4,7 @@ const Util = preload("res://Scripts/Miscellaneous/util.gd")
 var follow_mouse = preload("res://Scenes/PlacementSystem/follow_mouse.tscn")
 var follow_controller = preload("res://Scenes/PlacementSystem/follow_controller.tscn")
 onready var grid = $Grid
+onready var grid_outline = $GridOutline
 onready var random_selector = $SelectorLayer/RandomSelector
 onready var free_selector = $SelectorLayer/FreeSelector
 var selector: Selector
@@ -22,6 +23,14 @@ func _ready():
     var _err = selector.connect("placeable_selected", self, "_on_placeable_selected")
     start_placeable_selection()
  
+func hide_selector_and_grid():
+    selector.clear_options()
+    grid_outline.hide()
+
+func show_selector_and_grid():
+    selector.show_options()
+    grid_outline.show()
+ 
 func start_placeable_selection():
     is_placing = false
     selector.show_options()
@@ -39,7 +48,9 @@ func _unhandled_input(event):
 
     if event.is_action_released("place_object"):
         if grid.can_place(placing, placing.xpos, placing.ypos):
-            print("Placing")
+            var fmt_str = "Placing at position: (%s, %s)"
+            var actual_str = fmt_str % [placing.xpos, placing.ypos]
+            print(actual_str)
             grid.add_shape_to_grid(placing)
             start_placeable_selection()
         else:
@@ -55,9 +66,10 @@ func _process(_delta):
         return
 
     var mouse_pos = get_global_mouse_position()
-    var adjusted_mouse_pos = Vector2(mouse_pos.x - Constants.GRID_HALF_SIZE, mouse_pos.y - Constants.GRID_HALF_SIZE)
+    var x = Vector2(mouse_pos.x - position.x, mouse_pos.y - position.y)
+    var adjusted_mouse_pos = Vector2(mouse_pos.x - position.x - Constants.GRID_HALF_SIZE, mouse_pos.y - position.y - Constants.GRID_HALF_SIZE)
     
-    var tile_map_pos = world_to_map(mouse_pos)
+    var tile_map_pos = world_to_map(x)
     # print("Tile idx: ", tile_map_pos)
     var pos_clamped = Util.pos_clamped_to_grid(adjusted_mouse_pos, Constants.GRID_SIZE)
     pos_clamped.x += Constants.GRID_HALF_SIZE

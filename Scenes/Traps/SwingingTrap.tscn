@@ -34,9 +34,6 @@ tracks/0/keys = {
 [node name="SwingingTrap" type="Area2D"]
 rotation = 1.81514
 script = ExtResource( 2 )
-shape_def = "000
-0x0
-000"
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -2.38419e-07, 25 )

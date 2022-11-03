@@ -9,12 +9,17 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Highlighter",
+"language": "GDScript",
+"path": "res://Scripts/PlacementSystem/highlighter.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Laser",
 "language": "GDScript",
 "path": "res://Scripts/Traps/Laser.gd"
 }, {
-"base": "Area2D",
+"base": "Node2D",
 "class": "Placeable",
 "language": "GDScript",
 "path": "res://Scripts/PlacementSystem/placeable.gd"
@@ -50,6 +55,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/StateMachine/state_machine.gd"
 } ]
 _global_script_class_icons={
+"Highlighter": "",
 "Laser": "",
 "Placeable": "",
 "PlayerController": "",

@@ -8,7 +8,7 @@ var player = null
 func _physics_process(_delta):
     motion = Vector2.ZERO
     if player:
-        motion = position.direction_to(player.position) * speed
+        motion = global_position.direction_to(player.position) * speed
     motion = move_and_slide(motion)
     for i in get_slide_count():
         var collision = get_slide_collision(i)
@@ -17,9 +17,11 @@ func _physics_process(_delta):
             # print('Player got bombed')
 
 func _on_Area2D_body_entered(body):
-    player = body
+    if body.is_in_group("players"):
+        player = body
 
-func _on_Area2D_body_exited(_body):
+func _on_Area2D_body_exited(body):
     # print('Player has exited')
-    player = null
+    if body.is_in_group("players"):
+        player = null
     

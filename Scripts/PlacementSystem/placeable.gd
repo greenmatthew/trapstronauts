@@ -1,8 +1,9 @@
-extends Area2D
+extends Node2D
 
 class_name Placeable
 
 const Util = preload("res://Scripts/Miscellaneous/util.gd")
+onready var highlighter = $Highlighter
 
 export (String, MULTILINE) var shape_def
 var place_offset: int = -1
@@ -10,7 +11,6 @@ var place_offset: int = -1
 const local_coord_matrices = [[-1,1], [-1,0,1],[-2,-1,1,2]]
 
 signal selected
-var is_selecting: bool
 
 var shape: Array
 var rotation_pivot
@@ -20,11 +20,8 @@ var ypos = 0
 
 func _ready():
     # warning-ignore:return_value_discarded
-    connect("mouse_entered", self, "_on_mouse_entered")
-    # warning-ignore:return_value_discarded
-    connect("mouse_exited", self, "_on_mouse_exited")
+    highlighter.connect("selected", self, "_on_highlight_selected")
     init_shape()
-    # print_shape()
     bounding_square_size = int(max(shape.size(), shape[0].size()))
     rotation_pivot = Constants.GRID_SIZE * bounding_square_size / 2.0
 
@@ -51,6 +48,8 @@ func rotate_shape(rotation):
     shape = rotated_shape
 
 func init_shape():
+    assert(shape_def != "", "Shape def is empty")
+    
     var lines = shape_def.split("\n")
 
     for line in lines:
@@ -59,40 +58,8 @@ func init_shape():
             row.append(ch == "x")
         shape.append(row)
 
-func _on_mouse_entered():
-    if is_selecting:
-        highlight()
+func set_selecting(is_selecting: bool):
+    highlighter.is_selecting = is_selecting
 
-
-func _on_mouse_exited():
-    if is_selecting:
-        unhighlight()
-
-func _input_event(_viewport, event, _shape_idx):
-    # TODO: figure out more flexible input
-    if is_selecting and event is InputEventMouseButton and event.button_index == 2:
-        is_selecting = false
-        emit_signal("selected", self)
-        unhighlight()
-        
-
-func get_sprites():
-    var sprites = []
-
-    for node in Util.get_all_children(self):
-        if node is Sprite:
-            sprites.append(node)
-
-    return sprites
-
-func highlight():
-    set_sprites_modulate(Color(1, 1.5, 1.5, 1))
-
-func unhighlight():
-    set_sprites_modulate(Color(1, 1, 1, 1))
-
-func set_sprites_modulate(color):
-    var sprites = get_sprites()
-
-    for sprite in sprites:
-        sprite.modulate = color
+func _on_highlight_selected():
+    emit_signal("selected", self)

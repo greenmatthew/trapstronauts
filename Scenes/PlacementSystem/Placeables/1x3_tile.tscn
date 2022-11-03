@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/PlacementSystem/placeable.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Temp/icon.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/PlacementSystem/highlighter.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 96, 32.0001 )
 
-[node name="Area2D" type="Area2D"]
+[node name="1x3" type="StaticBody2D"]
 script = ExtResource( 1 )
 shape_def = "000
 xxx
@@ -18,13 +19,18 @@ shape = SubResource( 1 )
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Node2D"]
+[node name="Highlighter" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Highlighter"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Highlighter"]
 texture = ExtResource( 2 )
 
-[node name="Sprite2" type="Sprite" parent="Node2D"]
+[node name="Sprite2" type="Sprite" parent="Highlighter"]
 position = Vector2( 64, 0 )
 texture = ExtResource( 2 )
 
-[node name="Sprite3" type="Sprite" parent="Node2D"]
+[node name="Sprite3" type="Sprite" parent="Highlighter"]
 position = Vector2( -64, 0 )
 texture = ExtResource( 2 )
