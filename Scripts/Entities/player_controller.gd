@@ -21,12 +21,12 @@ var charCol = Color.white
 # Movement
 const gravity : float = 512.0 # pixels/s^2
 const sprint_coefficient : float = 2.0
-const base_acceleration : float = 512.0 # pixels/s^2
-const terminal_velocity : Vector2 = Vector2(256.0, 512.0) # pixels/s
+const base_acceleration : float = 512.0 * 4 # pixels/s^2
+const terminal_velocity : Vector2 = Vector2(256.0 * 4, 512.0 * 4) # pixels/s
 const ground_friction : float = 0.1
 const air_friction : float = 0.01
-const jump_height : float = 128.0 # pixels
-const wall_slide_terminal_velocity : float = 64.0 # pixels/s
+const jump_height : float = 128.0 * 4 # pixels
+const wall_slide_terminal_velocity : float = 64.0 * 4 # pixels/s
 
 var forward : Vector2 = Vector2.RIGHT # Direction the character is facing
 # var direction : Vector2 = Vector2.ZERO # Direction the character is moving

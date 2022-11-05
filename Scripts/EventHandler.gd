@@ -1,6 +1,5 @@
 extends Node
 
-
 # Signals to all subscribers that another tick has passed.
 signal timer
 
