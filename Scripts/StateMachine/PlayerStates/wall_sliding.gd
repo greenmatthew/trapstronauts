@@ -1,10 +1,13 @@
 extends PlayerState
 
+var wall_dir : Vector2
+
 func enter(_msg = {}):
     player.animator.play("slide")
+    wall_dir = _msg.get("wall_dir")
 
 func physics_update(delta : float) -> void:
-    if player.forward.normalized() != player.direction:
+    if not player.is_on_wall() || player.direction != wall_dir:
         state_machine.transition_to("Falling")
         return
     
@@ -20,6 +23,7 @@ func physics_update(delta : float) -> void:
             state_machine.transition_to("Idle")
             return
 
+    player.velocity += 2 * wall_dir
     player.velocity.y += player.gravity * delta
     player.velocity.y = min(player.velocity.y, player.wall_slide_terminal_velocity)
     player.apply_velocity()

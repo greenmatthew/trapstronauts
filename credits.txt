@@ -1,0 +1,13 @@
+[Programmers]
+Matthew Green
+Steven Guilbert
+Joshua Ellidge
+Himaneesh Mukka
+
+[2D Artists]
+Joshua Ellidge
+
+[Ideas]
+The Dr. Brian A. Dalio - Laser Reflections
+
+[3rd Party Assets]

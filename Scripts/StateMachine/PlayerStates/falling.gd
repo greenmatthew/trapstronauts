@@ -16,7 +16,7 @@ func physics_update(delta : float) -> void:
             return
     
     if player.is_on_wall() and player.forward.normalized() == player.direction:
-        state_machine.transition_to("WallSliding")
+        state_machine.transition_to("WallSliding", {wall_dir = player.direction})
         return
 
     player.apply_velocity_not_grounded(delta)
