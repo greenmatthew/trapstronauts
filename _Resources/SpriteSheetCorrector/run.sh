@@ -1,1 +1,0 @@
-python3 spritesheetcorrector.py 4 4 input/test.png output/
