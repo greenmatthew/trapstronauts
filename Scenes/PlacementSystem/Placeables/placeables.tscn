@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/PlacementSystem/Placeables/L_tile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/PlacementSystem/Placeables/1x1_tile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/PlacementSystem/Placeables/1x3_tile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/PlacementSystem/Placeables/Z_tile.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Traps/SwingingTrap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/PlacementSystem/Placeables/SwingingTrap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/PlacementSystem/Placeables/Laser.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/PlacementSystem/Placeables/Drone.tscn" type="PackedScene" id=7]
 
 [node name="Placeables" type="Node2D"]
 
@@ -21,4 +23,10 @@ position = Vector2( 32, 433 )
 position = Vector2( 96, 346 )
 
 [node name="SwingingTrap" parent="." instance=ExtResource( 5 )]
-position = Vector2( 301, 24 )
+position = Vector2( 285, 53 )
+
+[node name="Laser" parent="." instance=ExtResource( 6 )]
+position = Vector2( 285, 140 )
+
+[node name="Drone" parent="." instance=ExtResource( 7 )]
+position = Vector2( 285, 217 )

@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/PlacementSystem/placeable.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Temp/icon.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/PlacementSystem/highlighter.tscn" type="PackedScene" id=3]
 
-[node name="Area2D" type="Area2D"]
+[node name="Z" type="StaticBody2D"]
 script = ExtResource( 1 )
 shape_def = "xx0
 0xx
@@ -14,17 +15,22 @@ polygon = PoolVector2Array( 96, 32, -31, 32, -32, -32, -96, -32, -96, -96, -33, 
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Node2D"]
+[node name="Highlighter" parent="." instance=ExtResource( 3 )]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Highlighter"]
+polygon = PoolVector2Array( 96, 32, -31, 32, -32, -32, -96, -32, -96, -96, -33, -96, 32, -96, 32, -32, 96, -32 )
+
+[node name="Sprite" type="Sprite" parent="Highlighter"]
 texture = ExtResource( 2 )
 
-[node name="Sprite2" type="Sprite" parent="Node2D"]
+[node name="Sprite2" type="Sprite" parent="Highlighter"]
 position = Vector2( 64, 0 )
 texture = ExtResource( 2 )
 
-[node name="Sprite3" type="Sprite" parent="Node2D"]
+[node name="Sprite3" type="Sprite" parent="Highlighter"]
 position = Vector2( 0, -64 )
 texture = ExtResource( 2 )
 
-[node name="Sprite4" type="Sprite" parent="Node2D"]
+[node name="Sprite4" type="Sprite" parent="Highlighter"]
 position = Vector2( -64, -64 )
 texture = ExtResource( 2 )

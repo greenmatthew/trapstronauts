@@ -18,9 +18,9 @@ func _on_placeable_selected(selection):
     dup.set_position(Vector2.ZERO)
     add_child(dup)
     # TODO: shouldn't need to call unhighlight manually here
-    dup.unhighlight()
+    dup.highlighter.unhighlight()
     emit_signal("placeable_selected", dup)
 
 func set_placeables_to_selecting():
     for placeable in placeables.get_children():
-       placeable.is_selecting = true
+       placeable.set_selecting(true)

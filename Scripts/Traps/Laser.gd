@@ -18,7 +18,8 @@ func _ready() -> void:
     var _status = EventHandler.connect("timer", self, "on_timer_signal")
     raycast.enabled = true
     raycast.collide_with_bodies = true
-    raycast.collide_with_areas = true
+    raycast.collide_with_areas = false
+    raycast.exclude_parent = true
     if duration >= EventHandler.timer_interval:
         printerr("Duration of trap is longer than timer interval. This will cause the trap to permenantly be on.")
 

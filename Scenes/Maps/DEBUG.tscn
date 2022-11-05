@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/Maps/DEBUG.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Traps/BombDrone.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Scenes/Traps/RollingSawBlade.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/Sprites/Materials/lightingShader.tres" type="Shader" id=13]
 [ext_resource path="res://Scenes/Traps/Laser.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/PlacementSystem/GridManager.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=16]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -594,5 +595,8 @@ position = Vector2( -16, 8 )
 material = SubResource( 27 )
 position = Vector2( 74, -40 )
 collision_mask = 33280
+
+[node name="GridManager" parent="." instance=ExtResource( 15 )]
+position = Vector2( -1024, -1024 )
 
 [editable path="SpinningBladeTrap"]
