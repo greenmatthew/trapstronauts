@@ -84,22 +84,24 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
 [node name="Placeable" type="StaticBody2D"]
 script = ExtResource( 1 )
-shape_def = "0000
-0xx0
-0000"
+shape_def = "000
+0xx
+000"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 32, 0 )
 rotation = 3.14159
 shape = SubResource( 1 )
 
 [node name="Highlighter" parent="." instance=ExtResource( 4 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Highlighter"]
+position = Vector2( 32, 0 )
 rotation = 3.14159
 shape = SubResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="Highlighter"]
-position = Vector2( 0, 32 )
+position = Vector2( 32, 32 )
 tile_set = SubResource( 5 )
 format = 1
 tile_data = PoolIntArray( -1, 2, 0, -65536, 1, 0 )
