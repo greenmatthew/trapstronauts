@@ -420,7 +420,7 @@ position = Vector2( -8, -4 )
 z_index = 10
 frames = SubResource( 26 )
 animation = "walk"
-frame = 8
+frame = 7
 playing = true
 
 [node name="WalkingTrail" type="Particles2D" parent="Position2D"]
@@ -490,5 +490,7 @@ margin_left = -87.851
 margin_top = -122.088
 margin_right = 112.149
 margin_bottom = -47.088
+mouse_filter = 2
+scroll_active = false
 
 [connection signal="animation_finished" from="Position2D/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
