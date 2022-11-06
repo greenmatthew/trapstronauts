@@ -99,3 +99,6 @@ func apply_velocity_not_grounded(delta : float) -> void:
 
 func _on_JumpPad_body_entered(_body):
     velocity.y = -3800
+
+func get_collider_height() -> float:
+    return $CollisionShape2D.shape.extents.y
