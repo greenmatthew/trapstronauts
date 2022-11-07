@@ -397,19 +397,19 @@ color_ramp = SubResource( 4 )
 
 [node name="Player" type="KinematicBody2D" groups=["players"]]
 material = ExtResource( 4 )
-position = Vector2( 5, -14 )
+position = Vector2( 0, -76 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 10, 8 )
+position = Vector2( 6, 28 )
 shape = SubResource( 1 )
 
 [node name="Position2D" type="Position2D" parent="."]
 use_parent_material = true
-position = Vector2( 8, 4 )
+position = Vector2( 0, 24 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -420,7 +420,7 @@ position = Vector2( -8, -4 )
 z_index = 10
 frames = SubResource( 26 )
 animation = "walk"
-frame = 5
+frame = 7
 playing = true
 
 [node name="WalkingTrail" type="Particles2D" parent="Position2D"]
@@ -486,10 +486,8 @@ script = ExtResource( 6 )
 script = ExtResource( 10 )
 
 [node name="DebugStateDisplay" parent="." instance=ExtResource( 19 )]
-margin_left = -87.851
-margin_top = -122.088
-margin_right = 112.149
-margin_bottom = -47.088
+margin_top = -64.0
+margin_bottom = 11.0
 mouse_filter = 2
 scroll_active = false
 
