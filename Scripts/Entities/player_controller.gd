@@ -96,8 +96,7 @@ func apply_velocity_grounded(delta : float) -> void:
 func apply_velocity_not_grounded(delta : float) -> void:
     apply_velocity_grounded(delta)
 
-
-func _on_JumpPad_body_entered(_body):
+func handle_jump_pad_jump():
     velocity.y = -3800
 
 func get_collider_height() -> float:

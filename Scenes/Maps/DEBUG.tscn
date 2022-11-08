@@ -615,8 +615,6 @@ position = Vector2( 288, -288 )
 [node name="Laser" parent="." instance=ExtResource( 14 )]
 position = Vector2( -32, -32 )
 
-[connection signal="body_entered" from="JumpPad" to="Player" method="_on_JumpPad_body_entered"]
-
 [editable path="SpinningBladeTrap"]
 [editable path="GridManager"]
 [editable path="JumpPad"]
