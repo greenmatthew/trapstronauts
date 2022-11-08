@@ -21,9 +21,23 @@ var ypos = 0
 func _ready():
     # warning-ignore:return_value_discarded
     highlighter.connect("selected", self, "_on_highlight_selected")
-    init_shape()
+    _init_shape()
     bounding_square_size = int(max(shape.size(), shape[0].size()))
     rotation_pivot = Constants.GRID_SIZE * bounding_square_size / 2.0
+
+    for child in get_children():
+        if child.has_method("disable"):
+            child.disable()
+
+func disable():
+    for child in get_children():
+        if child.has_method("disable"):
+            child.disable()
+
+func enable():
+    for child in get_children():
+        if child.has_method("enable"):
+            child.enable()
 
 func print_shape():
     for row in shape:
@@ -47,7 +61,7 @@ func rotate_shape(rotation):
         rotate(PI / 2)
     shape = rotated_shape
 
-func init_shape():
+func _init_shape():
     assert(shape_def != "", "Shape def is empty")
     
     var lines = shape_def.split("\n")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/PlacementSystem/placeable.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Tiles/Metal-Blocks Rotated 0 Counter Clockwise.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sprites/Tiles/Metal-Blocks Rotated 180 Counter Clockwise.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/PlacementSystem/highlighter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/PlacementSystem/platform_collision_shape.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 32 )
@@ -92,6 +93,8 @@ shape_def = "000
 position = Vector2( 32, 0 )
 rotation = 3.14159
 shape = SubResource( 1 )
+disabled = true
+script = ExtResource( 5 )
 
 [node name="Highlighter" parent="." instance=ExtResource( 4 )]
 

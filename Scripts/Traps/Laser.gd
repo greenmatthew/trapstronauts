@@ -9,6 +9,8 @@ const max_range : float = 1600.0
 const duration : float = 1.5
 var time : float = 0.0
 
+var disabled: bool = false
+
 var is_on : bool = false
 var time_on : float = 0.0
 
@@ -24,6 +26,8 @@ func _ready() -> void:
         printerr("Duration of trap is longer than timer interval. This will cause the trap to permenantly be on.")
 
 func _process(delta : float) -> void:
+    if disabled:
+        return
     update()
     if int(floor(time_on / duration)) >= 1:
         is_on = false
@@ -55,3 +59,9 @@ func draw_laser(distance : float) -> void:
     draw_line(from, to, Color.darkred, 4)
     draw_line(from, to, Color.red, 3)
     draw_line(from, to, Color.white, 2)
+
+func disable() -> void:
+    disabled = true
+
+func enable() -> void:
+    disabled = false

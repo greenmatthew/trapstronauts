@@ -51,6 +51,7 @@ func _unhandled_input(event):
             var fmt_str = "Placing at position: (%s, %s)"
             var actual_str = fmt_str % [placing.xpos, placing.ypos]
             print(actual_str)
+            placing.enable()
             grid.add_shape_to_grid(placing)
             start_placeable_selection()
         else:

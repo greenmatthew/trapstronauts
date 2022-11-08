@@ -25,3 +25,9 @@ func _on_Area2D_body_exited(body):
     if body.is_in_group("players"):
         player = null
     
+func disable() -> void:
+    player = null
+    $Area2D/CollisionShape2D.disabled = true
+
+func enable() -> void:
+    $Area2D/CollisionShape2D.disabled = false
