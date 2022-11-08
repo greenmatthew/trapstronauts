@@ -85,9 +85,12 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
 [node name="Placeable" type="StaticBody2D"]
 script = ExtResource( 1 )
-shape_def = "000
-0x0
-000"
+shape_def = "00000
+00000
+0xxxx
+00000
+00000"
+place_offset = -2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 32, 0 )
