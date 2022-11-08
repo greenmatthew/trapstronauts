@@ -18,9 +18,13 @@ func add_player_to_world(player):
     $MultiCam.add_target(player)
 
 func _ready():
+    connect_events()
     init_grid()
     grid_manager.hide_selector_and_grid()
+
+func connect_events():
     var _status = EventHandler.connect("player_killed", self, "_on_player_killed")
+    _status = EventHandler.connect("player_reached_finish", self, "_on_player_reached_finish")
 
 # based on the size of the grid_rect
 func init_grid():
@@ -30,6 +34,9 @@ func init_grid():
 func _on_player_killed(player: PlayerController, trap: Placeable):
     print("Player ", player.name, " killed by ", trap.name)
     player.death()
+
+func _on_player_reached_finish(player: PlayerController):
+    print("Player ", player.name, " reached finish")
 
 func _unhandled_input(event):
     if event is InputEventKey and event.scancode == KEY_TAB and event.pressed:

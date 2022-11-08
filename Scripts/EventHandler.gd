@@ -7,6 +7,10 @@ signal timer
 ## Two parameters: player, placeable
 signal player_killed
 
+# warning-ignore:unused_signal
+## One parameter: player
+signal player_reached_finish
+
 var _timer_time : float = 0.0 # Time passed in seconds
 const timer_interval : float = 3.0 # Interval between timer_ticks in seconds
 var timer_ticks : int = 0 # Number of timer_ticks
