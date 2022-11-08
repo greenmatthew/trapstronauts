@@ -64,12 +64,16 @@ func rotate_shape(rotation):
 func _init_shape():
     assert(shape_def != "", "Shape def is empty")
     
+    shape_def = shape_def.replace("\r", "")
     var lines = shape_def.split("\n")
 
     for line in lines:
         var row = []
         for ch in line:
-            row.append(ch == "x")
+            if ch != "x" and ch != "0":
+                printerr("Bad Char in Shape def: (", ch, "), Ascii: ", ord(ch))
+            else:
+                row.append(ch == "x")
         shape.append(row)
 
 func set_selecting(is_selecting: bool):
