@@ -25,7 +25,8 @@ func add_player(player_index):
     
     player.set_color(player_cols[player_index])
     
-    map_controls(player_index)
+    if not player_index == 0:
+        map_controls(player_index)
     
     if not ON_MENU:
         current_scene.add_player_to_world(players[player_index])
@@ -93,20 +94,12 @@ func map_controls(player_index):
     sprint_action_event.pressed = true
     InputMap.action_add_event(sprint_action, sprint_action_event)
 
-func _on_joy_connection_changed(device, connected):
-    if connected:
-        add_player(device)
-    else:
-        player_disconnect(device)
-
 func _ready():
     current_scene.connect("scene_changed", self, "handle_scene_changed")
-# warning-ignore:return_value_discarded
-    Input.connect("joy_connection_changed", self, "_on_joy_connection_changed")
 
     var num_players = len(Input.get_connected_joypads())
 
-    for i in range(num_players):
+    for i in range(num_players + 1):
         add_player(i)
 
 func handle_scene_changed(previous_scene_name: String, next_scene_name: String):
