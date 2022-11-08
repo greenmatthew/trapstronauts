@@ -28,13 +28,14 @@ func _ready() -> void:
 func _process(delta : float) -> void:
     if disabled:
         return
+        
     update()
     if int(floor(time_on / duration)) >= 1:
         is_on = false
     time_on += delta
 
 func _draw():
-    if is_on:
+    if is_on and !disabled:
         if raycast.is_colliding():
             draw_laser( abs(raycast.to_local(raycast.get_collision_point()).x) )
             var collider = raycast.get_collider()
