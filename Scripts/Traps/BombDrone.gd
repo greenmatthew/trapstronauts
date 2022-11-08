@@ -27,7 +27,9 @@ func _on_Area2D_body_exited(body):
     
 func disable() -> void:
     player = null
-    $Area2D/CollisionShape2D.disabled = true
+    $CollisionShape2D.set_deferred("disabled", true)
+    $Area2D/CollisionShape2D.set_deferred("disabled", true)
 
 func enable() -> void:
-    $Area2D/CollisionShape2D.disabled = false
+    $CollisionShape2D.set_deferred("disabled", false)
+    $Area2D/CollisionShape2D.set_deferred("disabled", false)
