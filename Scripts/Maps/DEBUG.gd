@@ -10,7 +10,7 @@ func _ready():
     #print("Added")
 
 func _unhandled_input(event):
-    if event is InputEventKey and event.scancode == KEY_P and event.pressed:
+    if event is InputEventKey and event.scancode == KEY_TAB and event.pressed:
         if showing_selector:
             grid_manager.hide_selector_and_grid()
             showing_selector = false

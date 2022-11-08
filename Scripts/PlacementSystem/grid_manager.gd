@@ -4,7 +4,7 @@ const Util = preload("res://Scripts/Miscellaneous/util.gd")
 var follow_mouse = preload("res://Scenes/PlacementSystem/follow_mouse.tscn")
 var follow_controller = preload("res://Scenes/PlacementSystem/follow_controller.tscn")
 onready var grid = $Grid
-onready var grid_outline = $GridOutline
+onready var grid_rect = $GridRect
 onready var random_selector = $SelectorLayer/RandomSelector
 onready var free_selector = $SelectorLayer/FreeSelector
 var selector: Selector
@@ -25,11 +25,11 @@ func _ready():
  
 func hide_selector_and_grid():
     selector.clear_options()
-    grid_outline.hide()
+    grid_rect.hide()
 
 func show_selector_and_grid():
     selector.show_options()
-    grid_outline.show()
+    grid_rect.show()
  
 func start_placeable_selection():
     is_placing = false

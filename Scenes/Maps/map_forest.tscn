@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=2]
+[gd_scene load_steps=175 format=2]
 
 [ext_resource path="res://Scripts/Maps/map_forest.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Levels/01Forest/Terrain/TX Tileset Ground.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Assets/Sprites/Levels/01Forest/Parallax/Layer3.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Sprites/Temp/icon_transparent.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Sprites/Levels/01Forest/HiddenPathes/TX Tileset Ground Copy.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/PlacementSystem/GridManager.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -4016,3 +4017,15 @@ shape = SubResource( 79 )
 [node name="DownBounds" type="CollisionShape2D" parent="MapBounds"]
 position = Vector2( 0, 3008 )
 shape = SubResource( 79 )
+
+[node name="GridManager" parent="." instance=ExtResource( 14 )]
+position = Vector2( -2370, -2114 )
+
+[node name="Grid" parent="GridManager" index="0"]
+size = Vector2( 66, 64 )
+
+[node name="GridRect" parent="GridManager" index="2"]
+margin_right = 4224.0
+margin_bottom = 4864.0
+
+[editable path="GridManager"]

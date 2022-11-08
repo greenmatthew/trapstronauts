@@ -2,6 +2,9 @@ extends Node2D
 
 signal scene_changed(scene_from, scene_to)
 
+onready var grid_manager = $GridManager 
+var showing_selector = false
+
 func add_player_to_world(player):
     add_child(player)
     var start = $Start
@@ -15,6 +18,19 @@ func add_player_to_world(player):
     $MultiCam.add_target(player)
 
 func _ready():
-    pass
-    # Add code to setup GridManager to size of the map
-    #$GridManager/GridOutline.
+    init_grid()
+    grid_manager.hide_selector_and_grid()
+
+# based on the size of the grid_rect
+func init_grid():
+    grid_manager.grid.size = grid_manager.grid_rect.rect_size / 64
+    grid_manager.grid.clear()
+
+func _unhandled_input(event):
+    if event is InputEventKey and event.scancode == KEY_TAB and event.pressed:
+        if showing_selector:
+            grid_manager.hide_selector_and_grid()
+            showing_selector = false
+        else:
+            grid_manager.show_selector_and_grid()
+            showing_selector = true

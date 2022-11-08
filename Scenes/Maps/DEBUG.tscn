@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scripts/Maps/DEBUG.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Traps/BombDrone.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Scenes/Traps/Laser.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/PlacementSystem/GridManager.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Traps/JumpPad.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/PlacementSystem/GridRect.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ConvexPolygonShape2D" id=16]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -600,10 +601,22 @@ collision_mask = 33280
 [node name="GridManager" parent="." instance=ExtResource( 15 )]
 position = Vector2( -1024, -1024 )
 
+[node name="GridRect" parent="GridManager" index="2"]
+margin_right = 2688.0
+margin_bottom = 2048.0
+
 [node name="JumpPad" parent="." instance=ExtResource( 16 )]
 position = Vector2( 406, 8 )
+
+[node name="GridRect" parent="." instance=ExtResource( 17 )]
+visible = false
+margin_left = -1023.0
+margin_top = -1018.0
+margin_right = 1091.0
+margin_bottom = 249.0
 
 [connection signal="body_entered" from="JumpPad" to="Player" method="_on_JumpPad_body_entered"]
 
 [editable path="SpinningBladeTrap"]
+[editable path="GridManager"]
 [editable path="JumpPad"]
