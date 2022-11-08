@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Layer3.png-c7b7eb6a9411c933b7f44ffb5606b9ce.stex"
+path="res://.import/TX Tileset Ground.png-4e25d2e5c3ca91fe186530ca4dba296d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Levels/01Forest/Layer3.png"
-dest_files=[ "res://.import/Layer3.png-c7b7eb6a9411c933b7f44ffb5606b9ce.stex" ]
+source_file="res://Assets/Sprites/Levels/01Forest/Terrain/TX Tileset Ground.png"
+dest_files=[ "res://.import/TX Tileset Ground.png-4e25d2e5c3ca91fe186530ca4dba296d.stex" ]
 
 [params]
 
@@ -19,8 +19,8 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=2
-flags/filter=true
+flags/repeat=0
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

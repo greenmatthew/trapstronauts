@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Layer4.png-20b105d7f3046920f85daa4f22ffacc2.stex"
+path="res://.import/TX Tileset Ground Copy.png-5bdbfc0c03d3b5f74b28066dd3830bd8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Levels/01Forest/Layer4.png"
-dest_files=[ "res://.import/Layer4.png-20b105d7f3046920f85daa4f22ffacc2.stex" ]
+source_file="res://Assets/Sprites/Levels/01Forest/HiddenPathes/TX Tileset Ground Copy.png"
+dest_files=[ "res://.import/TX Tileset Ground Copy.png-5bdbfc0c03d3b5f74b28066dd3830bd8.stex" ]
 
 [params]
 
@@ -19,8 +19,8 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=2
-flags/filter=true
+flags/repeat=0
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Layer2.png-c8e9d75b807d4d720b8f6baa402bc5d2.stex"
+path="res://.import/Layer3.png-ce4022a5b35ebd589f758335bbab2137.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Levels/01Forest/Layer2.png"
-dest_files=[ "res://.import/Layer2.png-c8e9d75b807d4d720b8f6baa402bc5d2.stex" ]
+source_file="res://Assets/Sprites/Levels/01Forest/Parallax/Layer3.png"
+dest_files=[ "res://.import/Layer3.png-ce4022a5b35ebd589f758335bbab2137.stex" ]
 
 [params]
 

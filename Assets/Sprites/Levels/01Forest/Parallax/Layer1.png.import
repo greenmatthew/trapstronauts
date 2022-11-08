@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TX Tileset Ground Mirrored Down Vertical Axis.png-60c8c0eaf519096aff42bc6224864666.stex"
+path="res://.import/Layer1.png-6dbfd56be68f484bf5aca05614391450.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Levels/01Forest/TX Tileset Ground Mirrored Down Vertical Axis.png"
-dest_files=[ "res://.import/TX Tileset Ground Mirrored Down Vertical Axis.png-60c8c0eaf519096aff42bc6224864666.stex" ]
+source_file="res://Assets/Sprites/Levels/01Forest/Parallax/Layer1.png"
+dest_files=[ "res://.import/Layer1.png-6dbfd56be68f484bf5aca05614391450.stex" ]
 
 [params]
 
@@ -19,8 +19,8 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
-flags/filter=false
+flags/repeat=2
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

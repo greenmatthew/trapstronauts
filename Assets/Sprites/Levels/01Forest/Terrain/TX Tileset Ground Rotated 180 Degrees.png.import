@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TX Tileset Ground.png-76fd86891252289eca22dc3a4eaffca8.stex"
+path="res://.import/TX Tileset Ground Rotated 180 Degrees.png-22c37da80a0f0abee9514a3644b59479.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Levels/01Forest/TX Tileset Ground.png"
-dest_files=[ "res://.import/TX Tileset Ground.png-76fd86891252289eca22dc3a4eaffca8.stex" ]
+source_file="res://Assets/Sprites/Levels/01Forest/Terrain/TX Tileset Ground Rotated 180 Degrees.png"
+dest_files=[ "res://.import/TX Tileset Ground Rotated 180 Degrees.png-22c37da80a0f0abee9514a3644b59479.stex" ]
 
 [params]
 
