@@ -20,11 +20,16 @@ func add_player_to_world(player):
 func _ready():
     init_grid()
     grid_manager.hide_selector_and_grid()
+    var _status = EventHandler.connect("player_killed", self, "_on_player_killed")
 
 # based on the size of the grid_rect
 func init_grid():
     grid_manager.grid.size = grid_manager.grid_rect.rect_size / 64
     grid_manager.grid.clear()
+
+func _on_player_killed(player: PlayerController, trap: Placeable):
+    print("Player ", player.name, " killed by ", trap.name)
+    player.death()
 
 func _unhandled_input(event):
     if event is InputEventKey and event.scancode == KEY_TAB and event.pressed:

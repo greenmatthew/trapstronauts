@@ -5,7 +5,7 @@ func _ready():
 
 func _on_SwingingTrap_body_entered(body):
     if body is PlayerController:
-        var _godot_is_trash = get_tree().reload_current_scene()
+        EventHandler.emit_signal("player_killed", body, get_parent())
         
 func disable() -> void:
     $CollisionPolygon2D.disabled = true

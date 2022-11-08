@@ -2,6 +2,8 @@ extends Node
 
 # Signals to all subscribers that another tick has passed.
 signal timer
+## Two parameters: player, placeable
+signal player_killed
 
 var _timer_time : float = 0.0 # Time passed in seconds
 const timer_interval : float = 3.0 # Interval between timer_ticks in seconds

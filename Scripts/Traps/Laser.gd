@@ -39,7 +39,7 @@ func _draw():
             draw_laser( abs(raycast.to_local(raycast.get_collision_point()).x) )
             var collider = raycast.get_collider()
             if collider is PlayerController:
-                collider.death()
+                EventHandler.emit_signal("player_killed", collider, get_parent())
         else:
             draw_laser(max_range)
 
