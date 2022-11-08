@@ -13,7 +13,7 @@
 [ext_resource path="res://Assets/Sprites/Levels/01Forest/Parallax/Layer3.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/Traps/RollingSawBlade.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/Sprites/Materials/lightingShader.tres" type="Shader" id=13]
-[ext_resource path="res://Scenes/Traps/Laser.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/PlacementSystem/Placeables/Laser.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/PlacementSystem/GridManager.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Traps/JumpPad.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/PlacementSystem/GridRect.tscn" type="PackedScene" id=17]
@@ -587,9 +587,6 @@ position = Vector2( -35, -186 )
 collision_layer = 512
 collision_mask = 32769
 
-[node name="Laser" parent="." instance=ExtResource( 14 )]
-position = Vector2( -16, 8 )
-
 [node name="Player" parent="." instance=ExtResource( 6 )]
 material = SubResource( 27 )
 position = Vector2( 74, -40 )
@@ -614,6 +611,9 @@ margin_bottom = 249.0
 
 [node name="SwingingTrap" parent="." instance=ExtResource( 8 )]
 position = Vector2( 288, -288 )
+
+[node name="Laser" parent="." instance=ExtResource( 14 )]
+position = Vector2( -32, -32 )
 
 [connection signal="body_entered" from="JumpPad" to="Player" method="_on_JumpPad_body_entered"]
 

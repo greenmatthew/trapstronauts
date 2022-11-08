@@ -47,4 +47,5 @@ func _process(delta):
     timer_label.set_text(str(timer))
     
 func departure_test():
+    # warning-ignore:integer_division
     return len(trigger.get_overlapping_bodies()) - 1 >  len(main.players) / 2

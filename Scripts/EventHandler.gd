@@ -2,6 +2,8 @@ extends Node
 
 # Signals to all subscribers that another tick has passed.
 signal timer
+
+# warning-ignore:unused_signal
 ## Two parameters: player, placeable
 signal player_killed
 
