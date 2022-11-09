@@ -22,6 +22,7 @@ func _ready() -> void:
     raycast.collide_with_bodies = true
     raycast.collide_with_areas = false
     raycast.exclude_parent = true
+    raycast.cast_to = direction * max_range
     if duration >= EventHandler.timer_interval:
         printerr("Duration of trap is longer than timer interval. This will cause the trap to permenantly be on.")
 
@@ -40,7 +41,8 @@ func _draw():
             draw_laser( abs(raycast.to_local(raycast.get_collision_point()).x) )
             var collider = raycast.get_collider()
             if collider is PlayerController:
-                EventHandler.emit_signal("player_killed", collider, get_parent())
+                pass
+                #EventHandler.emit_signal("player_killed", collider, get_parent())
         else:
             draw_laser(max_range)
 
