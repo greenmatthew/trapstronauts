@@ -62,7 +62,9 @@ func draw_laser(distance : float) -> void:
     draw_line(from, to, Color.white, 2)
 
 func disable() -> void:
+    $CollisionShape2D.set_deferred("disabled", true)
     disabled = true
 
 func enable() -> void:
+    $CollisionShape2D.set_deferred("disabled", true)
     disabled = false
