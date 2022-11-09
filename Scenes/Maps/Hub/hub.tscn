@@ -19,6 +19,10 @@ extents = Vector2( 8, 304 )
 [node name="hub" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="MultiCam" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -400 )
+zoom = Vector2( 2, 2 )
+
 [node name="DEPRECATED" type="ParallaxBackground" parent="."]
 
 [node name="DELETE" type="ParallaxLayer" parent="DEPRECATED"]
@@ -27,10 +31,6 @@ script = ExtResource( 2 )
 visible = false
 position = Vector2( 1689, -367 )
 texture = ExtResource( 1 )
-
-[node name="MultiCam" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, -400 )
-zoom = Vector2( 2, 2 )
 
 [node name="Bedroom0" parent="." instance=ExtResource( 4 )]
 position = Vector2( -448, -672 )
