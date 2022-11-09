@@ -4021,7 +4021,7 @@ position = Vector2( 0, 3008 )
 shape = SubResource( 79 )
 
 [node name="GridManager" parent="." instance=ExtResource( 14 )]
-position = Vector2( -2370, -2114 )
+position = Vector2( -2368, -2112 )
 
 [node name="Grid" parent="GridManager" index="0"]
 size = Vector2( 66, 64 )
