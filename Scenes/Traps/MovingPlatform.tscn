@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Sprites/Traps/FallingPlatform.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Traps/MovingPlatform.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("movingplatform_path2d/movingplatform_follow2d/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "movingplatform_flying"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("movingplatform_path2d/movingplatform_follow2d/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.00772774, 1, 2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array(  )
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 70.5, 11.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 70.5, 24.5 )
+
+[node name="MovingPlatform" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 19.0
+anims/RESET = SubResource( 2 )
+anims/movingplatform_flying = SubResource( 3 )
+
+[node name="movingplatform_path2d" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="movingplatform_follow2d" type="PathFollow2D" parent="movingplatform_path2d"]
+
+[node name="Sprite" type="Sprite" parent="movingplatform_path2d/movingplatform_follow2d"]
+position = Vector2( -3.8147e-06, -0.999999 )
+scale = Vector2( 4.25, 9.6 )
+texture = ExtResource( 1 )
+hframes = 4
+frame = 1
+
+[node name="Area2D" type="Area2D" parent="movingplatform_path2d/movingplatform_follow2d"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="movingplatform_path2d/movingplatform_follow2d/Area2D"]
+position = Vector2( 0.5, -62.5 )
+shape = SubResource( 5 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="movingplatform_path2d/movingplatform_follow2d"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="movingplatform_path2d/movingplatform_follow2d/KinematicBody2D"]
+position = Vector2( 0.5, -24.5 )
+shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Timer2" type="Timer" parent="."]
+
+[connection signal="body_entered" from="movingplatform_path2d/movingplatform_follow2d/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_Timer2_timeout"]
