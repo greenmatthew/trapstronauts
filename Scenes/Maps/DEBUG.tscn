@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scripts/Maps/DEBUG.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Traps/BombDrone.tscn" type="PackedScene" id=2]
@@ -530,16 +530,6 @@ resource_local_to_scene = true
 shader = ExtResource( 13 )
 shader_param/charCol = Vector3( 1, 1, 1 )
 
-[sub_resource type="Curve2D" id=28]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -1, -2, 0, 0, 0, 0, 97, -2, 0, 0, 0, 0, 158, -2, 0, 0, 0, 0, 226, -2, 0, 0, 0, 0, 293, -2, 0, 0, 0, 0, 352, -2, 0, 0, 0, 0, 252, -2, 0, 0, 0, 0, 193, -2, 0, 0, 0, 0, 126, -2, 0, 0, 0, 0, 43, -2, 0, 0, 0, 0, 0, -2 )
-}
-
-[sub_resource type="Curve2D" id=29]
-_data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 2, -26, 0, 0, 0, 0, 226, -26, 0, 0, 0, 0, 353, -27, 0, 0, 0, 0, 418, -24, 0, 0, 0, 0, 482, -27, 0, 0, 0, 0, 379, -26, 0, 0, 0, 0, 289, -25, 0, 0, 0, 0, 162, -26, 0, 0, 0, 0, 99, -26, 0, 0, 0, 0, 1, -27 )
-}
-
 [node name="DEBUG" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -630,25 +620,37 @@ position = Vector2( -32, -32 )
 [node name="SpikeDude" parent="." instance=ExtResource( 18 )]
 position = Vector2( 546, -21 )
 
-[node name="Spikedude_path" parent="SpikeDude" index="1"]
-curve = SubResource( 28 )
+[node name="Sprite" parent="SpikeDude/Area2D" index="0"]
+position = Vector2( 0, 16 )
 
-[node name="Spikedude_PathFollow2D" parent="SpikeDude/Spikedude_path" index="0"]
-position = Vector2( -1, -2 )
-rotate = false
+[node name="CollisionPolygon2D" parent="SpikeDude/Area2D" index="1"]
+position = Vector2( 0, 16 )
+
+[node name="SpikeDude2" parent="." instance=ExtResource( 18 )]
+position = Vector2( 589, -21 )
+
+[node name="Sprite" parent="SpikeDude2/Area2D" index="0"]
+position = Vector2( 2, 16 )
+
+[node name="CollisionPolygon2D" parent="SpikeDude2/Area2D" index="1"]
+position = Vector2( 2, 16 )
+
+[node name="SpikeDude3" parent="." instance=ExtResource( 18 )]
+position = Vector2( 633, -21 )
+
+[node name="Sprite" parent="SpikeDude3/Area2D" index="0"]
+position = Vector2( 2, 16 )
+
+[node name="CollisionPolygon2D" parent="SpikeDude3/Area2D" index="1"]
+position = Vector2( 2, 16 )
 
 [node name="MovingPlatform" parent="." instance=ExtResource( 19 )]
 position = Vector2( 735, -143 )
-
-[node name="movingplatform_path2d" parent="MovingPlatform" index="1"]
-curve = SubResource( 29 )
-
-[node name="movingplatform_follow2d" parent="MovingPlatform/movingplatform_path2d" index="0"]
-position = Vector2( 2, -26 )
-rotate = false
 
 [editable path="SpinningBladeTrap"]
 [editable path="GridManager"]
 [editable path="JumpPad"]
 [editable path="SpikeDude"]
+[editable path="SpikeDude2"]
+[editable path="SpikeDude3"]
 [editable path="MovingPlatform"]
