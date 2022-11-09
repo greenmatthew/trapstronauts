@@ -68,5 +68,5 @@ func disable() -> void:
     disabled = true
 
 func enable() -> void:
-    $CollisionShape2D.set_deferred("disabled", true)
+    $CollisionShape2D.set_deferred("disabled", false)
     disabled = false
