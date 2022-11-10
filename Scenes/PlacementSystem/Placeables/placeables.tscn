@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/PlacementSystem/Placeables/JumpPad.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/PlacementSystem/Placeables/1x1_spikes.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/PlacementSystem/Placeables/SwingingTrap.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/PlacementSystem/Placeables/Laser.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/PlacementSystem/Placeables/Drone.tscn" type="PackedScene" id=7]
@@ -34,3 +35,6 @@ position = Vector2( 102, 53 )
 
 [node name="JumpPad" parent="." instance=ExtResource( 1 )]
 position = Vector2( 327, 258 )
+
+[node name="SpikeDude" parent="." instance=ExtResource( 2 )]
+position = Vector2( 325, 338 )
