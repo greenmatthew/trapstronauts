@@ -43,6 +43,8 @@ var is_falling : bool = false
 var is_wall_sliding : bool = false
 var has_input : bool = false
 
+var lock_movement : bool = false
+
 #TODO make this change the player color in MAIN
 func set_color(color):
     #charCol = charCol.duplicate()
@@ -69,7 +71,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
     pass
 
 func death() -> void:
-    var _touched_player = get_tree().reload_current_scene()
+    lock_movement = true
 
 func myjump(normal : Vector2) -> void:
     velocity += sqrt(2 * gravity * jump_height) * normal
