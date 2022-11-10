@@ -14,16 +14,16 @@
 [node name="Placeables" type="Node2D"]
 
 [node name="SwingingTrap" parent="." instance=ExtResource( 5 )]
-position = Vector2( 327, 53 )
+position = Vector2( 116, 303 )
 
 [node name="Laser" parent="." instance=ExtResource( 6 )]
-position = Vector2( 327, 140 )
+position = Vector2( 311, 140 )
 
 [node name="Drone" parent="." instance=ExtResource( 7 )]
-position = Vector2( 327, 217 )
+position = Vector2( 312, 217 )
 
 [node name="1x1_metal_platform" parent="." instance=ExtResource( 10 )]
-position = Vector2( 235, 217 )
+position = Vector2( 221, 217 )
 
 [node name="2x1_metal_platform" parent="." instance=ExtResource( 11 )]
 position = Vector2( 38, 218 )
@@ -35,13 +35,13 @@ position = Vector2( 102, 139 )
 position = Vector2( 102, 53 )
 
 [node name="JumpPad" parent="." instance=ExtResource( 1 )]
-position = Vector2( 312, 259 )
+position = Vector2( 312, 273 )
 
 [node name="SpikeDude" parent="." instance=ExtResource( 2 )]
-position = Vector2( 325, 338 )
+position = Vector2( 311, 344 )
 
 [node name="StaticPlatform" parent="." instance=ExtResource( 3 )]
-position = Vector2( 304, 440 )
+position = Vector2( 304, 452 )
 shape_def = "000
 0x0
 000"

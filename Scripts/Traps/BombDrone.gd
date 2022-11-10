@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-var speed  = 65
+var speed  = 120
 var motion = Vector2.ZERO
 var player = null
 
@@ -12,9 +12,8 @@ func _physics_process(_delta):
     motion = move_and_slide(motion)
     for i in get_slide_count():
         var collision = get_slide_collision(i)
-        if collision.collider.name == 'Player1':
-            pass
-            # print('Player got bombed')
+        if collision.collider.name == 'Player':
+            EventHandler.emit_signal("player_killed", player, get_parent())
 
 func _on_Area2D_body_entered(body):
     if body.is_in_group("players"):
