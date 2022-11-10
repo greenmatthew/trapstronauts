@@ -31,8 +31,9 @@ func init_grid():
     grid_manager.grid.size = grid_manager.grid_rect.rect_size / 64
     grid_manager.grid.clear()
 
-func _on_player_killed(player: PlayerController, trap: Placeable):
-    print("Player ", player.name, " killed by ", trap.name)
+func _on_player_killed(player: PlayerController, trap: Placeable = null):
+    if trap != null:
+        print("Player ", player.name, " killed by ", trap.name)
     player.death()
 
 func _on_player_reached_finish(player: PlayerController):
