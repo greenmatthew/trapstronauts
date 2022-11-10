@@ -78,6 +78,7 @@ func _process(delta):
 func finish():
     if not finished:
         finished = true
+        get_tree().change_scene("res://Scenes/Main.tscn")
 
 func add_line():
     var new_line = line.duplicate()
