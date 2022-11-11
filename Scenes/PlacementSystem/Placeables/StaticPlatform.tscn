@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Sprites/Traps/black.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Traps/MovingPlatform.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/PlacementSystem/highlighter.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/PlacementSystem/highlighter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/PlacementSystem/placeable.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 44, 13.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 45, 8.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 45, 14.5 )
+
+[node name="StaticPlatform" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="StaticPlatform" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="StaticPlatform"]
+wait_time = 3.0
+
+[node name="Timer2" type="Timer" parent="StaticPlatform"]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="StaticPlatform"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticPlatform/KinematicBody2D"]
+position = Vector2( -1, 0.5 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="StaticPlatform/KinematicBody2D"]
+position = Vector2( 7.62939e-06, -0.500004 )
+scale = Vector2( 2, 0.107407 )
+texture = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="StaticPlatform"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticPlatform/Area2D"]
+position = Vector2( -1, -24.5 )
+shape = SubResource( 2 )
+
+[node name="Highlighter" type="Area2D" parent="." instance=ExtResource( 4 )]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Highlighter"]
+position = Vector2( -0.999999, -0.499995 )
+rotation = 3.14159
+shape = SubResource( 3 )
+
+[connection signal="timeout" from="StaticPlatform/Timer" to="StaticPlatform" method="_on_Timer_timeout"]
+[connection signal="timeout" from="StaticPlatform/Timer2" to="StaticPlatform" method="_on_Timer2_timeout"]
+[connection signal="body_entered" from="StaticPlatform/Area2D" to="StaticPlatform" method="_on_Area2D_body_entered"]

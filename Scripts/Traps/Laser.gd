@@ -22,6 +22,7 @@ func _ready() -> void:
     raycast.collide_with_bodies = true
     raycast.collide_with_areas = false
     raycast.exclude_parent = true
+    raycast.cast_to = direction * max_range
     if duration >= EventHandler.timer_interval:
         printerr("Duration of trap is longer than timer interval. This will cause the trap to permenantly be on.")
 
@@ -66,5 +67,5 @@ func disable() -> void:
     disabled = true
 
 func enable() -> void:
-    $CollisionShape2D.set_deferred("disabled", true)
+    $CollisionShape2D.set_deferred("disabled", false)
     disabled = false

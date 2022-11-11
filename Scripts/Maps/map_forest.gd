@@ -8,14 +8,8 @@ var showing_selector = false
 
 func add_player_to_world(player):
     add_child(player)
-    var start = $Start
-    var spawn_points = $Start/SpawnPoints.get_children()
-    if spawn_points != null and spawn_points.size() > 0:
-        var spawn_point = spawn_points[randi() % spawn_points.size()] 
-        player.position = start.position + spawn_point.position + Vector2.UP * 0.5 * player.get_collider_height()
-        player.rotation = spawn_point.rotation
-    else:
-        printerr("No spawn points found!")
+    spawn_player(player)
+    
     $MultiCam.add_target(player)
 
 func _process(delta):
@@ -37,10 +31,11 @@ func init_grid():
     grid_manager.grid.size = grid_manager.grid_rect.rect_size / 64
     grid_manager.grid.clear()
 
-func _on_player_killed(player: PlayerController, trap: Placeable):
-    player.is_dead = true
-    print("Player ", player.name, " killed by ", trap.name)
+func _on_player_killed(player: PlayerController, trap: Placeable = null):
+    if trap != null:
+        print("Player ", player.name, " killed by ", trap.name)
     player.death()
+    spawn_player(player)
 
 func _on_player_reached_finish(player: PlayerController):
     player.in_goal = true
@@ -60,3 +55,13 @@ func _unhandled_input(event):
         else:
             grid_manager.show_selector_and_grid()
             showing_selector = true
+
+func spawn_player(player: PlayerController):
+    var start = $Start
+    var spawn_points = $Start/SpawnPoints.get_children()
+    if spawn_points != null and spawn_points.size() > 0:
+        var spawn_point = spawn_points[randi() % spawn_points.size()] 
+        player.position = start.position + spawn_point.position + Vector2.UP * 0.5 * player.get_collider_height()
+        player.rotation = spawn_point.rotation
+    else:
+        printerr("No spawn points found!")

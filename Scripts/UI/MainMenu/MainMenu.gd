@@ -14,6 +14,7 @@ func _on_Settings_pressed():
 
 func _on_Credits_pressed():
     print("Credits Pressed")
+    get_tree().change_scene("res://Scenes/UI/Credits.tscn")
 
 func _on_Quit_pressed():
     get_tree().quit() 
