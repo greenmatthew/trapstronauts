@@ -52,7 +52,6 @@ margin_bottom = 114.0
 rect_min_size = Vector2( 0, 30 )
 focus_neighbour_top = NodePath("../Quit")
 focus_neighbour_bottom = NodePath("../Settings")
-focus_mode = 1
 text = "Start"
 arrow_margin_from_center = 70
 
@@ -63,7 +62,6 @@ margin_bottom = 148.0
 rect_min_size = Vector2( 0, 30 )
 focus_neighbour_top = NodePath("../Start")
 focus_neighbour_bottom = NodePath("../Credits")
-focus_mode = 1
 text = "Settings"
 arrow_margin_from_center = 70
 
@@ -74,7 +72,6 @@ margin_bottom = 182.0
 rect_min_size = Vector2( 0, 30 )
 focus_neighbour_top = NodePath("../Settings")
 focus_neighbour_bottom = NodePath("../Quit")
-focus_mode = 1
 text = "Credits"
 arrow_margin_from_center = 70
 
@@ -85,7 +82,6 @@ margin_bottom = 216.0
 rect_min_size = Vector2( 0, 30 )
 focus_neighbour_top = NodePath("../Credits")
 focus_neighbour_bottom = NodePath("../Start")
-focus_mode = 1
 text = "Quit"
 arrow_margin_from_center = 70
 

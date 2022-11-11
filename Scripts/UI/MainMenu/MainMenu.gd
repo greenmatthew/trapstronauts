@@ -11,6 +11,7 @@ func _on_Start_pressed():
 
 func _on_Settings_pressed():
     print("Settings Pressed")
+    get_tree().change_scene("res://Scenes/UI/Settings.tscn")
 
 func _on_Credits_pressed():
     print("Credits Pressed")

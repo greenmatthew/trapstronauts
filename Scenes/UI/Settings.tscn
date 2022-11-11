@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/UI/MenuButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/UI/Settings.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Temp/Untitled.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scenes/UI/VolumeSlider.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 58
+font_data = ExtResource( 4 )
+
+[node name="SettingsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 512, 300.25 )
+scale = Vector2( 2.13333, 2.22037 )
+texture = ExtResource( 3 )
+
+[node name="Settings" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -207.5
+margin_right = 207.5
+rect_min_size = Vector2( 100, 100 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Settings"]
+margin_right = 415.0
+margin_bottom = 600.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Settings/CenterContainer"]
+margin_top = 73.0
+margin_right = 415.0
+margin_bottom = 527.0
+custom_constants/separation = 50
+
+[node name="Settings" type="Label" parent="Settings/CenterContainer/VBoxContainer2"]
+margin_right = 415.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 1 )
+text = "Settings"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/CenterContainer/VBoxContainer2"]
+margin_top = 109.0
+margin_right = 415.0
+margin_bottom = 454.0
+custom_constants/separation = 15
+
+[node name="Master2" type="Label" parent="Settings/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_right = 415.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 1 )
+text = "Master"
+align = 1
+
+[node name="Master" type="HSlider" parent="Settings/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 74.0
+margin_right = 415.0
+margin_bottom = 90.0
+max_value = 1.0
+step = 0.01
+script = ExtResource( 5 )
+
+[node name="Music" type="Label" parent="Settings/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 105.0
+margin_right = 415.0
+margin_bottom = 164.0
+custom_fonts/font = SubResource( 1 )
+text = "Music"
+align = 1
+
+[node name="Music2" type="HSlider" parent="Settings/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 179.0
+margin_right = 415.0
+margin_bottom = 195.0
+max_value = 1.0
+step = 0.01
+script = ExtResource( 5 )
+audio_bus_name = "Music"
+
+[node name="Sfx2" type="Label" parent="Settings/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 210.0
+margin_right = 415.0
+margin_bottom = 269.0
+custom_fonts/font = SubResource( 1 )
+text = "Sound Effects"
+
+[node name="Sfx" type="HSlider" parent="Settings/CenterContainer/VBoxContainer2/VBoxContainer"]
+margin_top = 284.0
+margin_right = 415.0
+margin_bottom = 300.0
+max_value = 1.0
+step = 0.01
+script = ExtResource( 5 )
+audio_bus_name = "Sfx"
+
+[node name="Exit" parent="Settings/CenterContainer/VBoxContainer2/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 315.0
+margin_right = 415.0
+margin_bottom = 345.0
+rect_min_size = Vector2( 150, 30 )
+text = "Exit"
+arrow_margin_from_center = 70
+
+[connection signal="value_changed" from="Settings/CenterContainer/VBoxContainer2/VBoxContainer/Master" to="Settings/CenterContainer/VBoxContainer2/VBoxContainer/Master" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="Settings/CenterContainer/VBoxContainer2/VBoxContainer/Music2" to="Settings/CenterContainer/VBoxContainer2/VBoxContainer/Music2" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="Settings/CenterContainer/VBoxContainer2/VBoxContainer/Sfx" to="Settings/CenterContainer/VBoxContainer2/VBoxContainer/Sfx" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="Settings/CenterContainer/VBoxContainer2/VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
