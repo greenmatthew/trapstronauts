@@ -24,7 +24,7 @@ func add_player(player_index):
     players.insert(player_index, player)
     
     player.set_color(player_cols[player_index])
-    
+
     if not player_index == 0:
         map_controls(player_index)
     
@@ -37,14 +37,16 @@ func player_disconnect(player_index):
 
 func map_controls(player_index):
     
-    input_maps.insert(player_index, {
-        "right" : "ui_right{n}".format({"n":player_index}),
-        "left" : "ui_left{n}".format({"n":player_index}),
-        "jump" : "ui_jump{n}".format({"n":player_index}),
-        "sprint" : "ui_sprint{n}".format({"n":player_index})
+    var controller_ID = player_index - 1
+    
+    input_maps.insert(controller_ID, {
+        "right" : "ui_right{n}".format({"n":controller_ID}),
+        "left" : "ui_left{n}".format({"n":controller_ID}),
+        "jump" : "ui_jump{n}".format({"n":controller_ID}),
+        "sprint" : "ui_sprint{n}".format({"n":controller_ID})
     })
     
-    players[player_index].ui_inputs = input_maps[player_index]
+    players[player_index].ui_inputs = input_maps[controller_ID]
     
     var right_action: String
     var right_action_event: InputEventJoypadMotion
@@ -58,38 +60,38 @@ func map_controls(player_index):
     var sprint_action: String
     var sprint_action_event: InputEventJoypadButton
 
-    right_action = "ui_right{n}".format({"n":player_index})
+    right_action = "ui_right{n}".format({"n":controller_ID})
     InputMap.add_action(right_action)
     # Creat a new InputEvent instance to assign to the InputMap.
     right_action_event = InputEventJoypadMotion.new()
-    right_action_event.device = player_index
+    right_action_event.device = controller_ID
     right_action_event.axis = JOY_AXIS_0 # <---- horizontal axis
     right_action_event.axis_value =  1.0 # <---- right
     InputMap.action_add_event(right_action, right_action_event)
 
-    left_action = "ui_left{n}".format({"n":player_index})
+    left_action = "ui_left{n}".format({"n":controller_ID})
     InputMap.add_action(left_action)
     # Creat a new InputEvent instance to assign to the InputMap.
     left_action_event = InputEventJoypadMotion.new()
-    left_action_event.device = player_index
+    left_action_event.device = controller_ID
     left_action_event.axis = JOY_AXIS_0 # <---- horizontal axis
     left_action_event.axis_value = -1.0 # <---- left
     InputMap.action_add_event(left_action, left_action_event)
 
-    jump_action = "ui_jump{n}".format({"n":player_index})
+    jump_action = "ui_jump{n}".format({"n":controller_ID})
     InputMap.add_action(jump_action)
     
     jump_action_event = InputEventJoypadButton.new()
-    jump_action_event.device = player_index
+    jump_action_event.device = controller_ID
     jump_action_event.button_index = JOY_BUTTON_0
     jump_action_event.pressed = true
     InputMap.action_add_event(jump_action, jump_action_event)
     
-    sprint_action = "ui_sprint{n}".format({"n":player_index})
+    sprint_action = "ui_sprint{n}".format({"n":controller_ID})
     InputMap.add_action(sprint_action)
     
     sprint_action_event = InputEventJoypadButton.new()
-    sprint_action_event.device = player_index
+    sprint_action_event.device = controller_ID
     sprint_action_event.button_index = JOY_BUTTON_2
     sprint_action_event.pressed = true
     InputMap.action_add_event(sprint_action, sprint_action_event)
@@ -148,4 +150,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
                 current_scene = next_scene
                 reveal_all(next_scene)
                 next_scene = null
+                # Camera will always be the first child in a scene, or this will break.
+                current_scene.get_child(0).current = true
                 anim.play("fade_out")
