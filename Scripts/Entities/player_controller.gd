@@ -8,6 +8,8 @@ onready var sprinting_trail = $Position2D/SprintingTrail
 onready var jumping_cloud = $Position2D/JumpingCloud
 onready var landing_cloud = $Position2D/LandingCloud
 
+onready var score = 0
+
 var ui_inputs = {
     "right": "move_right",
     "left":  "move_left",
@@ -42,6 +44,8 @@ var is_jumping : bool = false
 var is_falling : bool = false
 var is_wall_sliding : bool = false
 var has_input : bool = false
+var is_dead : bool = false
+var in_goal : bool = false
 
 var lock_movement : bool = false
 

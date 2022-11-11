@@ -2,6 +2,7 @@ extends Node2D
 
 signal scene_changed(scene_from, scene_to)
 
+onready var main = get_parent()
 onready var grid_manager = $GridManager 
 var showing_selector = false
 
@@ -10,6 +11,11 @@ func add_player_to_world(player):
     spawn_player(player)
     
     $MultiCam.add_target(player)
+
+func _process(delta):
+    if all_players_finished():
+        
+        print("All players are dead or have finished")
 
 func _ready():
     connect_events()
@@ -32,7 +38,14 @@ func _on_player_killed(player: PlayerController, trap: Placeable = null):
     spawn_player(player)
 
 func _on_player_reached_finish(player: PlayerController):
+    player.in_goal = true
     print("Player ", player.name, " reached finish")
+
+func all_players_finished():
+    var finished = true
+    for p in main.players:
+        finished = finished and (p.is_dead or p.in_goal)
+    return finished
 
 func _unhandled_input(event):
     if event is InputEventKey and event.scancode == KEY_TAB and event.pressed:

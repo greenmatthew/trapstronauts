@@ -3,5 +3,4 @@
 [ext_resource path="res://Scripts/Entities/MultiCam.gd" type="Script" id=1]
 
 [node name="Camera2D" type="Camera2D"]
-current = true
 script = ExtResource( 1 )
