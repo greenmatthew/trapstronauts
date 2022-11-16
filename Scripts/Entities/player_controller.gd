@@ -57,6 +57,11 @@ func set_color(color):
 func clampv(v : Vector2, minv : Vector2, maxv : Vector2) -> Vector2:
     return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))
 
+func new_round():
+    is_dead = false
+    in_goal = false
+    lock_movement = false
+
 func _ready():
     material.set_shader_param("charCol", Vector3(charCol.r, charCol.g, charCol.b))
     walking_trail.set_emitting(false)
@@ -75,6 +80,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
     pass
 
 func death() -> void:
+    is_dead = true
     lock_movement = true
 
 func myjump(normal : Vector2) -> void:
