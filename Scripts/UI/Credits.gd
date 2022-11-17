@@ -66,10 +66,8 @@ func _read_credits_from_file():
     if file.open(credits_filepath, File.READ) == OK:
         while not file.eof_reached():
             var current_line = file.get_line()
-            print("current line: %s" % current_line)
             if current_line != "":
                 if current_line[0] == '[' and current_line[-1] == ']':
-                    print("section found")
                     if not current_section.empty():
                         credits.append(current_section)
                         current_section = []
@@ -81,8 +79,6 @@ func _read_credits_from_file():
             credits.append(current_section)
 
         file.close()
-        print("Printing credits")
-        print(credits)
         return credits
 
 func finish():
