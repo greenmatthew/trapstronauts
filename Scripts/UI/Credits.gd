@@ -6,7 +6,6 @@ const base_speed := 100
 const speed_up_multiplier := 10.0
 const title_color := Color.green
 
-var scroll_speed := base_speed
 var speed_up := false
 
 onready var line := $Container/Line
@@ -23,54 +22,10 @@ var lines := []
 
 var credits_filepath : String = "res://credits.txt"
 var credits = []
-# var credits = [
-#     [
-#         "Title Here by Charley"
-#     ],[
-#         "PROGRAMMERS",
-#         "Mukka Himaneesh",
-#         "Steven Guilbert",
-#         "Matthew Green",
-#         "Joshua Ellidge"
-#     ],[
-#         "2D Artists",
-#         "Joshua Ellidge"
-#     ],[
-#         "Ideas",
-#         "Dr. Brian A. Dalio - Laser Reflections"
-#     ],[
-#         "3rd Party Assests",
-#         "CraftronGaming - Minecraft Font"
-#     ]
-# ]
 
 func _ready():
     # read credits from file
-    credits = []
-    var current_section : Array = []
-    var current_section_content : Array = []
-    var file = File.new()
-    if file.open(credits_filepath, File.READ) == OK:
-        while not file.eof_reached():
-            var current_line = file.get_line()
-            print("current line: %s" % current_line)
-            if current_line != "":
-                if current_line[0] == '[' and current_line[-1] == ']':
-                    if not current_section.empty():
-                        credits.append(current_section)
-                        credits.append(current_section_content)
-                        current_section = []
-                        current_section_content = []
-                    else:
-                        print("Starting new section: %s" % current_line)
-                        current_section.append(current_line.substr(1, current_line.length() - 2))
-                else:
-                    print("Adding content line: %s" % current_line)
-                    current_section_content.append(current_line)
-        file.close()
-        print("Printing credits")
-        print(credits)
-
+    credits = _read_credits_from_file()
 
 func _process(delta):
     var scroll_speed = base_speed * delta
@@ -104,6 +59,31 @@ func _process(delta):
     elif started:
         finish()
 
+func _read_credits_from_file():
+    credits = []
+    var current_section : Array = []
+    var file = File.new()
+    if file.open(credits_filepath, File.READ) == OK:
+        while not file.eof_reached():
+            var current_line = file.get_line()
+            print("current line: %s" % current_line)
+            if current_line != "":
+                if current_line[0] == '[' and current_line[-1] == ']':
+                    print("section found")
+                    if not current_section.empty():
+                        credits.append(current_section)
+                        current_section = []
+                    current_section.append(current_line.substr(1, current_line.length() - 2))
+                else:
+                    current_section.append(current_line)
+        # Flush out the last section and content if there is any
+        if not current_section.empty():
+            credits.append(current_section)
+
+        file.close()
+        print("Printing credits")
+        print(credits)
+        return credits
 
 func finish():
     if not finished:

@@ -1,13 +1,17 @@
+[Game Title Here]
+
 [Programmers]
 Matthew Green
 Steven Guilbert
-Joshua Ellidge
+Joshua Elledge
 Himaneesh Mukka
+Tejaswini Pasam
 
 [2D Artists]
-Joshua Ellidge
+Joshua Elledge
 
 [Ideas]
 The Dr. Brian A. Dalio - Laser Reflections
 
 [3rd Party Assets]
+CraftronGaming - Minecraft Font
