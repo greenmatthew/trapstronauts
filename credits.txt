@@ -1,7 +1,7 @@
 [Programmers]
 Matthew Green
 Steven Guilbert
-Joshua Ellidge
+Joshua Elledge
 Himaneesh Mukka
 
 [2D Artists]
