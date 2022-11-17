@@ -16,7 +16,7 @@
 [ext_resource path="res://Scenes/PlacementSystem/GridManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scripts/Maps/finish.gd" type="Script" id=15]
 [ext_resource path="res://Assets/Sprites/Levels/01Forest/HiddenPathes/TX Tileset Ground Rotated 180 Degrees Copy.png" type="Texture" id=16]
-[ext_resource path="res://Scenes/Maps/KillBound.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/Maps/KillBound.gd" type="Script" id=17]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -4157,8 +4157,8 @@ position = Vector2( 0, -2368 )
 shape = SubResource( 79 )
 
 [node name="GridManager" parent="." instance=ExtResource( 14 )]
-visible = false
 position = Vector2( -2368, -2112 )
+z_index = 128
 
 [node name="Grid" parent="GridManager" index="0"]
 size = Vector2( 66, 64 )
