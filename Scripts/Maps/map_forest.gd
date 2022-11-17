@@ -4,7 +4,11 @@ signal scene_changed(scene_from, scene_to)
 
 onready var main = get_parent()
 onready var grid_manager = $GridManager 
+onready var finish = $Finish/Area2D
+
 var showing_selector = false
+
+var first = true
 
 func add_player_to_world(player):
     add_child(player)
@@ -14,8 +18,26 @@ func add_player_to_world(player):
 
 func _process(delta):
     if all_players_finished():
+        if finish.player_count == 0:
+            pass
+            #Special case where every player died
+        elif finish.player_count == 1:
+            for p in main.players:
+                if p.in_goal:
+                    p.score += main.SCORE_VALUES.GOAL_REACHED_SOLO_BONUS
+        elif finish.player_count == len(main.players):
+            pass
+            #special case where every player finished - NO points are awarded
+            
+        # SHOW SCORE SCREEN HERE
+        print("All players are dead or have finished. Here are the scores: ")
         
-        print("All players are dead or have finished")
+        # Reset all players for the next round
+        for p in main.players:
+            print(p.score)
+            spawn_player(p)
+            p.new_round()
+        
 
 func _ready():
     connect_events()
@@ -35,10 +57,20 @@ func _on_player_killed(player: PlayerController, trap: Placeable = null):
     if trap != null:
         print("Player ", player.name, " killed by ", trap.name)
     player.death()
-    spawn_player(player)
+    if player.in_goal:
+        player.score += main.SCORE_VALUES.GOAL_REACHED_DEAD
+    else:
+        player.score += 0
 
 func _on_player_reached_finish(player: PlayerController):
     player.in_goal = true
+    if player.is_dead:
+        player.score += main.SCORE_VALUES.GOAL_REACHED_DEAD
+    else:
+        player.score += main.SCORE_VALUES.GOAL_REACHED_ALIVE
+    if first:
+        first = false
+        player.score += main.SCORE_VALUES.GOAL_REACHED_FIRST_BONUS
     print("Player ", player.name, " reached finish")
 
 func all_players_finished():
