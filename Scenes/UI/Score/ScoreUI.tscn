@@ -128,5 +128,5 @@ frames = SubResource( 22 )
 [node name="BarContainer" type="Node2D" parent="."]
 
 [node name="ScoreGauge" type="Sprite" parent="."]
-position = Vector2( 432, 0 )
+position = Vector2( 403, 0 )
 texture = ExtResource( 1 )
