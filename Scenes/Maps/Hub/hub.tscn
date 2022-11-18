@@ -11,10 +11,10 @@
 extents = Vector2( 132, 8 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8, 488.5 )
+extents = Vector2( 8, 488 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 8, 304 )
+extents = Vector2( 8, 303.5 )
 
 [node name="hub" type="Node2D"]
 script = ExtResource( 2 )
@@ -56,11 +56,11 @@ position = Vector2( 4, 856 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="VertHall/VHall"]
-position = Vector2( -120, 375.5 )
+position = Vector2( -120, 376 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="VertHall/VHall"]
-position = Vector2( 120, 191 )
+position = Vector2( 120, 191.5 )
 shape = SubResource( 3 )
 
 [node name="warproom" parent="." instance=ExtResource( 6 )]

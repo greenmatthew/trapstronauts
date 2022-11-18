@@ -8,7 +8,11 @@ onready var sprinting_trail = $Position2D/SprintingTrail
 onready var jumping_cloud = $Position2D/JumpingCloud
 onready var landing_cloud = $Position2D/LandingCloud
 
-onready var score = 0
+#SCORE FLAGS
+onready var DEAD = false
+onready var GOAL = false
+onready var SOLO = false
+onready var FRST = false
 
 var ui_inputs = {
     "right": "move_right",
@@ -44,10 +48,15 @@ var is_jumping : bool = false
 var is_falling : bool = false
 var is_wall_sliding : bool = false
 var has_input : bool = false
-var is_dead : bool = false
-var in_goal : bool = false
 
 var lock_movement : bool = false
+
+func reset():
+    DEAD = false
+    GOAL = false
+    SOLO = false
+    FRST = false
+    lock_movement = false
 
 #TODO make this change the player color in MAIN
 func set_color(color):
@@ -58,8 +67,6 @@ func clampv(v : Vector2, minv : Vector2, maxv : Vector2) -> Vector2:
     return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))
 
 func new_round():
-    is_dead = false
-    in_goal = false
     lock_movement = false
 
 func _ready():
@@ -80,7 +87,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
     pass
 
 func death() -> void:
-    is_dead = true
+    DEAD = true
     lock_movement = true
 
 func myjump(normal : Vector2) -> void:

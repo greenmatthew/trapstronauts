@@ -420,7 +420,7 @@ position = Vector2( -8, -4 )
 z_index = 10
 frames = SubResource( 26 )
 animation = "walk"
-frame = 6
+frame = 2
 playing = true
 
 [node name="WalkingTrail" type="Particles2D" parent="Position2D"]

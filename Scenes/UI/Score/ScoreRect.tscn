@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="ScoreRect" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = -32.0
+margin_right = 64.0
+margin_bottom = 32.0
