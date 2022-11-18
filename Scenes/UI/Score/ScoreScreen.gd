@@ -28,7 +28,6 @@ onready var color_dict = {
     #"Trap Kill" : Color.red
    }
 
-
 func _input(_ev):
     if showing:
         if Input.is_key_pressed(KEY_SPACE):
