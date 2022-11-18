@@ -14,6 +14,7 @@ var first_player = true
 var used_spawns = []
 
 func next_round():
+    used_spawns = []
     first_player = true
     for p in main.players:
         p.reset()
