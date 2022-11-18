@@ -14,7 +14,10 @@ var first_player = true
 var used_spawns = []
 
 func next_round():
-    pass
+    first_player = true
+    for p in main.players:
+        p.reset()
+        spawn_player(p)
 
 func go_to_score_screen():
     score_screen.show_score(finish.player_count)
@@ -74,9 +77,11 @@ func spawn_player(player: PlayerController):
     var start = $Start
     var spawn_points = $Start/SpawnPoints.get_children()
     
-    var spawn_index = randi() % spawn_points.size()
+    var spawn_index = 0
     while used_spawns.has(spawn_index):
         spawn_index = randi() % spawn_points.size()
+    
+    used_spawns.append(spawn_index)
     
     if spawn_points != null and spawn_points.size() > 0:
         var spawn_point = spawn_points[spawn_index] 

@@ -3,6 +3,11 @@ extends CanvasLayer
 onready var main = get_node("/root/Main")
 onready var canvas = $Control/Canvas
 onready var control = $Control
+
+onready var text = $Control/Label
+
+onready var level = get_parent()
+
 onready var margin = 216
 onready var showing = false
 
@@ -12,8 +17,8 @@ onready var score_dict = {
     "Reached Goal" : 1.0,
     "Postmortem" : 0.4,
     "Solo" : 0.6,
-    "Trap Kill" : 0.2,
     "First" : 0.2
+    #"Trap Kill" : 0.2
    }
 onready var color_dict = {
     "Reached Goal" : Color.green,
@@ -27,6 +32,7 @@ onready var color_dict = {
 func _input(_ev):
     if showing:
         if Input.is_key_pressed(KEY_SPACE):
+            level.next_round()
             hide_score()
 
 func _ready():
@@ -34,9 +40,14 @@ func _ready():
         var new_score_UI = load("res://Scenes/UI/Score/ScoreUI.tscn").instance()
         new_score_UI.position.x = margin
         new_score_UI.position.y = canvas.rect_size.y / (num_players + 1) * (i + 1)
+        new_score_UI.set_p_color(main.players[i].charCol)
         canvas.add_child(new_score_UI)
 
 func show_type(type, num_winners):
+    
+    text.add_color_override("font_color", color_dict[type])
+    text.text = type
+    
     for i in range(len(main.players)):
         var p = main.players[i]
         match type:
@@ -57,10 +68,14 @@ func show_type(type, num_winners):
 
 func show_score(count):
     #if count != num_players and count != 0:
+    text.text = ""
     control.show()
     for key in score_dict:
         yield(get_tree().create_timer(1), "timeout")
         show_type(key, count)
+    yield(get_tree().create_timer(1), "timeout")
+    text.add_color_override("font_color", Color.black)
+    text.text = "Press space to continue..."
     showing = true
 
 func hide_score():

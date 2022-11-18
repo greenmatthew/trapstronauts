@@ -51,6 +51,13 @@ var has_input : bool = false
 
 var lock_movement : bool = false
 
+func reset():
+    DEAD = false
+    GOAL = false
+    SOLO = false
+    FRST = false
+    lock_movement = false
+
 #TODO make this change the player color in MAIN
 func set_color(color):
     #charCol = charCol.duplicate()

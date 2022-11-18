@@ -3,6 +3,9 @@ extends Node2D
 var offset = 96
 var unit_length = 112
 
+func set_p_color(col):
+    $PlayerGhost.material.set_shader_param("charCol", Vector3(col.r, col.g, col.b))
+
 func add_rect(multiplier, color):
     
     var container = $BarContainer
