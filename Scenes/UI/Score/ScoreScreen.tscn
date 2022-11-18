@@ -1,9 +1,24 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="ScoreScreen" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[ext_resource path="res://Scenes/UI/Score/ScoreScreen.gd" type="Script" id=2]
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="ScoreScreen" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="Border" type="ColorRect" parent="Control"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 1009.0
+margin_bottom = 585.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Canvas" type="ColorRect" parent="Control"]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 994.0
+margin_bottom = 570.0
+color = Color( 0.0352941, 0.768627, 0.937255, 1 )

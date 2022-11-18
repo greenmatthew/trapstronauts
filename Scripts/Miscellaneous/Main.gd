@@ -6,14 +6,6 @@ onready var anim = $AnimationPlayer
 
 onready var ON_MENU = true
 
-const SCORE_VALUES = {
-    GOAL_REACHED_ALIVE = 1.0,
-    GOAL_REACHED_DEAD = 0.4,
-    GOAL_REACHED_SOLO_BONUS = 0.6,
-    TRAP_KILLED_PLAYER_BONUS = 0.2,
-    GOAL_REACHED_FIRST_BONUS = 0.2
-   }
-
 onready var player_cols = [
     Color.white,
     Color.orangered,
