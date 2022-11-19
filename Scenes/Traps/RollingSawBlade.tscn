@@ -41,9 +41,9 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 17.0294
+radius = 19.0
 
-[node name="SpinningBladeTrap" type="Node2D"]
+[node name="RollingSawBlade" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -58,6 +58,7 @@ curve = SubResource( 3 )
 rotation = -0.0212734
 
 [node name="Sprite" type="Sprite" parent="Path2D/PathFollow2D"]
+scale = Vector2( 3.3, 3.3 )
 texture = ExtResource( 1 )
 hframes = 8
 
