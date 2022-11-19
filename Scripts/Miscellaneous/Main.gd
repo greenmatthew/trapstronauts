@@ -120,8 +120,10 @@ func handle_scene_changed(previous_scene_name: String, next_scene_name: String):
         match next_scene_name:
             "hub":
                 next_scene = load("res://Scenes/Maps/Hub/hub.tscn").instance()
-            "forest":
-                next_scene = load("res://Scenes/Maps/map_forest.tscn").instance()
+            # "forest":
+            #     next_scene = load("res://Scenes/Maps/map_forest.tscn").instance()
+            "valley":
+                next_scene = load("res://Scenes/Maps/map_valley.tscn").instance()
             "cliffs":
                 next_scene = load("res://Scenes/Maps/map_cliffs.tscn").instance()
             "sawmill":
