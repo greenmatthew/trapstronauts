@@ -40,7 +40,7 @@ func _process(delta):
                 time_since_tickdown = 0
                 if timer == 0:
                     #Change this dynamically later, for now go to forest
-                    emit_signal("scene_changed", "hub", "forest")
+                    emit_signal("scene_changed", "hub", "sawmill")
                     print("Scene change")
     else:
         departing = departure_test()
