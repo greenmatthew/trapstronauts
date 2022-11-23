@@ -9,16 +9,16 @@ func exit() -> void:
     player.walking_trail.emitting = false
     player.sprinting_trail.emitting = false
 
-func physics_update(delta : float) -> void:
+func physics_update_extension(delta : float) -> void:
     if not player.is_on_floor():
         state_machine.transition_to("Falling")
         return
     
-    if Input.is_action_just_pressed(player.ui_inputs.get("jump")):
+    if player.is_jumping():
         state_machine.transition_to("Jumping", {normal = Vector2.UP})
         return
     
-    if player.direction == Vector2.ZERO:
+    if player.direction() == Vector2.ZERO:
         state_machine.transition_to("Idle")
         return
     

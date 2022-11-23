@@ -4,12 +4,15 @@ extends Node
 signal timer
 
 # warning-ignore:unused_signal
-## Two parameters: player, placeable
-signal player_killed
+signal player_killed(player, source)
 
 # warning-ignore:unused_signal
 ## One parameter: player
-signal player_reached_finish
+signal player_reached_finish(player)
+
+# warning-ignore:unused_signal
+## One parameter: player
+signal scene_changed(scene_from, scene_to)
 
 var _timer_time : float = 0.0 # Time passed in seconds
 const timer_interval : float = 3.0 # Interval between timer_ticks in seconds
@@ -20,4 +23,3 @@ func _process(delta):
     if int(floor(_timer_time / timer_interval)) != timer_ticks:
         timer_ticks += 1
         emit_signal("timer")
-        # print("Timer signal emitted at tick " + str(timer_ticks) + " at _timer_time " + str(_timer_time))

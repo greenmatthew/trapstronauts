@@ -3,16 +3,19 @@ extends PlayerState
 func enter(_msg = {}):
     player.animator.play("idle")
 
-func update(delta : float) -> void:
+func physics_update_extension(delta : float) -> void:
+    if player.DEAD:
+        state_machine.transition_to("Dead")
+
     if not player.is_on_floor():
         state_machine.transition_to("Falling")
         return
     
-    if Input.is_action_pressed(player.ui_inputs.get("jump")):
+    if player.is_jumping():
         state_machine.transition_to("Jumping", {normal = Vector2.UP})
         return
 
-    if Input.is_action_pressed(player.ui_inputs.get("right")) or Input.is_action_pressed(player.ui_inputs.get("left")):
+    if player.direction() != Vector2.ZERO:
         state_machine.transition_to("Running")
         return
 
