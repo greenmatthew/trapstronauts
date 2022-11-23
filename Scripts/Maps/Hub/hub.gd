@@ -6,8 +6,6 @@ onready var trigger = $warproom/depart_trigger
 onready var timer_label = $warproom/depart_trigger/TimerTemp
 
 
-signal scene_changed(scene_from, scene_to)
-
 var timer = 5
 var departing = false
 var time_since_tickdown = 0
@@ -39,8 +37,8 @@ func _process(delta):
                 timer -= 1
                 time_since_tickdown = 0
                 if timer == 0:
-                    #Change this dynamically later, for now go to forest
-                    emit_signal("scene_changed", "hub", "sawmill")
+                    # TODO: Change this dynamically later, for now go to forest
+                    EventHandler.emit_signal("scene_changed", "hub", "sawmill")
                     print("Scene change")
     else:
         departing = departure_test()

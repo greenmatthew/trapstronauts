@@ -14,13 +14,6 @@ onready var GOAL = false
 onready var SOLO = false
 onready var FRST = false
 
-var ui_inputs = {
-	"right": "move_right",
-	"left":  "move_left",
-	"jump": "jump",
-	"sprint" : "sprint"
-	}
-
 # Set the character color via shader
 var charCol = Color.white
 
@@ -34,89 +27,98 @@ const air_friction : float = 0.01
 const jump_height : float = 512.0 # pixels
 const wall_slide_terminal_velocity : float = 256.0 # pixels/s
 
-var forward : Vector2 = Vector2.RIGHT # Direction the character is facing
-# var direction : Vector2 = Vector2.ZERO # Direction the character is moving
-var direction : Vector2 = Vector2.ZERO setget , get_direction
 var velocity : Vector2 = Vector2.ZERO # pixels/s
 
-# Movement Flags
-var is_grounded : bool = false
-var is_touching_wall : bool = false
-var is_sprint_button_down : bool = false
-var is_jump_button_down = false
-var is_jumping : bool = false
-var is_falling : bool = false
-var is_wall_sliding : bool = false
-var has_input : bool = false
+var is_movement_locked : bool = false
 
-var lock_movement : bool = false
+var controller_ID : int = -1
+
+var movement_dict = {
+    "right": "move_right",
+    "left":  "move_left",
+    "jump": "jump",
+    "sprint" : "sprint"
+}
 
 func reset():
-	DEAD = false
-	GOAL = false
-	SOLO = false
-	FRST = false
-	lock_movement = false
+    DEAD = false
+    GOAL = false
+    SOLO = false
+    FRST = false
+    is_movement_locked = false
 
-#TODO make this change the player color in MAIN
+# TODO: make this change the player color in MAIN
 func set_color(color):
-	#charCol = charCol.duplicate()
-	charCol = color
+    #charCol = charCol.duplicate()
+    charCol = color
 
 func clampv(v : Vector2, minv : Vector2, maxv : Vector2) -> Vector2:
-	return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))
+    return Vector2(clamp(v.x, minv.x, maxv.x), clamp(v.y, minv.y, maxv.y))
 
 func new_round():
-	lock_movement = false
+    is_movement_locked = false
 
 func _ready():
-	material.set_shader_param("charCol", Vector3(charCol.r, charCol.g, charCol.b))
-	walking_trail.set_emitting(false)
-	sprinting_trail.set_emitting(false)
+    material.set_shader_param("charCol", Vector3(charCol.r, charCol.g, charCol.b))
+    walking_trail.set_emitting(false)
+    sprinting_trail.set_emitting(false)
 
 func _physics_process(_delta : float) -> void:
-	var dir = get_direction()
-	if dir.x > 0:
-		position2D.scale.x = 1
-		forward = Vector2.RIGHT
-	if dir.x < 0:
-		position2D.scale.x = -1
-		forward = Vector2.LEFT
+    if direction() != Vector2.ZERO:
+        position2D.scale.x = direction().x
 
 func _on_AnimatedSprite_animation_finished() -> void:
-	pass
+    pass
 
 func death() -> void:
-	DEAD = true
-	lock_movement = true
+    DEAD = true
+    is_movement_locked = true
+
+# func finish() -> void:
+#     GOAL = true
+#     is_movement_locked = true
 
 func myjump(normal : Vector2) -> void:
-	velocity += sqrt(2 * gravity * jump_height) * normal
-	jumping_cloud.restart()
-	
-func get_direction() -> Vector2:
-	if Input.is_action_pressed(ui_inputs.get("right")):
-		return Vector2.RIGHT
-	if Input.is_action_pressed(ui_inputs.get("left")):
-		return Vector2.LEFT
-	return Vector2.ZERO
+    velocity += sqrt(2 * gravity * jump_height) * normal
+    jumping_cloud.restart()
 
 func apply_velocity() -> void:
-	velocity = clampv(velocity, -terminal_velocity, terminal_velocity)
-	velocity = move_and_slide(velocity, Vector2.UP)
+    velocity = clampv(velocity, -terminal_velocity, terminal_velocity)
+    velocity = move_and_slide(velocity, Vector2.UP)
 
 func apply_velocity_grounded(delta : float) -> void:
-	var acceleration_coefficient = pow(sprint_coefficient, int(Input.is_action_pressed(ui_inputs.get("sprint"))))
-	velocity += get_direction() * acceleration_coefficient * base_acceleration * delta
-	velocity.x = lerp(velocity.x, 0.0, ground_friction)
-	velocity.y += gravity * delta
-	apply_velocity()
+    var acceleration_coefficient = pow(sprint_coefficient, int(is_sprinting()))
+    velocity += direction() * acceleration_coefficient * base_acceleration * delta
+    velocity.x = lerp(velocity.x, 0.0, ground_friction)
+    velocity.y += gravity * delta
+    apply_velocity()
 
 func apply_velocity_not_grounded(delta : float) -> void:
-	apply_velocity_grounded(delta)
+    apply_velocity_grounded(delta)
 
 func handle_jump_pad_jump():
-	velocity.y = -3800
+    velocity.y = -3800
 
 func get_collider_height() -> float:
-	return $CollisionShape2D.shape.extents.y
+    return $CollisionShape2D.shape.extents.y
+
+# CONTROLS
+func is_moving_right() -> bool:
+    return not is_movement_locked and Input.is_action_pressed(movement_dict["right"])
+
+func is_moving_left() -> bool:
+    return not is_movement_locked and Input.is_action_pressed(movement_dict["left"])
+
+func is_jumping() -> bool:
+    return not is_movement_locked and Input.is_action_pressed(movement_dict["jump"])
+
+func is_sprinting() -> bool:
+    return not is_movement_locked and Input.is_action_pressed(movement_dict["sprint"])
+
+func direction() -> Vector2:
+    var dir = Vector2.ZERO
+    if is_moving_right():
+        dir += Vector2.RIGHT
+    if is_moving_left():
+        dir += Vector2.LEFT
+    return dir

@@ -7,14 +7,14 @@ func enter(_msg = {}):
     player.myjump(_msg.get("normal"))
     just_jumped = true
 
-func physics_update(delta : float) -> void:
+func physics_update_extension(delta : float) -> void:
     if not just_jumped:
         if player.is_on_floor():
             state_machine.transition_to("Idle")
             return
         
-        if player.is_on_wall() and player.forward.normalized() == player.direction:
-            state_machine.transition_to("WallSliding", {wall_dir = player.direction})
+        if player.is_on_wall():
+            state_machine.transition_to("WallSliding", {wall_dir = player.direction()})
             return
     else:
         just_jumped = false

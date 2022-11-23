@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/PlacementSystem/highlighter.gd"
 }, {
+"base": "Area2D",
+"class": "KillBoundary",
+"language": "GDScript",
+"path": "res://Scripts/Maps/KillBound.gd"
+}, {
 "base": "StaticBody2D",
 "class": "Laser",
 "language": "GDScript",
@@ -56,6 +61,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Highlighter": "",
+"KillBoundary": "",
 "Laser": "",
 "Placeable": "",
 "PlayerController": "",

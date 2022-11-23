@@ -38,15 +38,17 @@ func player_disconnect(player_index):
 func map_controls(player_index):
     
     var controller_ID = player_index - 1
+    print("Controller ID: " + str(controller_ID))
     
     input_maps.insert(controller_ID, {
         "right" : "ui_right{n}".format({"n":controller_ID}),
         "left" : "ui_left{n}".format({"n":controller_ID}),
-        "jump" : "ui_jump{n}".format({"n":controller_ID}),
-        "sprint" : "ui_sprint{n}".format({"n":controller_ID})
+        "jump" : "jump{n}".format({"n":controller_ID}),
+        "sprint" : "sprint{n}".format({"n":controller_ID})
     })
     
-    players[player_index].ui_inputs = input_maps[controller_ID]
+    players[player_index].controller_ID = controller_ID
+    players[player_index].movement_dict = input_maps[controller_ID]
     
     var right_action: String
     var right_action_event: InputEventJoypadMotion
@@ -78,7 +80,7 @@ func map_controls(player_index):
     left_action_event.axis_value = -1.0 # <---- left
     InputMap.action_add_event(left_action, left_action_event)
 
-    jump_action = "ui_jump{n}".format({"n":controller_ID})
+    jump_action = "jump{n}".format({"n":controller_ID})
     InputMap.add_action(jump_action)
     
     jump_action_event = InputEventJoypadButton.new()
@@ -87,7 +89,7 @@ func map_controls(player_index):
     jump_action_event.pressed = true
     InputMap.action_add_event(jump_action, jump_action_event)
     
-    sprint_action = "ui_sprint{n}".format({"n":controller_ID})
+    sprint_action = "sprint{n}".format({"n":controller_ID})
     InputMap.add_action(sprint_action)
     
     sprint_action_event = InputEventJoypadButton.new()
@@ -97,7 +99,8 @@ func map_controls(player_index):
     InputMap.action_add_event(sprint_action, sprint_action_event)
 
 func _ready():
-    current_scene.connect("scene_changed", self, "handle_scene_changed")
+    var status = EventHandler.connect("scene_changed", self, "handle_scene_changed")
+    assert(!status)
 
     var num_players = len(Input.get_connected_joypads())
 
@@ -137,7 +140,6 @@ func handle_scene_changed(previous_scene_name: String, next_scene_name: String):
     hide_all(next_scene)
     add_child(next_scene)
     anim.play("fade_in")
-    next_scene.connect("scene_changed", self, "handle_scene_changed")
 
 func hide_all(node):
     node.visible = false

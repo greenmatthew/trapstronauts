@@ -1,7 +1,5 @@
 extends Node2D
 
-signal scene_changed(scene_from, scene_to)
-
 onready var main = get_parent()
 onready var grid_manager = $GridManager 
 onready var finish = $Finish/Area2D
@@ -36,20 +34,28 @@ func _ready():
     score_screen.hide_score()
 
 func connect_events():
-    var _status = EventHandler.connect("player_killed", self, "_on_player_killed")
+    var _status
+    _status = EventHandler.connect("player_killed", self, "_on_player_killed")
+    assert(!_status)
     _status = EventHandler.connect("player_reached_finish", self, "_on_player_reached_finish")
+    assert(!_status)
 
 # based on the size of the grid_rect
 func init_grid():
     grid_manager.grid.size = grid_manager.grid_rect.rect_size / 64
     grid_manager.grid.clear()
 
-func _on_player_killed(player: PlayerController, trap: Placeable = null):
-    if trap != null:
-        print("Player ", player.name, " killed by ", trap.name)
-    player.death()
-    if all_players_finished():
-        go_to_score_screen()
+func _on_player_killed(player : PlayerController, source : Node2D):
+    if not player.DEAD:
+        if source is Placeable:
+            print("Player %s killed by %s." % [player.name, source.name])
+        elif source is KillBoundary:
+            print("Player %s killed by %s." % [player.name, "KillBoundary"])
+        else:
+            print("Player %s killed by %s." % [player.name, "UNKOWN SOURCE({%s})" % source.name])
+        player.death()
+        if all_players_finished():
+            go_to_score_screen()
 
 func _on_player_reached_finish(player: PlayerController):
     player.GOAL = true
