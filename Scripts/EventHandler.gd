@@ -15,7 +15,7 @@ signal player_reached_finish(player)
 signal scene_changed(scene_from, scene_to)
 
 var _timer_time : float = 0.0 # Time passed in seconds
-const timer_interval : float = 3.0 # Interval between timer_ticks in seconds
+const timer_interval : float = 5.0 # Interval between timer_ticks in seconds
 var timer_ticks : int = 0 # Number of timer_ticks
 
 func _process(delta):

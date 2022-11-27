@@ -1,10 +1,36 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Traps/Laser.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Temp/icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Particles/White-10x10.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.9999, 32.0001 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.995633 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.533333 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+lifetime_randomness = 0.28
+flag_disable_z = true
+spread = 60.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 240.0
+initial_velocity_random = 0.93
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel = -2.0
+tangential_accel_random = 1.0
+scale = 2.0
+scale_random = 1.0
+color = Color( 1, 0, 0, 1 )
+color_ramp = SubResource( 4 )
+hue_variation = 0.06
+hue_variation_random = 1.0
 
 [node name="Laser" type="StaticBody2D"]
 script = ExtResource( 1 )
@@ -14,12 +40,16 @@ position = Vector2( 9.53674e-07, 9.53674e-07 )
 rotation = 3.14159
 shape = SubResource( 1 )
 
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="Sprite" type="Sprite" parent="Node2D"]
-texture = ExtResource( 2 )
-
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( -32, 0 )
 rotation = 3.14159
 cast_to = Vector2( 50, 0 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 20
+lifetime = 0.2
+process_material = SubResource( 2 )
+texture = ExtResource( 3 )

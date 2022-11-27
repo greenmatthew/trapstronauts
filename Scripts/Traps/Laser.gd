@@ -2,6 +2,7 @@ class_name Laser
 extends StaticBody2D
 
 onready var raycast = $RayCast2D
+onready var particles = $Particles2D
 
 const direction : Vector2 = Vector2.RIGHT
 const max_range : float = 1600.0
@@ -37,6 +38,7 @@ func _process(delta : float) -> void:
 
 func _draw():
     if is_on and !disabled:
+        particles.emitting = true
         if raycast.is_colliding():
             draw_laser( abs(raycast.to_local(raycast.get_collision_point()).x) )
             var collider = raycast.get_collider()
@@ -44,6 +46,8 @@ func _draw():
                 EventHandler.emit_signal("player_killed", collider, get_parent())
         else:
             draw_laser(max_range)
+    else:
+        particles.emitting = false
 
 func on_timer_signal():
     is_on = true
@@ -61,6 +65,7 @@ func draw_laser(distance : float) -> void:
     draw_line(from, to, Color.darkred, 16)
     draw_line(from, to, Color.red, 12)
     draw_line(from, to, Color.white, 8)
+    particles.position = to
 
 func disable() -> void:
     $CollisionShape2D.set_deferred("disabled", true)
