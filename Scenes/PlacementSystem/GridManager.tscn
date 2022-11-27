@@ -17,9 +17,9 @@ script = ExtResource( 6 )
 script = ExtResource( 4 )
 size = Vector2( 64, 64 )
 
-[node name="SelectorLayer" type="CanvasLayer" parent="."]
+[node name="RandomSelector" parent="." instance=ExtResource( 2 )]
 
-[node name="RandomSelector" parent="SelectorLayer" instance=ExtResource( 2 )]
+[node name="SelectorLayer" type="CanvasLayer" parent="."]
 
 [node name="FreeSelector" parent="SelectorLayer" instance=ExtResource( 1 )]
 __meta__ = {

@@ -18,6 +18,8 @@ var bounding_square_size
 var xpos = 0
 var ypos = 0
 
+var player: PlayerController
+
 func _ready():
     # warning-ignore:return_value_discarded
     highlighter.connect("selected", self, "_on_highlight_selected")
@@ -79,5 +81,7 @@ func _init_shape():
 func set_selecting(is_selecting: bool):
     highlighter.is_selecting = is_selecting
 
-func _on_highlight_selected():
-    emit_signal("selected", self)
+
+# warning-ignore:shadowed_variable
+func _on_highlight_selected(player):
+    emit_signal("selected", self, player)

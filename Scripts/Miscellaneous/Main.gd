@@ -17,16 +17,26 @@ onready var player_cols = [
     Color.deeppink]
 onready var players = []
 onready var input_maps = []
+var cursors = []
 
 func add_player(player_index):
     var player = load("Scenes/Entities/Player.tscn").instance()
-    
+    var cursor = load("Scenes/PlacementSystem/Cursor.tscn").instance()
+
     players.insert(player_index, player)
+    cursors.insert(player_index, cursor)
     
     player.set_color(player_cols[player_index])
+    cursor.set_color(player_cols[player_index])
 
-    if not player_index == 0:
+    add_child(cursor)
+    cursor.hide()
+
+    if player_index == 0:
+        cursor.follow_mouse = true
+    else:
         map_controls(player_index)
+        
     
     if not ON_MENU:
         current_scene.add_player_to_world(players[player_index])
@@ -43,6 +53,11 @@ func map_controls(player_index):
     input_maps.insert(controller_ID, {
         "right" : "ui_right{n}".format({"n":controller_ID}),
         "left" : "ui_left{n}".format({"n":controller_ID}),
+        "up" : "ui_up{n}".format({"n":controller_ID}),
+        "down" : "ui_down{n}".format({"n":controller_ID}),
+        "select" : "select{n}".format({"n":controller_ID}),
+        "rotate_cw" : "rotate_cw{n}".format({"n":controller_ID}),
+        "rotate_ccw" : "rotate_ccw{n}".format({"n":controller_ID}),
         "jump" : "jump{n}".format({"n":controller_ID}),
         "sprint" : "sprint{n}".format({"n":controller_ID})
     })
@@ -55,7 +70,22 @@ func map_controls(player_index):
 
     var left_action: String
     var left_action_event: InputEventJoypadMotion
-    
+
+    var up_action: String
+    var up_action_event: InputEventJoypadMotion
+
+    var down_action: String
+    var down_action_event: InputEventJoypadMotion
+
+    var select_action: String
+    var select_action_event: InputEventJoypadButton
+
+    var rotate_cw_action: String
+    var rotate_cw_action_event: InputEventJoypadButton
+
+    var rotate_ccw_action: String
+    var rotate_ccw_action_event: InputEventJoypadButton
+
     var jump_action: String
     var jump_action_event: InputEventJoypadButton
 
@@ -80,9 +110,50 @@ func map_controls(player_index):
     left_action_event.axis_value = -1.0 # <---- left
     InputMap.action_add_event(left_action, left_action_event)
 
+    up_action = "ui_up{n}".format({"n":controller_ID})
+    InputMap.add_action(up_action)
+    # Creat a new InputEvent instance to assign to the InputMap.
+    up_action_event = InputEventJoypadMotion.new()
+    up_action_event.device = controller_ID
+    up_action_event.axis = JOY_AXIS_1 # <---- vertical axis
+    up_action_event.axis_value =  -1.0 # <---- up
+    InputMap.action_add_event(up_action, up_action_event)
+
+    down_action = "ui_down{n}".format({"n":controller_ID})
+    InputMap.add_action(down_action)
+    # Creat a new InputEvent instance to assign to the InputMap.
+    down_action_event = InputEventJoypadMotion.new()
+    down_action_event.device = controller_ID
+    down_action_event.axis = JOY_AXIS_1 # <---- vertical axis
+    down_action_event.axis_value = 1.0 # <---- down
+    InputMap.action_add_event(down_action, down_action_event)
+
+    select_action = "select{n}".format({"n":controller_ID})
+    InputMap.add_action(select_action)
+    select_action_event = InputEventJoypadButton.new()
+    select_action_event.device = controller_ID
+    select_action_event.button_index = JOY_BUTTON_0
+    select_action_event.pressed = true
+    InputMap.action_add_event(select_action, select_action_event)
+
+    rotate_cw_action = "rotate_cw{n}".format({"n":controller_ID})
+    InputMap.add_action(rotate_cw_action)
+    rotate_cw_action_event = InputEventJoypadButton.new()
+    rotate_cw_action_event.device = controller_ID
+    rotate_cw_action_event.button_index = JOY_R
+    rotate_cw_action_event.pressed = true
+    InputMap.action_add_event(rotate_cw_action, rotate_cw_action_event)
+
+    rotate_ccw_action = "rotate_ccw{n}".format({"n":controller_ID})
+    InputMap.add_action(rotate_ccw_action)
+    rotate_ccw_action_event = InputEventJoypadButton.new()
+    rotate_ccw_action_event.device = controller_ID
+    rotate_ccw_action_event.button_index = JOY_L
+    rotate_ccw_action_event.pressed = true
+    InputMap.action_add_event(rotate_ccw_action, rotate_ccw_action_event)
+
     jump_action = "jump{n}".format({"n":controller_ID})
     InputMap.add_action(jump_action)
-    
     jump_action_event = InputEventJoypadButton.new()
     jump_action_event.device = controller_ID
     jump_action_event.button_index = JOY_BUTTON_0

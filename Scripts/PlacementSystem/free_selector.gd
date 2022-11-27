@@ -13,7 +13,7 @@ func show_options() -> void:
 func clear_options() -> void:
     hide()
 
-func _on_placeable_selected(selection):
+func _on_placeable_selected(selection, _player):
     var dup = selection.duplicate()
     dup.set_position(Vector2.ZERO)
     add_child(dup)

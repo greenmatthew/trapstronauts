@@ -39,3 +39,11 @@ func add_target(t):
 func remove_target(t):
     if t in targets:
         targets.erase(t)
+
+func add_targets(ts):
+    for t in ts:
+        if not t in targets:
+            targets.append(t)
+
+func clear_targets():
+    targets.clear()

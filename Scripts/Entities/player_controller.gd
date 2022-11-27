@@ -115,6 +115,25 @@ func is_jumping() -> bool:
 func is_sprinting() -> bool:
     return not is_movement_locked and Input.is_action_pressed(movement_dict["sprint"])
 
+func get_cursor_movement_vector() -> Vector2:
+    var right = Input.get_action_strength(movement_dict["right"])
+    var left = Input.get_action_strength(movement_dict["left"]) * -1
+    var up = Input.get_action_strength(movement_dict["up"]) * -1
+    var down = Input.get_action_strength(movement_dict["down"])
+
+    var x = right + left
+    var y = up + down
+    return Vector2(x, y)
+
+func select_input() -> bool:
+    return Input.is_action_just_released(movement_dict["select"])
+
+func rotate_cw() -> bool:
+    return Input.is_action_just_released(movement_dict["rotate_cw"])
+
+func rotate_ccw() -> bool:
+    return Input.is_action_just_released(movement_dict["rotate_ccw"])
+
 func direction() -> Vector2:
     var dir = Vector2.ZERO
     if is_moving_right():
