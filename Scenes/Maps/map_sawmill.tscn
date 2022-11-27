@@ -4648,6 +4648,7 @@ position = Vector2( 32, 64 )
 position = Vector2( 96, 64 )
 
 [node name="MapKillBounds" type="Area2D" parent="."]
+visible = false
 script = ExtResource( 15 )
 
 [node name="DownBounds" type="CollisionShape2D" parent="MapKillBounds"]
@@ -4655,6 +4656,7 @@ position = Vector2( 0, 1088 )
 shape = SubResource( 79 )
 
 [node name="MapBounds" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="RightBound" type="CollisionShape2D" parent="MapBounds"]
 position = Vector2( 3712, 0 )
