@@ -15,7 +15,6 @@ var disabled: bool = false
 var is_on : bool = false
 var time_on : float = 0.0
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     set_process(true)
     var _status = EventHandler.connect("timer", self, "on_timer_signal")
