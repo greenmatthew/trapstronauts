@@ -21,9 +21,27 @@ func _process(_delta):
     position = lerp(position, p, move_speed)
     # Find the zoom that will contain all targets
     var r = Rect2(position, Vector2.ONE)
+    
+    #left, top, right, bottom
+    var cam_bounds = []
+    
+    for i in range(4):
+        if i%2 == 0:
+            cam_bounds.append(margin.x)
+        else:
+            cam_bounds.append(margin.y)
+    
     for target in targets:
         r = r.expand(target.position)
-    r = r.grow_individual(margin.x, margin.y, margin.x, margin.y)
+        if target.position.x - limit_left < margin.x:
+            cam_bounds[0] = target.position.x - limit_left
+        if target.position.y - limit_top < margin.y:
+            cam_bounds[1] = target.position.y - limit_top
+        if limit_right - target.position.x < margin.x:
+            cam_bounds[2] = limit_right - target.position.x
+        if limit_bottom - target.position.y < margin.y:
+            cam_bounds[3] = limit_bottom - target.position.y
+    r = r.grow_individual(cam_bounds[0], cam_bounds[1], cam_bounds[2], cam_bounds[3])
     # var d = max(r.size.x, r.size.y)
     var z
     if r.size.x > r.size.y * screen_size.aspect():

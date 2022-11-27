@@ -4536,9 +4536,9 @@ script = ExtResource( 1 )
 
 [node name="MultiCam" parent="." instance=ExtResource( 21 )]
 limit_left = -2880
-limit_top = -1344
+limit_top = -3088
 limit_right = 3456
-limit_bottom = 832
+limit_bottom = 632
 editor_draw_limits = true
 min_zoom = 2.5
 max_zoom = 8
