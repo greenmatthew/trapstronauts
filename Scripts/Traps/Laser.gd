@@ -58,9 +58,9 @@ func get_raycast_relative_center() -> Vector2:
 func draw_laser(distance : float) -> void:
     var to = -direction * distance + get_raycast_relative_center()
     var from = get_raycast_relative_center()
-    draw_line(from, to, Color.darkred, 4)
-    draw_line(from, to, Color.red, 3)
-    draw_line(from, to, Color.white, 2)
+    draw_line(from, to, Color.darkred, 16)
+    draw_line(from, to, Color.red, 12)
+    draw_line(from, to, Color.white, 8)
 
 func disable() -> void:
     $CollisionShape2D.set_deferred("disabled", true)
