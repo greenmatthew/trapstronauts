@@ -4675,10 +4675,10 @@ z_index = 128
 [node name="Grid" parent="GridManager" index="0"]
 size = Vector2( 98, 33 )
 
-[node name="FreeSelector" parent="GridManager/SelectorLayer" index="1"]
+[node name="FreeSelector" parent="GridManager/SelectorLayer" index="0"]
 visible = false
 
-[node name="GridRect" parent="GridManager" index="2"]
+[node name="GridRect" parent="GridManager" index="3"]
 visible = false
 margin_right = 4224.0
 margin_bottom = 4864.0

@@ -5,24 +5,32 @@ var follow_mouse = preload("res://Scenes/PlacementSystem/follow_mouse.tscn")
 var follow_controller = preload("res://Scenes/PlacementSystem/follow_controller.tscn")
 onready var grid = $Grid
 onready var grid_rect = $GridRect
-onready var random_selector = $SelectorLayer/RandomSelector
+onready var random_selector = $RandomSelector
 onready var free_selector = $SelectorLayer/FreeSelector
 var selector: Selector
 
 var placing: Placeable
 var is_placing: bool
 var placeable_options
+var amount_to_select
 
 var placed_tiles: Dictionary
 
-enum ObjectController { MOUSE, CONTROLLER }
+signal placeable_placed
+signal placeable_selected
 
 func _ready():
-    selector = free_selector if OS.is_debug_build() else random_selector
+    # selector = free_selector if OS.is_debug_build() else random_selector
+    selector = random_selector
     
     var _err = selector.connect("placeable_selected", self, "_on_placeable_selected")
+    _err = EventHandler.connect("player_try_place", self, "_on_player_try_place")
     start_placeable_selection()
  
+func set_amount_to_select(amount: int):
+    assert(amount_to_select >= 1)
+    amount_to_select = amount
+
 func hide_selector_and_grid():
     selector.clear_options()
     grid_rect.hide()
@@ -30,65 +38,44 @@ func hide_selector_and_grid():
 func show_selector_and_grid():
     selector.show_options()
     grid_rect.show()
+
+func hide_selector():
+    selector.clear_options()
+
+func hide_grid():
+    grid_rect.hide()
  
 func start_placeable_selection():
     is_placing = false
     selector.show_options()
     
-func _on_placeable_selected(selection):
+func _on_placeable_selected(selection, player):
     placing = selection
     placing.get_parent().remove_child(placing)
     add_child(placing)
+    placing.player = player
     is_placing = true
-    selector.clear_options()
+    emit_signal("placeable_selected", placing, player)
 
-func _unhandled_input(event):
-    if !is_placing:
-        return
+func _on_player_try_place(player, placeable, cursor_pos):
+    clamp_placeable(placeable, cursor_pos)
+    if grid.can_place(placeable, placeable.xpos, placeable.ypos):
+        var fmt_str = "Placing at position: (%s, %s)"
+        var actual_str = fmt_str % [placeable.xpos, placeable.ypos]
+        print(actual_str)
+        placeable.enable()
+        grid.add_shape_to_grid(placeable)
+        emit_signal("placeable_placed", placeable, player)
+    else:
+        print("Cannot place") 
 
-    if event.is_action_released("place_object"):
-        if grid.can_place(placing, placing.xpos, placing.ypos):
-            var fmt_str = "Placing at position: (%s, %s)"
-            var actual_str = fmt_str % [placing.xpos, placing.ypos]
-            print(actual_str)
-            placing.enable()
-            grid.add_shape_to_grid(placing)
-            start_placeable_selection()
-        else:
-            print("Cannot place")
-
-    elif event.is_action_released("rotate_clockwise"):
-        placing.rotate_shape(Rotation.CLOCKWISE)
-    elif event.is_action_released("rotate_counter_clockwise"):
-        placing.rotate_shape(Rotation.COUNTER_CLOCKWISE)
-
-func _process(_delta):
-    if !is_placing:
-        return
-
-    var mouse_pos = get_global_mouse_position()
-    var x = Vector2(mouse_pos.x - position.x, mouse_pos.y - position.y)
-    var adjusted_mouse_pos = Vector2(mouse_pos.x - position.x - Constants.GRID_HALF_SIZE, mouse_pos.y - position.y - Constants.GRID_HALF_SIZE)
-    
+func clamp_placeable(placeable, cursor_pos):
+    var x = Vector2(cursor_pos.x - position.x, cursor_pos.y - position.y)
+    var adjusted_cursor_pos = Vector2(cursor_pos.x - position.x - Constants.GRID_HALF_SIZE, cursor_pos.y - position.y - Constants.GRID_HALF_SIZE)
     var tile_map_pos = world_to_map(x)
-    # print("Tile idx: ", tile_map_pos)
-    var pos_clamped = Util.pos_clamped_to_grid(adjusted_mouse_pos, Constants.GRID_SIZE)
+    var pos_clamped = Util.pos_clamped_to_grid(adjusted_cursor_pos, Constants.GRID_SIZE)
     pos_clamped.x += Constants.GRID_HALF_SIZE
     pos_clamped.y += Constants.GRID_HALF_SIZE
-    # print("mouse clamped: ", pos_clamped)
-    placing.set_position(pos_clamped)
-    placing.xpos = tile_map_pos.x
-    placing.ypos = tile_map_pos.y
-    # print(placing.xpos, " ", placing.ypos)
-    placing.xpos += placing.place_offset
-    placing.ypos += placing.place_offset
-
-func get_obj_controller_instance(controller_type):
-    var move_control_instance
-    if controller_type == ObjectController.MOUSE:
-        move_control_instance = follow_mouse.instance()
-    else:
-        move_control_instance = follow_controller.instance()
-    
-    move_control_instance.name = "ObjectMoveControl"
-    return move_control_instance
+    placeable.set_position(pos_clamped)
+    placeable.xpos = tile_map_pos.x + placeable.place_offset
+    placeable.ypos = tile_map_pos.y + placeable.place_offset

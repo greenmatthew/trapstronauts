@@ -10,5 +10,5 @@ func show_options() -> void:
 func clear_options() -> void:
     pass
 
-func _on_placeable_selected(_selection: Placeable) -> void:
+func _on_placeable_selected(_selection: Placeable, _player: PlayerController) -> void:
     pass

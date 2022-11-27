@@ -11,8 +11,15 @@ signal player_killed(player, source)
 signal player_reached_finish(player)
 
 # warning-ignore:unused_signal
-## One parameter: player
 signal scene_changed(scene_from, scene_to)
+
+# warning-ignore:unused_signal
+## Two parameters: player, cursor_pos
+signal player_select_input(player, cursor_pos)
+
+# warning-ignore:unused_signal
+## Three parameter: player, placeable, cursor_pos
+signal player_try_place(player, placeable, cursor_pos)
 
 var _timer_time : float = 0.0 # Time passed in seconds
 const timer_interval : float = 5.0 # Interval between timer_ticks in seconds
