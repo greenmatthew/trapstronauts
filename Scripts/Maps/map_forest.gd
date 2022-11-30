@@ -62,6 +62,8 @@ func handle_selection_and_placement():
     is_selecting = true
 
     grid_manager.show_selector_and_grid()
+    # clear players from targets
+    $MultiCam.clear_targets()
     show_cursors()
     
     print("Starting placeable selection")
@@ -83,8 +85,6 @@ func handle_selection_and_placement():
     is_selecting = false
     is_placing = true
 
-    # clear players from targets
-    $MultiCam.clear_targets()
     show_cursors()
     
     var placed_count = 0
@@ -201,14 +201,6 @@ func all_players_finished():
     return finished
 
 func _unhandled_input(event):
-    if event is InputEventKey and event.scancode == KEY_TAB and event.pressed:
-        if showing_selector:
-            grid_manager.hide_selector_and_grid()
-            showing_selector = false
-        else:
-            grid_manager.show_selector_and_grid()
-            showing_selector = true
-
     # handling KB/Mouse input below
     if !is_placing:
         return
