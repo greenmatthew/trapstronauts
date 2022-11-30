@@ -137,7 +137,7 @@ func _ready():
     init_grid()
     grid_manager.hide_selector_and_grid()
     score_screen.hide_score()
-    # next_round()
+    next_round()
 
 func connect_events():
     var _status
@@ -150,6 +150,18 @@ func connect_events():
 func init_grid():
     grid_manager.grid.size = grid_manager.grid_rect.rect_size / 64
     grid_manager.grid.clear()
+    add_map_occupied_tiles_to_grid($Terrain)
+    add_map_occupied_tiles_to_grid($Start)
+    add_map_occupied_tiles_to_grid($Finish)
+
+func add_map_occupied_tiles_to_grid(tile_map: TileMap):
+    var tile_indexes = tile_map.get_used_cells()
+
+    for tile_idx in tile_indexes:
+        var tile_world_pos = tile_map.map_to_world(tile_idx)
+        var grid_local_pos = grid_manager.to_local(tile_world_pos)
+        var grid_idx = grid_manager.world_to_map(grid_local_pos)
+        grid_manager.grid.add_non_placeable_location(grid_idx)
 
 func _on_player_killed(player : PlayerController, source : Node2D):
     if not player.DEAD:

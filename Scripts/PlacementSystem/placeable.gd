@@ -7,6 +7,8 @@ onready var highlighter = $Highlighter
 
 export (String, MULTILINE) var shape_def
 export var place_offset: int = -1
+export var is_bomb: bool = false
+export var is_map_tile: bool = false
 
 const local_coord_matrices = [[-1,1], [-1,0,1],[-2,-1,1,2],[-2,-1,0,1,2]]
 
@@ -21,6 +23,9 @@ var ypos = 0
 var player: PlayerController
 
 func _ready():
+    if is_map_tile:
+        return
+        
     # warning-ignore:return_value_discarded
     highlighter.connect("selected", self, "_on_highlight_selected")
     _init_shape()

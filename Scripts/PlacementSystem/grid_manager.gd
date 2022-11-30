@@ -59,12 +59,20 @@ func _on_placeable_selected(selection, player):
 
 func _on_player_try_place(player, placeable, cursor_pos):
     clamp_placeable(placeable, cursor_pos)
+
     if grid.can_place(placeable, placeable.xpos, placeable.ypos):
         var fmt_str = "Placing at position: (%s, %s)"
         var actual_str = fmt_str % [placeable.xpos, placeable.ypos]
         print(actual_str)
-        placeable.enable()
-        grid.add_shape_to_grid(placeable)
+
+        if placeable.is_bomb:
+            # TODO: play animation
+            grid.place_bomb(placeable, placeable.xpos, placeable.ypos)
+            placeable.queue_free()
+        else:
+            placeable.enable()
+            grid.add_shape_to_grid(placeable)
+
         emit_signal("placeable_placed", placeable, player)
     else:
         print("Cannot place") 

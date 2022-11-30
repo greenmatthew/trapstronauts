@@ -6,7 +6,7 @@ var placeable_options = []
 func show_options():
     placeable_options.clear()
 
-    for i in range(4):
+    for i in range(8):
         # TODO: figure out good spot to place them
         var placeable = generator.get_placeable()
         add_child(placeable)
