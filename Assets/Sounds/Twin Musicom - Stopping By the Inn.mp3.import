@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Twin Musicom - Stopping By the Inn.mp3-ac02db29c215b3ed05c019c7a99e395f.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Twin Musicom - Stopping By the Inn.mp3"
+dest_files=[ "res://.import/Twin Musicom - Stopping By the Inn.mp3-ac02db29c215b3ed05c019c7a99e395f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

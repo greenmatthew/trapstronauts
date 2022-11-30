@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/UI/MenuButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/UI/Settings.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Sprites/Temp/Untitled.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Fonts/Minecraft.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scenes/UI/VolumeSlider.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Sounds/Twin Musicom - Stopping By the Inn.mp3" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 58
@@ -104,8 +105,15 @@ margin_top = 315.0
 margin_right = 415.0
 margin_bottom = 345.0
 rect_min_size = Vector2( 150, 30 )
+focus_mode = 1
 text = "Exit"
 arrow_margin_from_center = 70
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -23.0
+autoplay = true
+bus = "Music"
 
 [connection signal="value_changed" from="Settings/CenterContainer/VBoxContainer2/VBoxContainer/Master" to="Settings/CenterContainer/VBoxContainer2/VBoxContainer/Master" method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="Settings/CenterContainer/VBoxContainer2/VBoxContainer/Music2" to="Settings/CenterContainer/VBoxContainer2/VBoxContainer/Music2" method="_on_HSlider_value_changed"]
