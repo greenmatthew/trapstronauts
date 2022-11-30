@@ -4652,7 +4652,7 @@ visible = false
 script = ExtResource( 15 )
 
 [node name="DownBounds" type="CollisionShape2D" parent="MapKillBounds"]
-position = Vector2( 0, 1088 )
+position = Vector2( 0, 3815 )
 shape = SubResource( 79 )
 
 [node name="MapBounds" type="StaticBody2D" parent="."]
