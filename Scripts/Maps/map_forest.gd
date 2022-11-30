@@ -137,6 +137,10 @@ func _ready():
     init_grid()
     grid_manager.hide_selector_and_grid()
     score_screen.hide_score()
+
+    for player in main.players:
+        player.is_movement_locked = true
+
     next_round()
 
 func connect_events():
