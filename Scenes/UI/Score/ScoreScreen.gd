@@ -11,7 +11,11 @@ onready var level = get_parent()
 onready var margin = 216
 onready var showing = false
 
+onready var max_score = 5.0
+
 onready var num_players = len(main.players)
+
+onready var winners = []
 
 onready var score_dict = {
     "Reached Goal" : 1.0,
@@ -28,9 +32,22 @@ onready var color_dict = {
     #"Trap Kill" : Color.red
    }
 
+func game_over():
+    for p in main.players:
+        if p.score_total >= max_score:
+            winners.append(p)
+    if len(winners) > 0:
+        return true
+    return false 
+    
+func go_to_finish():
+    level.end_level()
+
 func _input(_ev):
     if showing:
         if Input.is_key_pressed(KEY_SPACE):
+            if game_over():
+                go_to_finish()
             level.next_round()
             hide_score()
 
@@ -53,15 +70,19 @@ func show_type(type, num_winners):
             "Reached Goal":
                 if p.GOAL and not p.DEAD:
                     canvas.get_child(i).add_rect(score_dict[type], color_dict[type])
+                    p.score_total += score_dict[type]
             "Postmortem":
                 if p.GOAL and p.DEAD:
                     canvas.get_child(i).add_rect(score_dict[type], color_dict[type])
+                    p.score_total += score_dict[type]
             "Solo":
                 if num_winners == 1 and p.GOAL:
                     canvas.get_child(i).add_rect(score_dict[type], color_dict[type])
+                    p.score_total += score_dict[type]
             "First":
                 if p.GOAL and p.FRST:
                     canvas.get_child(i).add_rect(score_dict[type], color_dict[type])
+                    p.score_total += score_dict[type]
             _ : pass
             
 

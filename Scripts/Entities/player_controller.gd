@@ -14,6 +14,8 @@ onready var GOAL = false
 onready var SOLO = false
 onready var FRST = false
 
+var score_total = 0
+
 # Set the character color via shader
 var charCol = Color.white
 

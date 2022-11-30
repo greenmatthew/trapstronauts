@@ -15,6 +15,9 @@ var selected_placeables = []
 var is_placing: bool
 var is_selecting: bool
 
+func end_level():
+    EventHandler.emit_signal("scene_changed", "sawmill", "hub")
+
 func _process(delta):
     if is_placing or is_selecting:
         for i in len(main.players):
@@ -124,6 +127,7 @@ func hide_cursor(player_idx: int):
     $MultiCam.targets.erase(cursor)
 
 func go_to_score_screen():
+    print(finish.player_count)
     score_screen.show_score(finish.player_count)
 
 func add_player_to_world(player):
