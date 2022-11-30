@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://Assets/Sprites/Characters/astronaut_hit.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/player_controller.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Scenes/Debug/StateDisplay.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Scripts/StateMachine/PlayerStates/dead.gd" type="Script" id=20]
 [ext_resource path="res://Assets/Sounds/footstep00.ogg" type="AudioStream" id=21]
+[ext_resource path="res://Assets/Sounds/Jump.wav" type="AudioStream" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 48 )
@@ -499,6 +500,10 @@ scroll_active = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
 volume_db = -23.0
+bus = "Sfx"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
 bus = "Sfx"
 
 [connection signal="animation_finished" from="Position2D/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
