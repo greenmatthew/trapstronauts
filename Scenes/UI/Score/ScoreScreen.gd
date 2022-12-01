@@ -11,7 +11,7 @@ onready var level = get_parent()
 onready var margin = 216
 onready var showing = false
 
-onready var max_score = 5.0
+onready var max_score = 1.0
 
 onready var num_players = len(main.players)
 
@@ -24,6 +24,7 @@ onready var score_dict = {
     "First" : 0.2
     #"Trap Kill" : 0.2
    }
+
 onready var color_dict = {
     "Reached Goal" : Color.green,
     "Postmortem" : Color.purple,
@@ -48,7 +49,8 @@ func _input(_ev):
         if Input.is_key_pressed(KEY_SPACE):
             if game_over():
                 go_to_finish()
-            level.next_round()
+            else:
+                level.next_round()
             hide_score()
 
 func _ready():

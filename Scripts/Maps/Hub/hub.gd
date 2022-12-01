@@ -22,6 +22,9 @@ func add_player_to_world(player):
     
     # TODO: Here, we will spawn the player in an empty bedroom. If none are available...
     # We'll figure something out
+    
+    player.reset()
+    
     player.position = get_node("Bedroom{n}".format({"n":players_added})).position
     
     players_added += 1

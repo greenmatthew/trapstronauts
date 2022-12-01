@@ -15,7 +15,10 @@ var selected_placeables = []
 var is_placing: bool
 var is_selecting: bool
 
+var game_finished = false
+
 func end_level():
+    game_finished = true
     EventHandler.emit_signal("scene_changed", "sawmill", "hub")
     for p in main.players:
         p.is_movement_locked = false
@@ -47,6 +50,7 @@ func _process(delta):
                     EventHandler.emit_signal("player_select_input", player, cursor.global_position)
 
 func next_round():
+    
     yield(handle_selection_and_placement(), "completed")
     
     used_spawns = []
@@ -55,6 +59,7 @@ func next_round():
         p.reset()
         spawn_player(p)
         $MultiCam.add_target(p)
+
 
 func handle_selection_and_placement():
     var player_count = len(main.players)
@@ -188,13 +193,14 @@ func _on_player_killed(player : PlayerController, source : Node2D):
             go_to_score_screen()
 
 func _on_player_reached_finish(player: PlayerController):
-    player.is_movement_locked = true
-    player.GOAL = true
-    if first_player:
-        first_player = false
-        player.FRST = true
-    if all_players_finished():
-        go_to_score_screen()
+    if not game_finished:
+        player.is_movement_locked = true
+        player.GOAL = true
+        if first_player:
+            first_player = false
+            player.FRST = true
+        if all_players_finished():
+            go_to_score_screen()
 
 func all_players_finished():
     var finished = true
