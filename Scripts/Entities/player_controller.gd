@@ -114,7 +114,7 @@ func is_moving_left() -> bool:
     return not is_movement_locked and Input.is_action_pressed(movement_dict["left"])
 
 func is_jumping() -> bool:
-    return not is_movement_locked and Input.is_action_pressed(movement_dict["jump"])
+    return not is_movement_locked and Input.is_action_just_pressed(movement_dict["jump"])
 
 func is_sprinting() -> bool:
     return not is_movement_locked and Input.is_action_pressed(movement_dict["sprint"])
