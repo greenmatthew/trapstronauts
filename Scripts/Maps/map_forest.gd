@@ -19,6 +19,8 @@ var game_finished = false
 
 func end_level():
     game_finished = true
+    for p in main.players:
+        p.reset()
     EventHandler.emit_signal("scene_changed", "sawmill", "hub")
     for p in main.players:
         p.reset()
@@ -183,7 +185,7 @@ func add_map_occupied_tiles_to_grid(tile_map: TileMap):
         grid_manager.grid.add_non_placeable_location(grid_idx)
 
 func _on_player_killed(player : PlayerController, source : Node2D):
-    if not player.DEAD:
+    if not player.DEAD and not game_finished:
         if source is Placeable:
             print("Player %s killed by Player %s's %s." % [player.name, source.player.name, source.name])
         elif source is KillBoundary:
