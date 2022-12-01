@@ -17,6 +17,8 @@ var is_selecting: bool
 
 func end_level():
     EventHandler.emit_signal("scene_changed", "sawmill", "hub")
+    for p in main.players:
+        p.is_movement_locked = false
 
 func _process(delta):
     if is_placing or is_selecting:

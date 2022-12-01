@@ -1,6 +1,6 @@
 extends Camera2D
 
-export var move_speed = 1  # camera position lerp speed
+export var move_speed = 1.0  # camera position lerp speed
 export var zoom_speed = 0.25  # camera zoom lerp speed
 export var min_zoom = 1.5  # camera won't zoom closer than this
 export var max_zoom = 5  # camera won't zoom farther than this
