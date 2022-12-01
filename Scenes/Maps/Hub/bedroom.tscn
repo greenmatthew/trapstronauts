@@ -31,6 +31,7 @@ position = Vector2( 0, -184 )
 shape = SubResource( 3 )
 
 [node name="TEMP" type="Label" parent="."]
+visible = false
 margin_left = -292.0
 margin_top = -162.0
 margin_right = -219.0
