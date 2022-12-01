@@ -240,7 +240,7 @@ func spawn_player(player: PlayerController):
     
     if spawn_points != null and spawn_points.size() > 0:
         var spawn_point = spawn_points[spawn_index] 
-        player.position = start.position + spawn_point.position + Vector2.UP * 0.5 * player.get_collider_height()
+        player.position = start.position + spawn_point.position + Vector2.UP * player.get_collider_height()
         player.rotation = spawn_point.rotation
     else:
         printerr("No spawn points found!")
