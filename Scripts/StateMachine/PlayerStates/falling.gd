@@ -15,7 +15,7 @@ func physics_update_extension(delta : float) -> void:
             state_machine.transition_to("Idle")
             return
     
-    if player.is_on_wall():
+    if player.is_on_wall() and player.direction() != Vector2.ZERO:
         state_machine.transition_to("WallSliding", {wall_dir = player.direction()})
         return
 
