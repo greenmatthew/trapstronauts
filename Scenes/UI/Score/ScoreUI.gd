@@ -11,7 +11,9 @@ func add_rect(multiplier, color):
     var container = $BarContainer
     
     var score_rect = load("res://Scenes/UI/Score/ScoreRect.tscn").instance()
-    var color_rect = score_rect.get_child(0)
+    var color_rect = score_rect.get_child(1)
+    
+    score_rect.get_child(0).visible = false
     
     color_rect.rect_position.x = offset
     color_rect.rect_size.x = unit_length * multiplier

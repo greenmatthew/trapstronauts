@@ -5,6 +5,9 @@ onready var main = get_parent()
 onready var trigger = $warproom/depart_trigger
 onready var timer_label = $warproom/depart_trigger/TimerTemp
 
+onready var voting_room = $votingroom
+
+onready var candidates = $votingroom/Candidates
 
 var timer = 5
 var departing = false
@@ -24,7 +27,8 @@ func add_player_to_world(player):
     players_added += 1
 
 func _ready():
-    pass
+    for c in candidates.get_children():
+        c.update_votes(main.players)
 
 func _process(delta):
     if departing:

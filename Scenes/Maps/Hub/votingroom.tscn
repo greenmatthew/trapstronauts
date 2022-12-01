@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Sprites/Levels/00Hub/Hub_VotingRoom_V0.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Maps/Hub/Candidate.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 640, 8 )
@@ -27,3 +28,25 @@ shape = SubResource( 1 )
 [node name="Wall" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -1272, 0 )
 shape = SubResource( 2 )
+
+[node name="Candidates" type="Node2D" parent="."]
+
+[node name="Sawmill" parent="Candidates" instance=ExtResource( 2 )]
+position = Vector2( -1216, -96 )
+txt = "Sawmill"
+
+[node name="Valley" parent="Candidates" instance=ExtResource( 2 )]
+position = Vector2( -960, -96 )
+txt = "Valley"
+
+[node name="Cliffs" parent="Candidates" instance=ExtResource( 2 )]
+position = Vector2( -704, -96 )
+txt = "Cliffs"
+
+[node name="Forest" parent="Candidates" instance=ExtResource( 2 )]
+position = Vector2( -448, -96 )
+txt = "Forest"
+
+[node name="Random" parent="Candidates" instance=ExtResource( 2 )]
+position = Vector2( -192, -96 )
+txt = "Random"

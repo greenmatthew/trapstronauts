@@ -35,6 +35,8 @@ var is_movement_locked : bool = false
 
 var controller_ID : int = -1
 
+var current_vote = "Random"
+
 var movement_dict = {
     "right": "move_right",
     "left":  "move_left",
