@@ -20,6 +20,7 @@ func handle_vote(player):
         for body in c.get_child(2).get_overlapping_bodies():
             if body == player:
                 player.current_vote = c.txt
+    for c in candidates.get_children():
         c.update_votes(main.players)
     
 func _input(_event):
