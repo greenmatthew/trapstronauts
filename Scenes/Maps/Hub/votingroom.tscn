@@ -36,6 +36,7 @@ position = Vector2( -1216, -96 )
 txt = "Sawmill"
 
 [node name="Valley" parent="Candidates" instance=ExtResource( 2 )]
+visible = false
 position = Vector2( -960, -96 )
 txt = "Valley"
 
@@ -44,6 +45,7 @@ position = Vector2( -704, -96 )
 txt = "Cliffs"
 
 [node name="Forest" parent="Candidates" instance=ExtResource( 2 )]
+visible = false
 position = Vector2( -448, -96 )
 txt = "Forest"
 
