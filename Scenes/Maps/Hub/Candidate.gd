@@ -53,6 +53,7 @@ func draw_votes():
         draw_visual(s.charCol, i)
         
 func update_votes(players):
+    clear_visuals()
     #print(len(players))
     for p in players:
         if supporters.has(p):
