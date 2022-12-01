@@ -21,7 +21,7 @@ func end_level():
     game_finished = true
     EventHandler.emit_signal("scene_changed", "sawmill", "hub")
     for p in main.players:
-        p.is_movement_locked = false
+        p.reset()
 
 func _process(delta):
     if is_placing or is_selecting:
@@ -52,6 +52,8 @@ func _process(delta):
 func next_round():
     
     yield(handle_selection_and_placement(), "completed")
+    
+    finish.player_count = 0
     
     used_spawns = []
     first_player = true

@@ -10,13 +10,13 @@ var supporters = []
 
 var rect_size = 16
 
-var padding = 2
+var padding = 4
 
 func _ready():
     label.text = txt
 
 func remove_player(player):
-    pass
+    supporters.erase(player)
 
 func add_player(player):
     supporters.append(player)
@@ -33,7 +33,7 @@ func draw_visual(color, index):
     var border = vis_rect.get_child(0)
     
     border.rect_position.x = pos.position.x + index * (rect_size + padding) - 1
-    border.rect_position.y = border.rect_position.y + 1
+    border.rect_position.y -= 1
     border.rect_size.x = rect_size + 2
     border.rect_size.y = rect_size + 2
     border.color = Color.black
@@ -48,7 +48,6 @@ func draw_visual(color, index):
 
 func draw_votes():
     clear_visuals()
-    print(txt + str(len(supporters)))
     for i in range(len(supporters)):
         var s = supporters[i]
         draw_visual(s.charCol, i)

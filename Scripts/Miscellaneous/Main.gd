@@ -180,11 +180,16 @@ func _ready():
 
 func handle_scene_changed(previous_scene_name: String, next_scene_name: String):
     
-    if not previous_scene_name == "MainMenu":
+    next_scene_name = next_scene_name.capitalize()
+    
+    previous_scene_name = previous_scene_name.capitalize()
+    print(previous_scene_name)
+    
+    if not previous_scene_name == "Main Menu":
         for p in players:
             current_scene.remove_child(p)
     
-    if next_scene_name == "MainMenu":
+    if next_scene_name == "Main Menu":
         next_scene = load("res://Scenes/UI/MainMenu/MainMenu.tscn").instance()
     
     else:
@@ -192,15 +197,15 @@ func handle_scene_changed(previous_scene_name: String, next_scene_name: String):
         ON_MENU = false
         
         match next_scene_name:
-            "hub":
+            "Hub":
                 next_scene = load("res://Scenes/Maps/Hub/hub.tscn").instance()
-            # "forest":
-            #     next_scene = load("res://Scenes/Maps/map_forest.tscn").instance()
-            "valley":
+            "Forest":
+                next_scene = load("res://Scenes/Maps/map_forest.tscn").instance()
+            "Valley":
                 next_scene = load("res://Scenes/Maps/map_valley.tscn").instance()
-            "cliffs":
+            "Cliffs":
                 next_scene = load("res://Scenes/Maps/map_cliffs.tscn").instance()
-            "sawmill":
+            "Sawmill":
                 next_scene = load("res://Scenes/Maps/map_sawmill.tscn").instance()
             _:
                 return

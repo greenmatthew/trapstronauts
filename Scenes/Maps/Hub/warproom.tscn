@@ -126,5 +126,5 @@ shape = SubResource( 4 )
 
 [node name="Portal" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
-frame = 3
+frame = 8
 playing = true
