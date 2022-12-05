@@ -37,6 +37,7 @@ func _process(delta : float) -> void:
 
 func _draw():
     if is_on and !disabled:
+        $AudioStreamPlayer.play()
         particles.emitting = true
         if raycast.is_colliding():
             draw_laser( abs(raycast.to_local(raycast.get_collision_point()).x) )
@@ -46,6 +47,7 @@ func _draw():
         else:
             draw_laser(max_range)
     else:
+        $AudioStreamPlayer.stop()
         particles.emitting = false
 
 func on_timer_signal():

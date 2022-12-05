@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Traps/Laser.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Temp/icon.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sprites/Particles/White-10x10.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sounds/LaserBeam.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.9999, 32.0001 )
@@ -53,3 +54,7 @@ amount = 20
 lifetime = 0.2
 process_material = SubResource( 2 )
 texture = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sfx"
