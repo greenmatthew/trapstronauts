@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Traps/JumpPad.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Traps/spring.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sounds/JumpPad.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 27, 7.5 )
@@ -71,3 +72,8 @@ shape = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 anims/active-jumppad = SubResource( 3 )
 "anims/idle - jumppad" = SubResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -23.0
+bus = "Sfx"

@@ -11,9 +11,11 @@ func _physics_process(_delta):
         if body is PlayerController:
             body.handle_jump_pad_jump()
             $AnimationPlayer.play("active-jumppad")
+            $AudioStreamPlayer.play()
             yield($AnimationPlayer,"animation_finished")
             $AnimationPlayer.play("idle - jumppad")
         else:
+            $AudioStreamPlayer.stop()
             $AnimationPlayer.play("idle - jumppad")
 
 func disable() -> void:
