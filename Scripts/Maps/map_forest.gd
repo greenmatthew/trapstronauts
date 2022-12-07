@@ -85,6 +85,11 @@ func handle_selection_and_placement():
         var placeable = return_vals[0]
         var player = return_vals[1]
         var player_idx = main.players.find(player)
+
+        # continue/skip if player already has already selected to prevent double selection
+        if selected_placeables[player_idx] != null:
+            continue
+
         hide_cursor(player_idx)
 
         selected_placeables[player_idx] = placeable
