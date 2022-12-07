@@ -20,6 +20,7 @@ var game_finished = false
 func end_level():
     game_finished = true
     for p in main.players:
+        p.score_total = 0
         p.reset()
     EventHandler.emit_signal("scene_changed", "sawmill", "hub")
     for p in main.players:

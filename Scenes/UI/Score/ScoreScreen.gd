@@ -11,7 +11,7 @@ onready var level = get_parent()
 onready var margin = 216
 onready var showing = false
 
-onready var max_score = 1.0
+onready var max_score = 5.0
 
 onready var num_players = len(main.players)
 
