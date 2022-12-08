@@ -80,9 +80,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="GameDesignProject"
+config/name="Trapstronauts"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://Assets/Sprites/Temp/icon.png"
+config/windows_native_icon="res://Assets/Sprites/Temp/icon.ico"
 
 [autoload]
 
