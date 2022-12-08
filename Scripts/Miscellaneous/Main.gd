@@ -189,10 +189,13 @@ func handle_scene_changed(previous_scene_name: String, next_scene_name: String):
     
     if next_scene_name == "Main Menu":
         next_scene = load("res://Scenes/UI/MainMenu/MainMenu.tscn").instance()
+        Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
     
     else:
         
         ON_MENU = false
+        
+        Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
         
         match next_scene_name:
             "Hub":
