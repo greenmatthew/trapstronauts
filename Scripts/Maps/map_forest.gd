@@ -29,8 +29,6 @@ func end_level():
 func _process(delta):
     if is_placing or is_selecting:
         for i in len(main.players):
-            if i == 0:
-                continue
             var player = main.players[i]
             var cursor = main.cursors[i]
             var cursor_move_delta = player.get_cursor_movement_vector() * cursor.speed * delta
@@ -217,24 +215,6 @@ func all_players_finished():
     for p in main.players:
         finished = finished and (p.DEAD or p.GOAL)
     return finished
-
-func _unhandled_input(event):
-    # handling KB/Mouse input below
-    if !is_placing:
-        return
-
-    var placeable = selected_placeables[0]
-    if placeable == null:
-        return
-             
-    grid_manager.clamp_placeable(placeable, get_global_mouse_position())
-
-    if event.is_action_released("place_object"):
-        EventHandler.emit_signal("player_try_place", main.players[0], placeable, get_global_mouse_position())
-    elif event.is_action_released("rotate_clockwise"):
-        placeable.rotate_shape(Rotation.CLOCKWISE)
-    elif event.is_action_released("rotate_counter_clockwise"):
-        placeable.rotate_shape(Rotation.COUNTER_CLOCKWISE)
 
 func spawn_player(player: PlayerController):
     var start = $Start

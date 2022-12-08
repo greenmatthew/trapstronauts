@@ -32,11 +32,9 @@ func add_player(player_index):
     add_child(cursor)
     cursor.hide()
 
-    if player_index == 0:
-        cursor.follow_mouse = true
-    else:
+    if player_index != 0:
+        # only map controller player's input
         map_controls(player_index)
-        
     
     if not ON_MENU:
         current_scene.add_player_to_world(players[player_index])
