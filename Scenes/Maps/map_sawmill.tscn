@@ -23,13 +23,13 @@
 [ext_resource path="res://Scenes/Entities/MultiCam.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Scenes/PlacementSystem/GridManager.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Scripts/Traps/Sawblade_Button.gd" type="Script" id=23]
-[ext_resource path="res://Assets/Sprites/Traps/spring.png" type="Texture" id=24]
 [ext_resource path="res://Scripts/Traps/Sawblade_Button2.gd" type="Script" id=25]
 [ext_resource path="res://Assets/Sprites/Levels/04Sawmill/PNG/Background layers/Layer_0004_Lights.png" type="Texture" id=26]
 [ext_resource path="res://Assets/Sprites/Levels/04Sawmill/PNG/Background layers/Layer_0005_5.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Sprites/Levels/04Sawmill/PNG/Background layers/Layer_0009_2.png" type="Texture" id=28]
 [ext_resource path="res://Assets/Sprites/Levels/04Sawmill/PNG/Background layers/Layer_0007_Lights.png" type="Texture" id=29]
 [ext_resource path="res://Assets/Sprites/Tiles/portal_idle.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Sprites/Traps/button.png" type="Texture" id=31]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -4570,10 +4570,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 9 )
+extents = Vector2( 55, 9 )
 
 [sub_resource type="RectangleShape2D" id=198]
-extents = Vector2( 8, 8 )
+extents = Vector2( 56.5, 18.5 )
 
 [sub_resource type="Animation" id=199]
 resource_name = "When_it_is_clicked"
@@ -4741,7 +4741,7 @@ position = Vector2( 96, 64 )
 position = Vector2( 0, -50 )
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 201 )
-frame = 1
+frame = 4
 playing = true
 
 [node name="MapKillBounds" type="Area2D" parent="."]
@@ -4857,20 +4857,20 @@ script = ExtResource( 23 )
 [node name="Area2D" type="Area2D" parent="Sawblade_Button"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sawblade_Button/Area2D"]
-position = Vector2( 0, -2 )
+position = Vector2( 0, -18 )
 shape = SubResource( 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sawblade_Button"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sawblade_Button/StaticBody2D"]
+position = Vector2( -0.5, 0.5 )
 shape = SubResource( 198 )
 
 [node name="Sprite" type="Sprite" parent="Sawblade_Button"]
-position = Vector2( -4.76837e-07, -12 )
-scale = Vector2( 2.125, 3.875 )
-texture = ExtResource( 24 )
+position = Vector2( 0, -45 )
+scale = Vector2( 2.125, 2 )
+texture = ExtResource( 31 )
 hframes = 4
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sawblade_Button"]
 anims/When_it_is_clicked = SubResource( 199 )
@@ -4892,11 +4892,10 @@ shape = SubResource( 1 )
 shape = SubResource( 198 )
 
 [node name="Sprite" type="Sprite" parent="Sawblade_Button2"]
-position = Vector2( -4.76837e-07, -12 )
-scale = Vector2( 2.125, 3.875 )
-texture = ExtResource( 24 )
+position = Vector2( 0, -46 )
+scale = Vector2( 2.125, 2 )
+texture = ExtResource( 31 )
 hframes = 4
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sawblade_Button2"]
 anims/When_it_is_clicked = SubResource( 199 )
