@@ -377,7 +377,7 @@ animations = [ {
 } ]
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0.00478469, 0.851613 )
+offsets = PoolRealArray( 0.00478469, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.51709, 0.50901, 0.50901, 0.72549 )
 
 [sub_resource type="GradientTexture" id=4]
@@ -425,6 +425,7 @@ position = Vector2( -8, -4 )
 z_index = 10
 frames = SubResource( 26 )
 animation = "walk"
+frame = 4
 playing = true
 
 [node name="WalkingTrail" type="Particles2D" parent="Position2D"]
