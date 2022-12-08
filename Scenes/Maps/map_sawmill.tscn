@@ -4741,7 +4741,7 @@ position = Vector2( 96, 64 )
 position = Vector2( 0, -50 )
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 201 )
-frame = 4
+frame = 8
 playing = true
 
 [node name="MapKillBounds" type="Area2D" parent="."]
