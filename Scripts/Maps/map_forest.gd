@@ -54,8 +54,8 @@ func _process(delta):
                     EventHandler.emit_signal("player_select_input", player, cursor.global_position)
 
 func next_round():
-    
     yield(handle_selection_and_placement(), "completed")
+    $MapKillBounds/DownBounds.disabled = false
     
     finish.player_count = 0
     
@@ -65,7 +65,6 @@ func next_round():
         p.reset()
         spawn_player(p)
         $MultiCam.add_target(p)
-
 
 func handle_selection_and_placement():
     var player_count = len(main.players)
@@ -164,6 +163,7 @@ func add_player_to_world(player):
     $MultiCam.add_target(player)   
 
 func _ready():
+    $MapKillBounds/DownBounds.disabled = true
     connect_events()
     init_grid()
     grid_manager.hide_selector_and_grid()
