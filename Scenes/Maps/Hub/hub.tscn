@@ -94,8 +94,8 @@ visible = false
 scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.02, 0.02 )
+motion_scale = Vector2( 0.03, 0.03 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-scale = Vector2( 1.75, 1.75 )
+scale = Vector2( 1.85, 1.85 )
 texture = ExtResource( 1 )

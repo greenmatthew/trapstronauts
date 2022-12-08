@@ -45,7 +45,7 @@ txt = "Cliffs"
 
 [node name="Forest" parent="Candidates" instance=ExtResource( 2 )]
 position = Vector2( -448, -96 )
-txt = "Forest"
+txt = "Canyon"
 
 [node name="Random" parent="Candidates" instance=ExtResource( 2 )]
 position = Vector2( -192, -96 )

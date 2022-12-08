@@ -56,7 +56,7 @@ func next_map():
     var selection = main.players[index].current_vote
     
     if selection == "Random":
-        var maps = ["Sawmill", "Cliffs", "Forest", "Valley"]
+        var maps = ["Sawmill", "Cliffs", "Canyon", "Valley"]
         rng.randomize()
         selection = maps[rng.randi_range(0, len(maps) - 1)]
     
