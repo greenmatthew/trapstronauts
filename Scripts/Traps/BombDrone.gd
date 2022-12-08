@@ -16,12 +16,12 @@ func _physics_process(_delta):
             EventHandler.emit_signal("player_killed", player, get_parent())
 
 func _on_Area2D_body_entered(body):
-    if body.is_in_group("players"):
+    if body is PlayerController:
         player = body
 
 func _on_Area2D_body_exited(body):
     # print('Player has exited')
-    if body.is_in_group("players"):
+    if body is PlayerController:
         player = null
     
 func disable() -> void:

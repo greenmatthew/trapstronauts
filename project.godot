@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Traps/Laser.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Laserwithdrone",
+"language": "GDScript",
+"path": "res://Scripts/Traps/LaserDrone.gd"
+}, {
 "base": "Node2D",
 "class": "Placeable",
 "language": "GDScript",
@@ -63,6 +68,7 @@ _global_script_class_icons={
 "Highlighter": "",
 "KillBoundary": "",
 "Laser": "",
+"Laserwithdrone": "",
 "Placeable": "",
 "PlayerController": "",
 "PlayerState": "",
@@ -159,6 +165,16 @@ rotate_clockwise={
 rotate_counter_clockwise={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":81,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":83,"unicode":0,"echo":false,"script":null)
  ]
 }
 
