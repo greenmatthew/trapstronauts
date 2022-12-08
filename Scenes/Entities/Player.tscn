@@ -494,6 +494,7 @@ script = ExtResource( 6 )
 script = ExtResource( 10 )
 
 [node name="DebugStateDisplay" parent="." instance=ExtResource( 19 )]
+visible = false
 margin_top = -64.0
 margin_bottom = 11.0
 mouse_filter = 2
