@@ -31,7 +31,8 @@ func _process(delta):
         for i in len(main.players):
             var player = main.players[i]
             var cursor = main.cursors[i]
-            var cursor_move_delta = player.get_cursor_movement_vector() * cursor.speed * delta
+            var cursor_move_delta = player.get_cursor_movement_vector().normalized() if i == 0 else player.get_cursor_movement_vector()
+            cursor_move_delta *= cursor.speed * delta
             cursor.translate(cursor_move_delta)
 
             if is_placing:
@@ -75,6 +76,7 @@ func handle_selection_and_placement():
     # clear players from targets
     $MultiCam.clear_targets()
     show_cursors()
+    reset_cursor_positions()
     
     print("Starting placeable selection")
     # loop till all players have selected
@@ -126,6 +128,14 @@ func handle_selection_and_placement():
     # clear cursors from targets
     $MultiCam.clear_targets()
     hide_cursors()
+
+func reset_cursor_positions():
+    for cursor in main.cursors:
+        var pos = grid_manager.position
+        pos.x += 700
+        pos.y += 700
+        
+        cursor.set_position(pos)
 
 func show_cursors():
     for cursor in main.cursors:
