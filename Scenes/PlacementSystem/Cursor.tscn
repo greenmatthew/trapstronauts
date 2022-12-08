@@ -7,7 +7,7 @@
 z_index = 500
 z_as_relative = false
 script = ExtResource( 1 )
-speed = 1024.0
+speed = 640.0
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 26.5195, 39.7083 )

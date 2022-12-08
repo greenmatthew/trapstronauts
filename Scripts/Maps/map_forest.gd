@@ -33,6 +33,8 @@ func _process(delta):
             var cursor = main.cursors[i]
             var cursor_move_delta = player.get_cursor_movement_vector().normalized() if i == 0 else player.get_cursor_movement_vector()
             cursor_move_delta *= cursor.speed * delta
+            if player.is_cursor_sprinting():
+                cursor_move_delta *= 2.5
             cursor.translate(cursor_move_delta)
 
             if is_placing:

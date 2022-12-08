@@ -134,6 +134,9 @@ func get_cursor_movement_vector() -> Vector2:
     var y = up + down
     return Vector2(x, y)
 
+func is_cursor_sprinting() -> bool:
+    return Input.is_action_pressed(movement_dict["sprint"])
+
 func select_input() -> bool:
     return Input.is_action_just_released(movement_dict["select"])
 
