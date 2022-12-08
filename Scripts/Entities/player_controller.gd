@@ -40,8 +40,13 @@ var current_vote = "Random"
 var movement_dict = {
     "right": "move_right",
     "left":  "move_left",
+    "up": "move_up",
+    "down":  "move_down",
     "jump": "jump",
-    "sprint" : "sprint"
+    "sprint" : "sprint",
+    "select" : "place_object",
+    "rotate_cw" : "rotate_clockwise",
+    "rotate_ccw" : "rotate_counter_clockwise"
 }
 
 func reset():
