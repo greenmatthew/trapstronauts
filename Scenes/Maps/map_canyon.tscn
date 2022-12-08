@@ -1,4 +1,4 @@
-[gd_scene load_steps=183 format=2]
+[gd_scene load_steps=184 format=2]
 
 [ext_resource path="res://Scripts/Maps/KillBound.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Maps/map_forest.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Scenes/UI/Score/ScoreScreen.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scripts/Maps/finish.gd" type="Script" id=18]
 [ext_resource path="res://Assets/Sprites/Levels/02Canyon/03 Layers/04.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Sprites/Tiles/noplacetile.png" type="Texture" id=20]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -4017,6 +4018,20 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
+1/name = "noplacetile.png 1"
+1/texture = ExtResource( 20 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 64, 64 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=80]
 extents = Vector2( 128, 64 )
@@ -4095,7 +4110,7 @@ tile_data = PoolIntArray( -1703911, 1, 0, -1703910, 1, 0, -1703909, 1, 0, -17039
 position = Vector2( -1472, -256 )
 tile_set = SubResource( 77 )
 format = 1
-tile_data = PoolIntArray( -65539, 0, 0, -65538, 0, 0, -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -3, 0, 0, -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0 )
+tile_data = PoolIntArray( -65539, 1, 0, -65538, 1, 0, -65537, 1, 0, -131072, 1, 0, -131071, 1, 0, -131070, 1, 0, -3, 1, 0, -2, 1, 0, -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0 )
 
 [node name="Area2D" type="Area2D" parent="Start"]
 
