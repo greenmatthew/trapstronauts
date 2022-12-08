@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Traps/Laser.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Laserwithdrone",
+"language": "GDScript",
+"path": "res://Scripts/Traps/LaserDrone.gd"
+}, {
 "base": "Node2D",
 "class": "Placeable",
 "language": "GDScript",
@@ -63,6 +68,7 @@ _global_script_class_icons={
 "Highlighter": "",
 "KillBoundary": "",
 "Laser": "",
+"Laserwithdrone": "",
 "Placeable": "",
 "PlayerController": "",
 "PlayerState": "",
