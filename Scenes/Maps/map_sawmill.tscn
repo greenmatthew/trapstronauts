@@ -1,4 +1,4 @@
-[gd_scene load_steps=219 format=2]
+[gd_scene load_steps=231 format=2]
 
 [ext_resource path="res://Scripts/Maps/map_forest.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/Levels/01Forest/Terrain/TX Tileset Ground Mirrored Down Vertical Axis.png" type="Texture" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://Assets/Sprites/Levels/04Sawmill/PNG/Background layers/Layer_0005_5.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Sprites/Levels/04Sawmill/PNG/Background layers/Layer_0009_2.png" type="Texture" id=28]
 [ext_resource path="res://Assets/Sprites/Levels/04Sawmill/PNG/Background layers/Layer_0007_Lights.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Sprites/Tiles/portal_idle.png" type="Texture" id=30]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -4405,18 +4406,76 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 [sub_resource type="RectangleShape2D" id=80]
 extents = Vector2( 128, 64 )
 
+[sub_resource type="AtlasTexture" id=191]
+flags = 4
+atlas = ExtResource( 30 )
+region = Rect2( 0, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=192]
+flags = 4
+atlas = ExtResource( 30 )
+region = Rect2( 384, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=193]
+flags = 4
+atlas = ExtResource( 30 )
+region = Rect2( 768, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=194]
+flags = 4
+atlas = ExtResource( 30 )
+region = Rect2( 1152, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 30 )
+region = Rect2( 1536, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 30 )
+region = Rect2( 1920, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=195]
+flags = 4
+atlas = ExtResource( 30 )
+region = Rect2( 2304, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 30 )
+region = Rect2( 2688, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 30 )
+region = Rect2( 3072, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=196]
+flags = 4
+atlas = ExtResource( 30 )
+region = Rect2( 3456, 0, 384, 384 )
+
+[sub_resource type="SpriteFrames" id=201]
+animations = [ {
+"frames": [ SubResource( 191 ), SubResource( 192 ), SubResource( 193 ), SubResource( 194 ), SubResource( 10 ), SubResource( 11 ), SubResource( 195 ), SubResource( 13 ), SubResource( 14 ), SubResource( 196 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
 [sub_resource type="RectangleShape2D" id=79]
 extents = Vector2( 6400, 256 )
 
 [sub_resource type="RectangleShape2D" id=78]
 extents = Vector2( 256, 6400 )
 
-[sub_resource type="Curve2D" id=191]
+[sub_resource type="Curve2D" id=202]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 576, 0, 0, 0, 0, 0, 576, 0, 0, 0, 0, 0, 0, 0 )
 }
 
-[sub_resource type="Animation" id=192]
+[sub_resource type="Animation" id=203]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Path2D/PathFollow2D/Sprite:frame")
@@ -4431,8 +4490,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=193]
-resource_name = "Spin"
+[sub_resource type="Animation" id=204]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -4448,7 +4506,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
 
-[sub_resource type="Animation" id=194]
+[sub_resource type="Animation" id=205]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Path2D/PathFollow2D/Sprite:frame")
@@ -4463,8 +4521,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=195]
-resource_name = "Spin"
+[sub_resource type="Animation" id=206]
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -4480,7 +4537,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6 ]
 }
 
-[sub_resource type="Animation" id=196]
+[sub_resource type="Animation" id=207]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Path2D/PathFollow2D/Sprite:frame")
@@ -4656,7 +4713,6 @@ position = Vector2( 96, 64 )
 position = Vector2( 3264, 384 )
 tile_set = SubResource( 77 )
 format = 1
-tile_data = PoolIntArray( -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -4680,6 +4736,13 @@ position = Vector2( 32, 64 )
 
 [node name="Spawn4" type="Node2D" parent="Finish/SpawnPoints"]
 position = Vector2( 96, 64 )
+
+[node name="Portal" type="AnimatedSprite" parent="Finish"]
+position = Vector2( 0, -50 )
+scale = Vector2( 0.75, 0.75 )
+frames = SubResource( 201 )
+frame = 1
+playing = true
 
 [node name="MapKillBounds" type="Area2D" parent="."]
 visible = false
@@ -4729,7 +4792,7 @@ __meta__ = {
 }
 
 [node name="Path2D" parent="RollingSawBlade" index="1"]
-curve = SubResource( 191 )
+curve = SubResource( 202 )
 
 [node name="PathFollow2D" parent="RollingSawBlade/Path2D" index="0"]
 rotate = false
@@ -4742,11 +4805,11 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" parent="RollingSawBlade2" index="0"]
-anims/RESET = SubResource( 192 )
-anims/Spin = SubResource( 193 )
+anims/RESET = SubResource( 203 )
+anims/Spin = SubResource( 204 )
 
 [node name="Path2D" parent="RollingSawBlade2" index="1"]
-curve = SubResource( 191 )
+curve = SubResource( 202 )
 
 [node name="PathFollow2D" parent="RollingSawBlade2/Path2D" index="0"]
 rotate = false
@@ -4760,11 +4823,11 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" parent="RollingSawBlade3" index="0"]
-anims/RESET = SubResource( 194 )
-anims/Spin = SubResource( 195 )
+anims/RESET = SubResource( 205 )
+anims/Spin = SubResource( 206 )
 
 [node name="Path2D" parent="RollingSawBlade3" index="1"]
-curve = SubResource( 191 )
+curve = SubResource( 202 )
 
 [node name="PathFollow2D" parent="RollingSawBlade3/Path2D" index="0"]
 rotate = false
@@ -4778,11 +4841,11 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" parent="RollingSawBlade4" index="0"]
-anims/RESET = SubResource( 196 )
+anims/RESET = SubResource( 207 )
 anims/Spin = SubResource( 197 )
 
 [node name="Path2D" parent="RollingSawBlade4" index="1"]
-curve = SubResource( 191 )
+curve = SubResource( 202 )
 
 [node name="PathFollow2D" parent="RollingSawBlade4/Path2D" index="0"]
 rotate = false

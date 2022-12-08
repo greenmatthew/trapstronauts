@@ -1,4 +1,4 @@
-[gd_scene load_steps=184 format=2]
+[gd_scene load_steps=196 format=2]
 
 [ext_resource path="res://Scripts/Maps/KillBound.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Maps/map_forest.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Scripts/Maps/finish.gd" type="Script" id=18]
 [ext_resource path="res://Assets/Sprites/Levels/02Canyon/03 Layers/04.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Sprites/Tiles/noplacetile.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Sprites/Tiles/portal_idle.png" type="Texture" id=21]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -4036,6 +4037,64 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 [sub_resource type="RectangleShape2D" id=80]
 extents = Vector2( 128, 64 )
 
+[sub_resource type="AtlasTexture" id=176]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 0, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=177]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 384, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=178]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 768, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=179]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 1152, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 1536, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 1920, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=180]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 2304, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 2688, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 3072, 0, 384, 384 )
+
+[sub_resource type="AtlasTexture" id=181]
+flags = 4
+atlas = ExtResource( 21 )
+region = Rect2( 3456, 0, 384, 384 )
+
+[sub_resource type="SpriteFrames" id=182]
+animations = [ {
+"frames": [ SubResource( 176 ), SubResource( 177 ), SubResource( 178 ), SubResource( 179 ), SubResource( 10 ), SubResource( 11 ), SubResource( 180 ), SubResource( 13 ), SubResource( 14 ), SubResource( 181 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
 [sub_resource type="RectangleShape2D" id=79]
 extents = Vector2( 6400, 256 )
 
@@ -4135,7 +4194,6 @@ position = Vector2( 96, 64 )
 position = Vector2( 1728, 2368 )
 tile_set = SubResource( 77 )
 format = 1
-tile_data = PoolIntArray( -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0 )
 
 [node name="Area2D" type="Area2D" parent="Finish"]
 script = ExtResource( 18 )
@@ -4156,6 +4214,13 @@ position = Vector2( 32, 64 )
 
 [node name="Spawn4" type="Node2D" parent="Finish/SpawnPoints"]
 position = Vector2( 96, 64 )
+
+[node name="Portal" type="AnimatedSprite" parent="Finish"]
+position = Vector2( -6, -50 )
+scale = Vector2( 0.75, 0.75 )
+frames = SubResource( 182 )
+frame = 9
+playing = true
 
 [node name="MapKillBounds" type="Area2D" parent="."]
 script = ExtResource( 1 )
