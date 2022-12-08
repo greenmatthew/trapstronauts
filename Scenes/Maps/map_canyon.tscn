@@ -4080,13 +4080,6 @@ motion_scale = Vector2( 0.06, 0.12 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 1920, 1080 )
 
-[node name="Layer1" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.07, 0.14 )
-motion_mirroring = Vector2( 1920, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer1"]
-region_rect = Rect2( 0, 0, 1920, 1080 )
-
 [node name="Terrain" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
 format = 1
