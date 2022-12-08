@@ -30,9 +30,9 @@ Canyon Background - gamedevmarket.com user "Arrie"
 Ground Tileset - itch.io user "Cainos"
 Forest Background - itch.io user "edermunizz"
 Pixel Art Portals - itch.io user "actuallyKron"
-Sawmill Blades - 
-Floor Spikes - 
-Jump Pad - 
+Sawmill Blades - itch.io user "Pixel Frog"
+Floor Spikes - "Kenney" https://www.kenney.nl/assets/pixel-platformer
+Jump Pad - "Kenney" https://www.kenney.nl/assets/pixel-platformer
 
 [Ideas]
 The Dr. Brian A. Dalio - Laser Graphics
