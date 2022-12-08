@@ -104,6 +104,6 @@ func add_line():
 func _unhandled_input(event):
     if event.is_action_pressed("ui_cancel"):
         finish()
-    if event.is_action_pressed("ui_up") and !event.is_echo():
+    if event.is_action_pressed("ui_select") and !event.is_echo():
         get_tree().change_scene("res://Scenes/Main.tscn")
       
