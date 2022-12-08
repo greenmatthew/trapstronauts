@@ -4402,36 +4402,34 @@ min_zoom = 2.5
 max_zoom = 8
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-scroll_base_scale = Vector2( 2, 2 )
 scroll_ignore_camera_zoom = true
 
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0, 0 )
+motion_scale = Vector2( 0.02, 0.02 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Background"]
 texture = ExtResource( 4 )
 
 [node name="Layer4" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.2, 0.2 )
+motion_scale = Vector2( 0.04, 0.04 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer4"]
 texture = ExtResource( 5 )
 
 [node name="Layer3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.4, 0.4 )
+motion_scale = Vector2( 0.06, 0.06 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer3"]
 texture = ExtResource( 11 )
 
 [node name="Layer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.6, 0.6 )
+motion_scale = Vector2( 0.08, 0.08 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer2"]
 texture = ExtResource( 10 )
 
 [node name="Layer1" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.8, 1 )
-motion_mirroring = Vector2( 1920, 0 )
+motion_scale = Vector2( 0.1, 0.1 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Layer1"]
 texture = ExtResource( 9 )
