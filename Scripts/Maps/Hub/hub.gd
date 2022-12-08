@@ -9,7 +9,7 @@ onready var voting_room = $votingroom
 
 onready var candidates = $votingroom/Candidates
 
-var timer = 5
+var timer = 3
 var departing = false
 var time_since_tickdown = 0
 
@@ -66,7 +66,7 @@ func _process(delta):
     if departing:
         departing = departure_test()
         if not departing:
-            timer = 5
+            timer = 3
         else:
             time_since_tickdown += delta
             if time_since_tickdown >= 1.0:
