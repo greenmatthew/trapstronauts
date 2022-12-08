@@ -209,6 +209,10 @@ func _on_player_killed(player : PlayerController, source : Node2D):
         else:
             print("Player %s killed by %s." % [player.name, "UNKNOWN SOURCE({%s})" % source.name])
         player.death()
+        var direction = source.global_position.direction_to(player.global_position)
+        # direction.x = -direction.x
+        print(direction)
+        player.myjump(direction)
         if all_players_finished():
             go_to_score_screen()
 
