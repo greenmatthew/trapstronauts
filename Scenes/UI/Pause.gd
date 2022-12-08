@@ -3,6 +3,7 @@ extends Control
 func _on_Resume_pressed():
     get_tree().paused = false
     hide()
+    Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _on_Exit_pressed():
     # EventHandler.emit_signal("scene_changed", "Pause", "MainMenu")
@@ -13,3 +14,4 @@ func _unhandled_input(event):
     if event is InputEventKey and event.scancode == KEY_P and event.is_pressed():
         get_tree().paused = true
         show()
+        Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
