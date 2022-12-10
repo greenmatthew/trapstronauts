@@ -5,7 +5,7 @@ onready var raycast = $RayCast2D
 onready var particles = $Particles2D
 
 const direction : Vector2 = Vector2.RIGHT
-const max_range : float = 320.0
+const max_range : float = 256.0
 
 const duration : float = 1.5
 var time : float = 0.0

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SlidingSound.wav-34f35225eb731ebae214654eaf8baf0f.sample"
+path="res://.import/ButtonSound.wav-a218bcc3e3e8c615a7e2a6b1469e43e9.sample"
 
 [deps]
 
-source_file="res://Assets/Sounds/SlidingSound.wav"
-dest_files=[ "res://.import/SlidingSound.wav-34f35225eb731ebae214654eaf8baf0f.sample" ]
+source_file="res://Assets/Sounds/ButtonSound.wav"
+dest_files=[ "res://.import/ButtonSound.wav-a218bcc3e3e8c615a7e2a6b1469e43e9.sample" ]
 
 [params]
 
@@ -17,7 +17,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop_mode=2
+edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
 compress/mode=0

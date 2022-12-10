@@ -14,10 +14,12 @@ func check_if_its_already_pressed(x):
         $AnimationPlayer.play("When_it_is_clicked")
         get_parent().get_node("RollingSawBlade").follow_speed = 750
         get_parent().get_node("RollingSawBlade4").follow_speed = 750
+        $AudioStreamPlayer.play()
     if x == 0:
         $AnimationPlayer.play("When_it_is_not_clicked")
         get_parent().get_node("RollingSawBlade").follow_speed = 250
         get_parent().get_node("RollingSawBlade4").follow_speed = 250
+        $AudioStreamPlayer.stop()
     
 func _physics_process(_delta):
     if player_up:

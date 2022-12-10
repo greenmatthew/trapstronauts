@@ -1,18 +1,43 @@
 [Trapstronauts]
 
-[Programmers]
+[Gameplay Programmers]
 Matthew Green
 Steven Guilbert
 Joshua Elledge
 Himaneesh Mukka
 
-[2D Artists]
+[UI Programmers]
 Joshua Elledge
+Himaneesh Mukka
+Steven Guilbert
+
+[Custom Art]
+Player Character - Joshua Elledge
+Hub World - Joshua Elledge
+Alpine Mountains Background - Joshua Elledge
+Metal Tiles - Joshua Elledge
+Sawmill Button - Joshua Elledge
+Laser Turret - Joshua Elledge
+Sawblade Swing - Joshua Elledge
+Vanishing Platform - Joshua Elledge
+UI Art - Joshua Elledge
+Bomb Sprite - Matthew Green
+
+[Sourced Art]
+Space Background - itch.io user "Norma2D"
+Sci-Fi Wall Texture - OpenGameArt.org user "hassekf"
+Canyon Background - gamedevmarket.com user "Arrie"
+Ground Tileset - itch.io user "Cainos"
+Forest Background - itch.io user "edermunizz"
+Pixel Art Portals - itch.io user "actuallyKron"
+Sawmill Blades - itch.io user "Pixel Frog"
+Floor Spikes - "Kenney" https://www.kenney.nl/assets/pixel-platformer
+Jump Pad - "Kenney" https://www.kenney.nl/assets/pixel-platformer
 
 [Ideas]
 The Dr. Brian A. Dalio - Laser Graphics
 
-[3rd Party Assets]
+[Fonts]
 CraftronGaming - Minecraft Font
 
 [Sounds]
@@ -21,3 +46,4 @@ Video Game Soldiers by Twin Musicom (twinmusicom.org)
 AUBINE_Mathis_2019_2020_LightSaber.wav by univ_lyon3 (https://freesound.org/s/485784/)
 Boing.wav by juskiddink (https://freesound.org/s/140867/)
 30_Slip_2.wav by Juaner_ (https://freesound.org/s/471460/)
+Man Dying by Under7dude (https://freesound.org/s/163442/)

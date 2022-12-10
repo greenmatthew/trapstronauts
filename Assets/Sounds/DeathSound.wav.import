@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/SlidingSound.wav-34f35225eb731ebae214654eaf8baf0f.sample"
+path="res://.import/DeathSound.wav-78fa5ea589e4f3bd50000d4d877b7dec.sample"
 
 [deps]
 
-source_file="res://Assets/Sounds/SlidingSound.wav"
-dest_files=[ "res://.import/SlidingSound.wav-34f35225eb731ebae214654eaf8baf0f.sample" ]
+source_file="res://Assets/Sounds/DeathSound.wav"
+dest_files=[ "res://.import/DeathSound.wav-78fa5ea589e4f3bd50000d4d877b7dec.sample" ]
 
 [params]
 
@@ -17,7 +17,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop_mode=2
+edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
 compress/mode=0
