@@ -233,6 +233,9 @@ func all_players_finished():
     return finished
 
 func spawn_player(player: PlayerController):
+    if len(used_spawns) >= 4:
+        return
+
     var start = $Start
     var spawn_points = $Start/SpawnPoints.get_children()
     

@@ -32,15 +32,20 @@ func _input(_event):
             handle_vote(main.players[i])
 
 func add_player_to_world(player):
+    if players_added >= 4:
+        return
+
     add_child(player)
     
     $MultiCam.add_target(player)
     
     # TODO: Here, we will spawn the player in an empty bedroom. If none are available...
-    # We'll figure something out
+    # We'll figure something out LMAO AMOGUS
     
     player.reset()
     
+    printerr("Bedroom{n}".format({"n":players_added}))
+
     player.position = get_node("Bedroom{n}".format({"n":players_added})).position
     
     players_added += 1
