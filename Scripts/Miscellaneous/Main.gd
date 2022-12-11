@@ -20,6 +20,8 @@ onready var input_maps = []
 var cursors = []
 
 func add_player(player_index):
+    if player_index > 3:
+        return
     var player = load("Scenes/Entities/Player.tscn").instance()
     var cursor = load("Scenes/PlacementSystem/Cursor.tscn").instance()
 
@@ -171,7 +173,7 @@ func _ready():
     var status = EventHandler.connect("scene_changed", self, "handle_scene_changed")
     assert(!status)
 
-    var num_players = len(Input.get_connected_joypads())
+    var num_players = min(len(Input.get_connected_joypads()), 4)
 
     for i in range(num_players + 1):
         add_player(i)
