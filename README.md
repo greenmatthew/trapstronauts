@@ -21,6 +21,7 @@
     - Voting Screenshot
 - [Placement System](#placement-system)
     - Placement Screenshots
+- [Conclusions](#conclusions)
 - [Future Work](#future-work)
 
 ## Purpose
@@ -74,7 +75,7 @@ At the start of every round on a map, the players get a random assortment of ite
 ![Trapstronauts Placement System 2](https://www.matthewgreen.gg/trapstronauts/placement_system_2.png)
 
 ## Conclusions
-
+The final demo build was fun to play. Although it did have more bugs in it then we’d like to admit. Overall, it was a great success. If it had more content it really be a good contender for publishing it on Steam and other digital game vendors.
 
 ## Future Work
 If we were to keep working on the game there is many things we would have liked to add.
@@ -99,5 +100,3 @@ If we were to keep working on the game there is many things we would have liked 
 - Unique characters to choose from and customize like talked about with the hub’s bedroom wardrobes.
 - Alternate start and finishes to maps, maybe the player goes from the start to the finish and back to the start. Or maybe the start and finish moved round by round.
 - And so much more.
-
-
