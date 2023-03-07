@@ -42,6 +42,7 @@ There are many ways to get points, some events give you more points than others:
 - Being the only person to finish.
 - From player kills from traps that you placed.
 - Post-mortem arrival to the finish line.
+
 ![Trapstronauts Points System](https://www.matthewgreen.gg/trapstronauts/points_system.png)
 
 ## Maps
