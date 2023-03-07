@@ -21,7 +21,7 @@
     - Voting Screenshot
 - [Placement System](#placement-system)
     - Placement Screenshots
-- [Conclusions](#conclusions)
+- [Conclusion](#conclusion)
 - [Future Work](#future-work)
 
 ## Purpose
@@ -74,7 +74,7 @@ At the start of every round on a map, the players get a random assortment of ite
 ![Trapstronauts Placement System 1](https://www.matthewgreen.gg/trapstronauts/placement_system_1.png)
 ![Trapstronauts Placement System 2](https://www.matthewgreen.gg/trapstronauts/placement_system_2.png)
 
-## Conclusions
+## Conclusion
 The final demo build was fun to play. Although it did have more bugs in it then we’d like to admit. Overall, it was a great success. If it had more content it really be a good contender for publishing it on Steam and other digital game vendors.
 
 ## Future Work
