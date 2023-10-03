@@ -44,39 +44,39 @@ There are many ways to get points, some events give you more points than others:
 - Kills from traps you have placed.
 - Post-mortem arrival to the finish line.
 
-![Trapstronauts Points System](https://www.matthewgreen.gg/media/trapstronauts/points_system.png)
+![Trapstronauts Points System](https://www.matthewgreen.gg/media/trapstronauts/points-system.png)
 
 ## Maps
 There are multiple maps included with the demo build.
 
-![Trapstronauts Spaceship (Hub) Map](https://www.matthewgreen.gg/media/trapstronauts/map_hub_labelled.png)
+![Trapstronauts Spaceship (Hub) Map](https://www.matthewgreen.gg/media/trapstronauts/map-hub-labelled.png)
 This is where the players start when they load up the game. The players spawn in separate bedrooms. Here they can vote on a map then go to the portal room and start the game once enough players are in there.
 
-![Trapstronauts Sawmill Map](https://www.matthewgreen.gg/media/trapstronauts/map_sawmill_labelled.png)
-This is a simple but fun map, where there is a sawmill in the center. You can choose the safer option to go over it if it is not blocked or covered in traps from players’ item placements. You can also go through the sawmill which has two floors in it. Both floors have two saws with a button in the middle. If a player stands on the button in the middle, the saws speed up making it harder to get through the sawmill.
+![Trapstronauts Sawmill Map](https://www.matthewgreen.gg/media/trapstronauts/map-sawmill-labelled.png)
+This is a simple but fun map, where there is a sawmill in the center. You can choose the safer option to go over it if it is not blocked or covered in traps from players' item placements. You can also go through the sawmill which has two floors in it. Both floors have two saws with a button in the middle. If a player stands on the button in the middle, the saws speed up making it harder to get through the sawmill.
 
-![Trapstronauts Valley Map](https://www.matthewgreen.gg/media/trapstronauts/map_valley_labelled.png)
+![Trapstronauts Valley Map](https://www.matthewgreen.gg/media/trapstronauts/map-valley-labelled.png)
 The players start on the left bank of a steep valley with the finish line up above on the right bank. If they fall into the pit between the two banks they perish. At first this is unavoidable, so they must build their way up using platforms and traps.
 
-![Trapstronauts Cliffs Map](https://www.matthewgreen.gg/media/trapstronauts/map_cliffs_labelled.png)
+![Trapstronauts Cliffs Map](https://www.matthewgreen.gg/media/trapstronauts/map-cliffs-labelled.png)
 This is very similar to valley, but a lot smaller. It is the best map for a quick game.
 
-![Trapstronauts Canyon Map](https://www.matthewgreen.gg/media/trapstronauts/map_canyon_labelled.png)
+![Trapstronauts Canyon Map](https://www.matthewgreen.gg/media/trapstronauts/map-canyon-labelled.png)
 The players start on the left bank of a canyon and the finish is in the bottom right cave inside the canyon. There are two hidden paths on the outskirts of the map that players can discover and use to get around traps and platforms in the way.
 
 ## Voting System
 The players vote on which map they want, however, instead of a majority vote winning, it is proportionally selected at random. Meaning each vote has an equal chance of being randomly selected. For example, if two players voted on Sawmill and one voted on Valley, then it would be a two-thirds chance of being Sawmill and one-thirds chance of being Valley, once the players start the game at the portal room.
 
-![Trapstronauts Voting System](https://www.matthewgreen.gg/media/trapstronauts/voting_system.png)
+![Trapstronauts Voting System](https://www.matthewgreen.gg/media/trapstronauts/voting-system.png)
 
 ## Placement System
-At the start of every round, the players get a random assortment of items, which can be platforms, traps, and bombs, but they must choose quickly and wisely. Once an item has been selected you are locked in and no one else can choose that item. After all the players have chosen an item, then they all at once try and place their items where they’d like to. Then after all items are placed they race to the finish.
+At the start of every round, the players get a random assortment of items, which can be platforms, traps, and bombs, but they must choose quickly and wisely. Once an item has been selected you are locked in and no one else can choose that item. After all the players have chosen an item, then they all at once try and place their items where they'd like to. Then after all items are placed they race to the finish.
 
 The platforms are for making or blocking paths to the finish line. Then for the traps they can kill players making it harder to get to the finish but can also sometimes be used as a platform. Finally, there is the bombs, which blow up a small areas of placed items, which is useful for if the map is impossible or if a player wants to remove a group of items. Most players usually have their own path to get to the finish through the map and they place items to make their path easier or to make others' paths harder to navigate without dying.
 
-![Trapstronauts Placement System 0](https://www.matthewgreen.gg/media/trapstronauts/placement_system_0.png)
-![Trapstronauts Placement System 1](https://www.matthewgreen.gg/media/trapstronauts/placement_system_1.png)
-![Trapstronauts Placement System 2](https://www.matthewgreen.gg/media/trapstronauts/placement_system_2.png)
+![Trapstronauts Placement System 0](https://www.matthewgreen.gg/media/trapstronauts/placement-system-0.png)
+![Trapstronauts Placement System 1](https://www.matthewgreen.gg/media/trapstronauts/placement-system-1.png)
+![Trapstronauts Placement System 2](https://www.matthewgreen.gg/media/trapstronauts/placement-system-2.png)
 
 ## Conclusion
 The final demo build was genuinely fun to play with some friends. Although it did have more bugs in it then we would like to admit. Overall, it was a remarkable success. If it had more content it really be a contender for publishing on Steam or other digital game vendors.
@@ -101,6 +101,6 @@ If we were to keep working on the game there is many things we would have liked 
     - Electrifier - when placed next to metal items, it kills anything touching them, upon a fixed timer going off. The electrical system can be extended by placing metal items adjacent to other metal items.
     - And much more, but these are the most notable.
 - Laser Reflections - so when a rotator rotates a laser or a laser drone shoots at the player, any metal items reflect the laser, possibly causing a chain reaction of reflections and possibly killing players.
-- Unique characters to choose from and customize like talked about with the hub’s bedroom wardrobes.
+- Unique characters to choose from and customize like talked about with the hub's bedroom wardrobes.
 - Alternate start and finishes to maps, maybe the player goes from the start to the finish and back to the start. Or maybe the start and finish moved round by round.
 - And so much more.
