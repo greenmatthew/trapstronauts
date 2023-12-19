@@ -1,6 +1,6 @@
 # Trapstronauts
 
-![Trapstronauts Preview](https://www.matthewgreen.gg/media/trapstronauts/preview.png)
+![Trapstronauts Preview](Docs/README.md/preview.png)
 
 ## Links
 - [Matthew's Personal Git Repo](https://git.matthewgreen.gg/matthewgreen/Trapstronauts.git)
@@ -32,9 +32,16 @@ It is a local multiplayer party game, made in Godot Engine 3, which draws heavy 
 
 A motif of the game is that the players are always able to compete and harass other players through different game functionalities, even before they are racing for points. Which makes it the perfect game to play with a group of friends to laugh over.
 
-https://user-images.githubusercontent.com/45467733/223187027-faade077-9cdd-4e8c-ace7-032beaf850d8.mp4
-
-Trapstronauts Demo Video: Due to the way the demo was recorded the audio cuts out frequently in the recording.
+<p align="center">
+    <a href="https://youtu.be/mKnVCvUbzQI">
+        <img
+            src="Docs/README.md/demo-video-thumbnail.png"
+            alt="Trapstronauts Demo"
+        >
+    </a>
+    <br>
+    Note: This video was recorded was over remote streaming service, so there are some audio artifacting and cuts.
+</p>
 
 ## Points
 There are many ways to get points, some events give you more points than others:
@@ -44,39 +51,39 @@ There are many ways to get points, some events give you more points than others:
 - Kills from traps you have placed.
 - Post-mortem arrival to the finish line.
 
-![Trapstronauts Points System](https://www.matthewgreen.gg/media/trapstronauts/points-system.png)
+![Trapstronauts Points System](Docs/README.md/points-system.png)
 
 ## Maps
 There are multiple maps included with the demo build.
 
-![Trapstronauts Spaceship (Hub) Map](https://www.matthewgreen.gg/media/trapstronauts/map-hub-labelled.png)
+![Trapstronauts Spaceship (Hub) Map](Docs/README.md/map-hub-labelled.png)
 This is where the players start when they load up the game. The players spawn in separate bedrooms. Here they can vote on a map then go to the portal room and start the game once enough players are in there.
 
-![Trapstronauts Sawmill Map](https://www.matthewgreen.gg/media/trapstronauts/map-sawmill-labelled.png)
+![Trapstronauts Sawmill Map](Docs/README.md/map-sawmill-labelled.png)
 This is a simple but fun map, where there is a sawmill in the center. You can choose the safer option to go over it if it is not blocked or covered in traps from players' item placements. You can also go through the sawmill which has two floors in it. Both floors have two saws with a button in the middle. If a player stands on the button in the middle, the saws speed up making it harder to get through the sawmill.
 
-![Trapstronauts Valley Map](https://www.matthewgreen.gg/media/trapstronauts/map-valley-labelled.png)
+![Trapstronauts Valley Map](Docs/README.md/map-valley-labelled.png)
 The players start on the left bank of a steep valley with the finish line up above on the right bank. If they fall into the pit between the two banks they perish. At first this is unavoidable, so they must build their way up using platforms and traps.
 
-![Trapstronauts Cliffs Map](https://www.matthewgreen.gg/media/trapstronauts/map-cliffs-labelled.png)
+![Trapstronauts Cliffs Map](Docs/README.md/map-cliffs-labelled.png)
 This is very similar to valley, but a lot smaller. It is the best map for a quick game.
 
-![Trapstronauts Canyon Map](https://www.matthewgreen.gg/media/trapstronauts/map-canyon-labelled.png)
+![Trapstronauts Canyon Map](Docs/README.md/map-canyon-labelled.png)
 The players start on the left bank of a canyon and the finish is in the bottom right cave inside the canyon. There are two hidden paths on the outskirts of the map that players can discover and use to get around traps and platforms in the way.
 
 ## Voting System
 The players vote on which map they want, however, instead of a majority vote winning, it is proportionally selected at random. Meaning each vote has an equal chance of being randomly selected. For example, if two players voted on Sawmill and one voted on Valley, then it would be a two-thirds chance of being Sawmill and one-thirds chance of being Valley, once the players start the game at the portal room.
 
-![Trapstronauts Voting System](https://www.matthewgreen.gg/media/trapstronauts/voting-system.png)
+![Trapstronauts Voting System](Docs/README.md/voting-system.png)
 
 ## Placement System
 At the start of every round, the players get a random assortment of items, which can be platforms, traps, and bombs, but they must choose quickly and wisely. Once an item has been selected you are locked in and no one else can choose that item. After all the players have chosen an item, then they all at once try and place their items where they'd like to. Then after all items are placed they race to the finish.
 
 The platforms are for making or blocking paths to the finish line. Then for the traps they can kill players making it harder to get to the finish but can also sometimes be used as a platform. Finally, there is the bombs, which blow up a small areas of placed items, which is useful for if the map is impossible or if a player wants to remove a group of items. Most players usually have their own path to get to the finish through the map and they place items to make their path easier or to make others' paths harder to navigate without dying.
 
-![Trapstronauts Placement System 0](https://www.matthewgreen.gg/media/trapstronauts/placement-system-0.png)
-![Trapstronauts Placement System 1](https://www.matthewgreen.gg/media/trapstronauts/placement-system-1.png)
-![Trapstronauts Placement System 2](https://www.matthewgreen.gg/media/trapstronauts/placement-system-2.png)
+![Trapstronauts Placement System 0](Docs/README.md/placement-system-0.png)
+![Trapstronauts Placement System 1](Docs/README.md/placement-system-1.png)
+![Trapstronauts Placement System 2](Docs/README.md/placement-system-2.png)
 
 ## Conclusion
 The final demo build was genuinely fun to play with some friends. Although it did have more bugs in it then we would like to admit. Overall, it was a remarkable success. If it had more content it really be a contender for publishing on Steam or other digital game vendors.
